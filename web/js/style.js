@@ -28,13 +28,72 @@ $(document).ready(function () {
         $(this).addClass('actives');
     });
     
-    //Zniknięcie/pojawienie się opisów kategorii
+    //Przekazanie wyboru miesiąca i roku
     
-//    $('.sideMenuHeader').css('display', 'none');
+    $('#form').click(function() {
+          var selectedMonth = $( "#selectMonth option:selected" ).val();
+          var selectedYear = $( "#selectYear option:selected" ).val();
+          
+          $.ajax({
+              type: 'POST',
+              url: '/selectDay',
+              data: {
+                selectedYear: selectedYear,  
+                selectedMonth: selectedMonth
+              },
+              dataType: 'json',
+              success: function(calendar) {
+                  alert('sukces!');
+                  console.log(calendar);
+                  
+                  
+                  
+              }
+          });
+          
+    });
     
-//    $('#sideMenuContainer').mouseover(function() {
-//        $('.sideMenuHeader').css('display', 'inline');
-//    });
+    //ustawia miesiąc i rok w select calendar na aktualny czas
+    
+    var child = $('#selectMonth').attr('month');
+    if (child == 01) {
+        $('#jan').attr('selected', 'selected');
+    } else if (child == 02) {
+        $('#feb').attr('selected', 'selected');
+    }else if (child == 03) {
+        $('#mar').attr('selected', 'selected');
+    }else if (child == 04) {
+        $('#apr').attr('selected', 'selected');
+    }else if (child == 05) {
+        $('#may').attr('selected', 'selected');
+    }else if (child == 06) {
+        $('#jun').attr('selected', 'selected');
+    }else if (child == 07) {
+        $('#jul').attr('selected', 'selected');
+    }else if (child == 08) {
+        $('#aug').attr('selected', 'selected');
+    }else if (child == 09) {
+        $('#sep').attr('selected', 'selected');
+    }else if (child == 10) {
+        $('#oct').attr('selected', 'selected');
+    }else if (child == 11) {
+        $('#nov').attr('selected', 'selected');
+    } else {
+        $('#dec').attr('selected', 'selected');
+    }
+
+    
+    var year = $('#selectYear').attr('year');
+
+    if (year == 2017) {
+        $('#2017').attr('selected', 'selected');
+    } else if (year == 2018) {
+        $('#2018').attr('selected', 'selected');
+    } else if (year == 2019) {
+        $('#2019').attr('selected', 'selected');
+    } else {
+        $('#2020').attr('selected', 'selected');
+    }
     
     
 });
