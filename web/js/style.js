@@ -43,10 +43,48 @@ $(document).ready(function () {
               },
               dataType: 'json',
               success: function(calendar) {
-                  alert('sukces!');
                   console.log(calendar);
+                  console.log(calendar.year);
+                  var day = 1;
+                  $('.calendarShow').html('');
                   
+                  var table = '\
+                <table border="solid" cellpadding="10" class="calendarShow">\n\
+                    <tr>\n\
+                        <th class="days">Pn</th>\n\
+                        <th class="days">Wt</th>\n\
+                        <th class="days">Śr</th>\n\
+                        <th class="days">Cz</th>\n\
+                        <th class="days">Pt</th>\n\
+                        <th class="days">Sb</th>\n\
+                        <th class="days">Nd</th>\n\
+                    </tr>\n';
                   
+                  console.log(table);
+
+                  
+                  for (i = 1; i <= calendar.numberOfWeeksInMonth; i++) {
+                      table += '<tr>';
+                      for (var j = 1; j <= 7; j++) {
+                          if ((j < calendar.firstDayInMonth && i == 1) || j > calendar.daysInMonth && i == 1) {
+                              table += '<td></td>';
+                          } else if (day < calendar.daysInMonth + 1) {
+                              if (i % 2 == 0) {
+                                  table += '<td style="background-color: lightgray"><a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '">' + day + '</a></td>';
+                                  day ++;
+                              } else {
+                                  table += '<td style="background-color: lightblue"><a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '">' + day + '</a></td>';
+                                  day ++;
+                              }
+                              
+                          }
+                      }
+                    table += '</tr>'    
+                  }
+                  table += '</table>';
+                  console.log(table);
+                  
+                  $('.calendarShow').append(table);
                   
               }
           });
