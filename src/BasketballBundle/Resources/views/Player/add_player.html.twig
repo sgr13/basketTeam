@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BasketballBundle:Player:addPlayer{% endblock %}
+
+{% block body %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h2>Dodaj zawodnika</h2>
+    </div>
+    <div class="panel-body">
+        {{form(form)}}
+    </div>
+</div>
+
+{% endblock %}

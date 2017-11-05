@@ -59,10 +59,7 @@ $(document).ready(function () {
                         <th class="days">Sb</th>\n\
                         <th class="days">Nd</th>\n\
                     </tr>\n';
-                  
-                  console.log(table);
 
-                  
                   for (i = 1; i <= calendar.numberOfWeeksInMonth; i++) {
                       table += '<tr>';
                       for (var j = 1; j <= 7; j++) {
@@ -76,16 +73,14 @@ $(document).ready(function () {
                                   table += '<td style="background-color: lightblue"><a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '">' + day + '</a></td>';
                                   day ++;
                               }
-                              
                           }
                       }
-                    table += '</tr>'    
+                    table += '</tr>';    
                   }
                   table += '</table>';
                   console.log(table);
                   
                   $('.calendarShow').append(table);
-                  
               }
           });
           

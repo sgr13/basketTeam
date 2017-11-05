@@ -11,7 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="BasketballBundle\Repository\PlayerRepository")
  */
 class Player
-{
+{   
+    /**
+     * @ORM\ManyToOne(targetEntity="Specialisation", inversedBy="player")
+     */
+    private $specialisation;
+    
     /**
      * @var int
      *
@@ -217,5 +222,14 @@ class Player
     {
         return $this->photoBack;
     }
+    
+    function getSpecialisation() {
+        return $this->specialisation;
+    }
+
+    function setSpecialisation($specialisation) {
+        $this->specialisation = $specialisation;
+    }
+
 }
 

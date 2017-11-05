@@ -48,38 +48,18 @@
                         <td></td>
                     {% elseif day < calendar.daysInMonth + 1 %}
                         {% if i % 2 == 0 %}
-                            {% if j == 2 or j == 4 %}
-                                <td style="background-color: lightgray">
-                                    <a id="availableDay" style="text-decoration: underline"
-                                       href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        {{ day }}
-                                    </a>
-                                </td>
-                            {% else %}
-                                <td style="background-color: lightgray">
-                                    <a id="availableDay" style="text-decoration: underline"
-                                       href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        {{ day }}
-                                    </a>
-                                </td>
-                            {% endif %}
+                            <td style="background-color: lightgray">
+                                <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
+                                    {{ day }}
+                                </a>
+                            </td>
                             {% set day = day + 1 %}
                         {% else %}
-                            {% if j == 2 or j == 4 %}
-                                <td style="background-color: lightblue">
-                                    <a id="availableDay" style="text-decoration: underline"
-                                       href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        {{ day }}
-                                    </a>
-                                </td>
-                            {% else %}
-                                <td  style="background-color: lightblue">
-                                    <a id="availableDay" style="text-decoration: underline"
-                                       href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        {{ day }}
-                                    </a>
-                                </td>
-                            {% endif %}
+                            <td style="background-color: lightblue">
+                                <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
+                                    {{ day }}
+                                </a>
+                            </td>    
                             {% set day = day + 1 %}
                         {% endif %}
                     {% else %}
