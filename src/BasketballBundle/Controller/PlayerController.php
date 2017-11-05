@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PlayerController extends Controller
 {
     /**
-     * @Route("/addPlayer")
+     * @Route("/addPlayer", name="addPlayer")
      */
     public function addPlayerAction(Request $request)
     {   
@@ -24,6 +24,8 @@ class PlayerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $player = $form->getData();
             $player->setGames(12);
+            $user = $this->getUser();
+            $player->setUser($user->getId());
             
             $photoFront = $player->getPhotoFront();
             $photoBack = $player->getPhotoBack();
@@ -94,6 +96,16 @@ class PlayerController extends Controller
     public function checkOutAction()
     {
         return $this->render('BasketballBundle:Player:check_out.html.twig', array(
+            // ...
+        ));
+    }
+    
+    /**
+     * @Route("/userPanel", name="userPanel")
+     */
+    public function userPanelAction() 
+    {
+        return $this->render('BasketballBundle:Player:user_panel.html.twig', array(
             // ...
         ));
     }

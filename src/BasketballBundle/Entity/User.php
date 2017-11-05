@@ -12,7 +12,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass="BasketballBundle\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
-{
+{   
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Player", mappedBy="user")
+     */
+    private $player;
+
     /**
      * @var int
      *
@@ -201,5 +207,12 @@ class User implements UserInterface, \Serializable
         // see section on salt below
         return null;
     }
-}
+    
+    function getPlayer() {
+        return $this->player;
+    }
 
+    function setPlayer($player) {
+        $this->player = $player;
+    }
+}

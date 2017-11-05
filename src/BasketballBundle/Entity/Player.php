@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Player
 {   
     /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="player")
+     */
+    private $user;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Specialisation", inversedBy="player")
      */
     private $specialisation;
@@ -230,6 +235,12 @@ class Player
     function setSpecialisation($specialisation) {
         $this->specialisation = $specialisation;
     }
+    
+    function getUser() {
+        return $this->user;
+    }
 
+    function setUser($user) {
+        $this->user = $user;
+    }
 }
-
