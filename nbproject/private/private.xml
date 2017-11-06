@@ -12,6 +12,7 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/user_panel.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/RegisterController.php</file>
             <file>file:/home/www/html/Basketball/web/js/style.js</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/PlayerController.php</file>
@@ -21,6 +22,7 @@
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/User.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/LoginController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/PlayerType.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Main/main_page.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/add_player.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/UserType.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
