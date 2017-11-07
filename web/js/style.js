@@ -67,10 +67,20 @@ $(document).ready(function () {
                               table += '<td></td>';
                           } else if (day < calendar.daysInMonth + 1) {
                               if (i % 2 == 0) {
-                                  table += '<td style="background-color: lightgray"><a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '">' + day + '</a></td>';
+                                  table += '<td style="background-color: lightgray">';
+                                  if (day < 10) {
+                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + 0 + day + '</button></a></td>';
+                                  } else {
+                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + day + '</button></a></td>';
+                                  }
                                   day ++;
                               } else {
-                                  table += '<td style="background-color: lightblue"><a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '">' + day + '</a></td>';
+                                  table += '<td style="background-color: lightblue">';
+                                  if (day < 10) {
+                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + 0 + day + '</button></a></td>';
+                                  } else {
+                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + day + '</button></a></td>';
+                                  }
                                   day ++;
                               }
                           }

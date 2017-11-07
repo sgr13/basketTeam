@@ -50,26 +50,18 @@
                         {% if i % 2 == 0 %}
                             <td style="background-color: lightgray">
                                 {% if day < 10 %}
-                                    <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        <button class="btn btn-info">0{{ day }}</button>
-                                    </a>
+                                    <button class="btn btn-info">0{{ day }}</button>
                                 {% else %}
-                                    <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        <button class="btn btn-info">{{ day }}</button>
-                                    </a>
+                                    <button class="btn btn-info">{{ day }}</button>
                                 {% endif %}
                             </td>
                             {% set day = day + 1 %}
                         {% else %}
                             <td style="background-color: lightblue">
                                 {% if day < 10 %}
-                                    <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        <button class="btn btn-success">0{{ day }}</button>
-                                    </a>
+                                    <button class="btn btn-success">0{{ day }}</button>
                                 {% else %}
-                                    <a href="{{ path('selectGameType', {'year': calendar.year, 'month': calendar.month, 'day': day, 'noDay': j}) }}">
-                                        <button class="btn btn-success">{{ day }}</button>
-                                    </a>
+                                    <button class="btn btn-success">{{ day }}</button>
                                 {% endif %}
                             </td>    
                             {% set day = day + 1 %}
