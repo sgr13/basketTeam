@@ -3,8 +3,11 @@
 {% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
 
 {% block body %}
+    <h1>{{ app.request.attributes.get('_route') }}</h1>
 {#{{ calendar.showCalendar }}
 #}
+
+<div style="float:left; margin-left: 120px; margin-right: 150px">
     <h3>Wybierz dzień spotkania:</h3>
     <form id="form">
         <select id="selectMonth" month="{{ calendar.month }}">
@@ -50,18 +53,18 @@
                         {% if i % 2 == 0 %}
                             <td style="background-color: lightgray">
                                 {% if day < 10 %}
-                                    <button class="btn btn-info">0{{ day }}</button>
+                                    <button class="btn btn-info calendarButton">0{{ day }}</button>
                                 {% else %}
-                                    <button class="btn btn-info">{{ day }}</button>
+                                    <button class="btn btn-info calendarButton">{{ day }}</button>
                                 {% endif %}
                             </td>
                             {% set day = day + 1 %}
                         {% else %}
                             <td style="background-color: lightblue">
                                 {% if day < 10 %}
-                                    <button class="btn btn-success">0{{ day }}</button>
+                                    <button class="btn btn-success calendarButton">0{{ day }}</button>
                                 {% else %}
-                                    <button class="btn btn-success">{{ day }}</button>
+                                    <button class="btn btn-success calendarButton">{{ day }}</button>
                                 {% endif %}
                             </td>    
                             {% set day = day + 1 %}
@@ -73,4 +76,21 @@
             </tr>
         {% endfor %}
     </table>
+</div
+{% if  app.request.attributes.get('_route') == 'addNextGame' %}
+    <div style="float:left; margin-left: 100px">
+        <br>
+        <h3>Data Spotkania:</h3>
+            {% set date = today ~ '.' ~ month ~ '.' ~ year %}
+            <h2 id="chosenDate">{{date}}</h2>
+        <br>
+        <h3>Miejsce spotkania:</h3>
+        <form>
+            <input type="text" name="place" id="gamePlace">
+        </form>
+    </div>
+    <div style="margin-left: 500px; clear:both; margin-top: 80px">
+        <a href="{{ path('saveNewGame', {'date': date, 'place': 'a'}) }}"><button class="btn btn-warning sendButton" style="font-size: 200%">Dodaj</button></a>
+    </div>
+{% endif %}
 {% endblock %}

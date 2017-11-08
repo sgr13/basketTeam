@@ -139,7 +139,17 @@ $(document).ready(function () {
     }
     
     
+    $('.calendarButton').click(function() {
+        var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
+        $('#chosenDate').html(date);
+        $('#selectedDate').val(date + '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year'));
+    });
+    
+    $('.sendButton').click(function() {
+        if ($('#gamePlace').val() == '') {
+            $('#gamePlace').after('<span style="color:red">Musisz podać miejsce nastepnego spotkania!</span>');
+            event.preventDefault();
+        }
+        
+    })
 });
-
-
-

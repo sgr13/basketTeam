@@ -62,7 +62,7 @@ class AdminController extends Controller
     }
     
     /**
-     * @Route("/addNextGame")
+     * @Route("/addNextGame", name="addNextGame")
      */
     public function addNextGameAction(Request $request)
     {   
@@ -70,6 +70,7 @@ class AdminController extends Controller
         
         $month = date('m');
         $year = date('Y');
+        $today = date('d');
         
         $calendar->setMonth($month);
         $calendar->setYear($year);
@@ -95,12 +96,25 @@ class AdminController extends Controller
             
         return new JsonResponse($calendar);
     }
+    
+        if ($request->request->get('place') && $request->request->get('selectedDate')) {
+            var_dump('yeaaah');die();
+        }
 
         return $this->render('BasketballBundle:Admin:add_next_game.html.twig', array(
             'calendar' => $calendar,
             'year' => $year,
-            'month' => $month
+            'month' => $month,
+            'today' => $today
         ));
+    }
+    
+    /**
+     * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
+     */
+    public function saveNewGameAction(Request $request, $date, $place)
+    {
+        
     }
 
 }
