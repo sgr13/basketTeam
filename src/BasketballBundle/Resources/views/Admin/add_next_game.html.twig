@@ -76,10 +76,11 @@
             </tr>
         {% endfor %}
     </table>
-</div
-{% if  app.request.attributes.get('_route') == 'addNextGame' %}
-    <div style="float:left; margin-left: 100px">
-        <br>
+</div>
+{#{% if  app.request.attributes.get('_route') == 'addNextGame' %}#}
+    <div style="float:left; margin-left: 100px" class="dateAndPlace">
+
+{#        <br>
         <h3>Data Spotkania:</h3>
             {% set date = today ~ '.' ~ month ~ '.' ~ year %}
             <h2 id="chosenDate">{{date}}</h2>
@@ -87,10 +88,9 @@
         <h3>Miejsce spotkania:</h3>
         <form>
             <input type="text" name="place" id="gamePlace">
-        </form>
+        </form>#}
     </div>
-    <div style="margin-left: 500px; clear:both; margin-top: 80px">
-        <a href="{{ path('saveNewGame', {'date': date, 'place': 'a'}) }}"><button class="btn btn-warning sendButton" style="font-size: 200%">Dodaj</button></a>
+    <div style="margin-left: 500px; clear:both; margin-top: 80px" class="addNextGameButtonContainer">
     </div>
-{% endif %}
+{#{% endif %}#}
 {% endblock %}

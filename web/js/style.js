@@ -145,11 +145,29 @@ $(document).ready(function () {
         $('#selectedDate').val(date + '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year'));
     });
     
-    $('.sendButton').click(function() {
-        if ($('#gamePlace').val() == '') {
-            $('#gamePlace').after('<span style="color:red">Musisz podać miejsce nastepnego spotkania!</span>');
-            event.preventDefault();
-        }
+    
+    
+    $('.calendarButton').click(function() {
+        var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
+//        var place = $('#gamePlace').val();
+         $('.addNextGameButtonContainer').empty();
+        $('.dateAndPlace').empty();
+        $('.dateAndPlace').append('<br><h3>Data spotkania:</h3><h2>' + date +'</h2><br><h3>Miejsce spotkania:</h3><form><input type="text" id="gamePlace"></form>');
         
-    })
+        $('#gamePlace').focusout(function() {
+            var place = $('#gamePlace').val();
+            $('.addNextGameButtonContainer').empty();
+            $('.addNextGameButtonContainer').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning" style="font-size: 200%;">Dodaj</button></a>');
+        });
+//        
+//       $('.addNextGameButtonContainer').empty();
+//       $('.addNextGameButtonContainer').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning" style="font-size: 200%;">Dodaj</button></a>');
+//       
+//       $('.sendButton').click(function() {
+//            if ($('#gamePlace').val() == '') {
+//                $('#gamePlace').after('<span style="color:red">Musisz podać miejsce nastepnego spotkania!</span>');
+//                event.preventDefault();
+//            }
+//        });
+    });
 });

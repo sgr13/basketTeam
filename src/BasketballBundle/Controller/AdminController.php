@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use BasketballBundle\Entity\Calendar;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use BasketballBundle\Entity\NextGame;
 
 
 class AdminController extends Controller
@@ -114,7 +115,15 @@ class AdminController extends Controller
      */
     public function saveNewGameAction(Request $request, $date, $place)
     {
+        $em = $this->getDoctrine()->getManager();
+        $nextGame = new NextGame();
+        $nextGame->setDate($date);
+        $nextGame->setPlace($place);
+        var_dump($nextGame);die();
+        $em->persist($nextGame);
+        $em->flush();
         
+        die('Zrobione');
     }
 
 }
