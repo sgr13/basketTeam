@@ -69,20 +69,39 @@ $(document).ready(function () {
                               if (i % 2 == 0) {
                                   table += '<td style="background-color: lightgray">';
                                   if (day < 10) {
-                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + 0 + day + '</button></a></td>';
+                                      if ($('.mainContainer').attr('id') === 'addNextGame') {
+                                          table += '<button class="btn btn-info calendarButton">0' + day + '</button>';
+                                      } else {
+                                          table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + 0 + day + '</button></a></td>';
+                                      }
                                   } else {
-                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + day + '</button></a></td>';
+                                      if ($('.mainContainer').attr('id') === 'addNextGame') {
+                                         table += '<button class="btn btn-info calendarButton">' + day + '</button>'; 
+                                      } else {
+                                         table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + day + '</button></a></td>'; 
+                                      }
                                   }
                                   day ++;
                               } else {
                                   table += '<td style="background-color: lightblue">';
                                   if (day < 10) {
-                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + 0 + day + '</button></a></td>';
+                                      if ($('.mainContainer').attr('id') === 'addNextGame') {
+                                          table += '<button class="btn btn-success calendarButton">0' + day + '</button>';
+                                      } else {
+                                          table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + 0 + day + '</button></a></td>';
+                                      }
+                                      
                                   } else {
-                                      table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + day + '</button></a></td>';
+                                      if ($('.mainContainer').attr('id') === 'addNextGame') {
+                                          table += '<button class="btn btn-success calendarButton">' + day + '</button>';
+                                      } else {
+                                          table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + day + '</button></a></td>';
+                                      }
                                   }
                                   day ++;
                               }
+                          } else {
+                              table += '<td></td>';
                           }
                       }
                     table += '</tr>';    
@@ -91,6 +110,7 @@ $(document).ready(function () {
                   console.log(table);
                   
                   $('.calendarShow').append(table);
+                  buttons();
               }
           });
           
@@ -98,7 +118,9 @@ $(document).ready(function () {
     
     //ustawia miesiąc i rok w select calendar na aktualny czas
     
-    var child = $('#selectMonth').attr('month');
+    function monthAndYear() {
+        
+        var child = $('#selectMonth').attr('month');
     if (child == 01) {
         $('#jan').attr('selected', 'selected');
     } else if (child == 02) {
@@ -137,19 +159,19 @@ $(document).ready(function () {
     } else {
         $('#2020').attr('selected', 'selected');
     }
-    
-    
-    $('.calendarButton').click(function() {
+        
+    }
+
+    function buttons() {
+        
+        $('.calendarButton').click(function() {
         var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
         $('#chosenDate').html(date);
         $('#selectedDate').val(date + '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year'));
     });
-    
-    
-    
+
     $('.calendarButton').click(function() {
         var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
-//        var place = $('#gamePlace').val();
          $('.addNextGameButtonContainer').empty();
         $('.dateAndPlace').empty();
         $('.dateAndPlace').append('<br><h3>Data spotkania:</h3><h2>' + date +'</h2><br><h3>Miejsce spotkania:</h3><form><input type="text" id="gamePlace"></form>');
@@ -159,15 +181,26 @@ $(document).ready(function () {
             $('.addNextGameButtonContainer').empty();
             $('.addNextGameButtonContainer').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning" style="font-size: 200%;">Dodaj</button></a>');
         });
-//        
-//       $('.addNextGameButtonContainer').empty();
-//       $('.addNextGameButtonContainer').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning" style="font-size: 200%;">Dodaj</button></a>');
-//       
-//       $('.sendButton').click(function() {
-//            if ($('#gamePlace').val() == '') {
-//                $('#gamePlace').after('<span style="color:red">Musisz podać miejsce nastepnego spotkania!</span>');
-//                event.preventDefault();
-//            }
-//        });
     });
+    }
+    
+    function changeMonth() {
+        $('#selectMonth').change(function() {
+            var selectedMonth = $('select option:selected').val();
+            $('#selectMonth').attr('month', selectedMonth);
+        });
+    }
+    
+    function changeYear() {
+         $('#selectYear').change(function() {
+             var selectedYear = $('#selectYear option:selected').val();
+             $('#selectYear').attr('year', selectedYear);
+         });
+    }
+    
+    changeYear();
+    changeMonth();
+    monthAndYear();
+    buttons();
+    
 });

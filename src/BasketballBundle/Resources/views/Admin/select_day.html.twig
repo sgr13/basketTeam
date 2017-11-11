@@ -5,6 +5,7 @@
 {% block body %}
 {#{{ calendar.showCalendar }}
 #}
+<div>
     <h3>Wybierz dzień spotkania:</h3>
     <form id="form">
         <select id="selectMonth" month="{{ calendar.month }}">
@@ -81,4 +82,5 @@
             </tr>
         {% endfor %}
     </table>
+</div>        
 {% endblock %}

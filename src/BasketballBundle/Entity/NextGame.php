@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class NextGame
 {   
     /**
+     * @ORM\ManyToOne(targetEntity="PlayersList")
+     */
+    private $playersList;
+    
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -93,5 +98,12 @@ class NextGame
     {
         return $this->place;
     }
-}
+    
+    function getPlayersList() {
+        return $this->playersList;
+    }
 
+    function setPlayersList($playersList) {
+        $this->playersList = $playersList;
+    }
+}

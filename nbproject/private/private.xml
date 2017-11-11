@@ -22,7 +22,6 @@
             <file>file:/home/www/html/Basketball/app/Resources/views/base.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Specialisation.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Register/register.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/User.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/LoginController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/PlayerType.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Main/main_page.html.twig</file>
@@ -32,6 +31,8 @@
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/select_day.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Player.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/NextGame.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_player_to_game.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/admin_panel.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/MainController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_next_game.html.twig</file>
         </group>

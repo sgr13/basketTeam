@@ -8,6 +8,7 @@ use BasketballBundle\Entity\Calendar;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use BasketballBundle\Entity\NextGame;
+use BasketballBundle\Entity\PlayersList;
 
 
 class AdminController extends Controller
@@ -114,16 +115,73 @@ class AdminController extends Controller
      * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
      */
     public function saveNewGameAction(Request $request, $date, $place)
-    {
+    {   
         $em = $this->getDoctrine()->getManager();
+        
+        $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        
+        if (!empty($lastGame)) {
+            $em->remove($lastGame[0]);
+            $em->flush();
+        }
+        
+        $oldPlayersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
+        
+        if (!empty($oldPlayersList)) {
+            $em->remove($oldPlayersList[0]);
+            $em->flush();
+        }
+        
+        $newPlayersList = new PlayersList();
+        $em->persist($newPlayersList);
+        $em->flush();
+
         $nextGame = new NextGame();
         $nextGame->setDate($date);
         $nextGame->setPlace($place);
-        var_dump($nextGame);die();
+        $nextGame->setPlayersList($newPlayersList);
+        
         $em->persist($nextGame);
         $em->flush();
         
         die('Zrobione');
     }
+    
+    /**
+     * @Route("/adminPanel", name="adminPanel")
+     */
+    public function adminPanelAction()
+    {
+        return $this->render('BasketballBundle:Admin:admin_panel.html.twig', array(
+        ));
+    }
+    
+    /**
+     * @Route("/addPlayerToNextGame", name="addPlayerToNextGame")
+     */
+    public function addPlayerToNextGameAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($player = $request->request->get('player')) {
+            $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
+            $playersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
+            
+            if (empty($playersList)) {
+                die('Nie ma zaplanowanego meczu. Prosze dodać najbliższy mecz!');
+            }
+            
+            if ($playersList[0]->getPlayer . '1' . '()' == null) {
+                die('FUIK');
+            }
 
+            die('gg');
+        }
+        
+        $players = $em->getRepository('BasketballBundle:Player')->findAll();
+        
+        return $this->render('BasketballBundle:Admin:add_player_to_game.html.twig', array(
+            'players' => $players
+        ));
+    }
 }
