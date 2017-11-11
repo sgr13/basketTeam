@@ -1,0 +1,77 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+
+{% block body %}
+    
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2>Najbliższy mecz</h2>
+        </div>
+        <div class="panel-body">
+            <h5>{{ nextGame.date }} - {{ nextGame.place }}</h5>
+            <div class="row">
+                <div class="col-xs-4">
+                    <table class="table table-striped table-hover table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Zawodnik</th>
+                            <th>Akcja</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            {% if nextGame.PlayersList.player1.name is defined %}
+                                <td>{{ nextGame.PlayersList.player1.name }}</td>
+                                <td><a href="{{ path('deletePlayerFromList', {'id': nextGame.PlayersList.player1.id}) }}"><button class="btn btn-danger btn-xs">Usuń</button></a></td>
+                            {% else %}
+                                <td><td>
+                                <td><a href="{{asset('addPlayerToNextGame')}}"><button class="btn btn-success btn-xs">Dodaj</button></a></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            {% if nextGame.PlayersList.player2.name is defined %}
+                                <td>{{ nextGame.PlayersList.player2.name }}</td>
+                                <td><a href="{{ path('deletePlayerFromList', {'id': nextGame.PlayersList.player2.id}) }}"><button class="btn btn-danger btn-xs">Usuń</button></a></td>
+                            {% else %}
+                                <td><td>
+                                <td><a href="{{asset('addPlayerToNextGame')}}"><button class="btn btn-success btn-xs">Dodaj</button></a></td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            {% if nextGame.PlayersList.player3.name is defined %}
+                                <td>{{ nextGame.PlayersList.player3.name }}</td>
+                                <td><a href="{{ path('deletePlayerFromList', {'id': nextGame.PlayersList.player3.id}) }}"><button class="btn btn-danger btn-xs">Usuń</button></a></td>
+                            {% else %}
+                                <td></td>
+                                <td><a href="{{asset('addPlayerToNextGame')}}"><button class="btn btn-success btn-xs">Dodaj</button></a></td>
+                            {% endif %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{#
+    <h2>{{ nextGame.date }}</h2>
+    <h2>{{ nextGame.place }}</h2>
+    <h5>Lista zawodników:</h5>
+    <ol>
+        <li>{{nextGame.PlayersList.player1.name}}</li>
+        <li>{{nextGame.PlayersList.player2.name}}</li>
+        <li>{{nextGame.PlayersList.player3.name}}</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>#}
+
+     
+{% endblock %}
