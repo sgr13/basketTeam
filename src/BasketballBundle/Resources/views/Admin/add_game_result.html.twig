@@ -1,0 +1,85 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+
+{% block body %}
+    
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2>Wyniki spotkania:  {{ nextGame.date }} - {{ nextGame.place }}</h2>
+        </div>
+        <div class="panel-body">
+            <form id="gameTypeSelect">
+                <div class="radio-inline">
+                  <label><input type="radio" name="gameType" value="2">2 vs. 2</label>
+                </div>
+                <div class="radio-inline">
+                  <label><input type="radio" name="gameType" value="3">3 vs. 3</label>
+                </div>
+                <div class="radio-inline">
+                  <label><input type="radio" name="gameType" value="4">4 vs. 4</label>
+                </div>
+                <div class="radio-inline">
+                  <label><input type="radio" name="gameType" value="5">5 vs. 5</label>
+                </div>
+            </form>
+        </div>
+        <h3>Pierwsza drużyna:</h3>
+        <div class="playersList">
+            <div id="2" class="playerList">
+                <form method="post" action="{{ asset('addGameResult') }}">
+                    {% for i in 1..2 %}
+                        <label>{{ loop.index }}</label>
+                        <select class="input-sm" name="player[]">
+                        {% for player in players %}
+                            <option value="{{ player.player.id }}">{{ player.player.name }}</option>
+                        {% endfor %}
+                        </select><br><br>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-info">Dodaj</button>
+                </form>
+            </div>
+            <div id="3" class="playerList">
+                <form>
+                    {% for i in 1..3 %}
+                        <label>{{ loop.index }}</label>
+                        <select>
+                        {% for player in players %}
+                            <option>{{ player.player.name }}</option>
+                        {% endfor %}
+                        </select><br><br>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-info">Dodaj</button>
+                </form>
+            </div>
+            <div id="4" class="playerList">
+                <form>
+                    {% for i in 1..4 %}
+                        <label>{{ loop.index }}</label>
+                        <select>
+                        {% for player in players %}
+                            <option>{{ player.player.name }}</option>
+                        {% endfor %}
+                        </select><br><br>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-info">Dodaj</button>
+                </form>
+            </div>
+        </div>
+            <div id="5" class="playerList">
+                <form>
+                    {% for i in 1..5 %}
+                        <label>{{ loop.index }}</label>
+                        <select>
+                        {% for player in players %}
+                            <option>{{ player.player.name }}</option>
+                        {% endfor %}
+                        </select><br><br>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-info">Dodaj</button>
+                </form>
+            </div>
+                </div>
+        </div>
+    </div> 
+{% endblock %}

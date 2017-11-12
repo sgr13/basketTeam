@@ -203,4 +203,20 @@ $(document).ready(function () {
     monthAndYear();
     buttons();
     
+    $('#gameTypeSelect input').click(function () {
+        if ($(this).attr('value') == 2) {
+            $('.playerList').css('visibility', 'hidden');
+            $('#2').css('visibility', 'visible');
+        } else if ($(this).attr('value') == 3) {
+            $('.playerList').css('visibility', 'hidden');
+            $('#3').css('visibility', 'visible');
+        } else if ($(this).attr('value') == 4) {
+            $('.playerList').css('visibility', 'hidden');
+            $('#4').css('visibility', 'visible');
+        } else {
+            $('.playerList').css('visibility', 'hidden');
+            $('#5').css('visibility', 'visible');
+        }
+    });
+    
 });

@@ -28,7 +28,18 @@
                             {% endfor %}
                         </tr>
                     </table>
-                        <a href="{{ asset('addPlayerToNextGame') }}"><button class="btn btn-info">Dodaj zawodnika</button></a>
+{#                        <a href="{{ asset('addPlayerToNextGame') }}"><button class="btn btn-info">Dodaj zawodnika</button></a>
+#}                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-xs-2">
+                    <form method="post" action="{{ asset('showList') }}">
+                        <select class="form-control input-md" name="player">
+                        {% for player in players %}
+                            <option>{{ player.name }}</option>
+                        {% endfor %}
+                        </select><br>
+                        <input type="submit" value="Dodaj zawodnika" class="btn btn-info">
+                    </form>
                 </div>
             </div>
         </div>

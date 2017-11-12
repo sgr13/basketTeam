@@ -261,3 +261,8 @@ nav:hover .forAnimate{
     background-color: #e5e5e5;
     color: #6d6;
 }
+
+.playerList {
+    position: fixed;
+    visibility: hidden;
+}

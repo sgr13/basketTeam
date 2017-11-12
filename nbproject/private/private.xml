@@ -20,6 +20,7 @@
             <file>file:/home/www/html/Basketball/web/js/style.js</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/PlayerController.php</file>
             <file>file:/home/www/html/Basketball/app/Resources/views/base.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/PlayerList.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Specialisation.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Register/register.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/LoginController.php</file>

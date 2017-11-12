@@ -27,7 +27,6 @@ class AdminController extends Controller
         $calendar->setMonth($month);
         $calendar->setYear($year);
         $calendar->showCalendar();
-//        var_dump($calendar);
 
         if($request->request->get('selectedMonth') && $request->request->get('selectedYear')){
         
@@ -78,7 +77,6 @@ class AdminController extends Controller
         $calendar->setMonth($month);
         $calendar->setYear($year);
         $calendar->showCalendar();
-//        var_dump($calendar);
 
         if($request->request->get('selectedMonth') && $request->request->get('selectedYear')){
         
@@ -158,34 +156,20 @@ class AdminController extends Controller
     }
     
     /**
-     * @Route("/addPlayerToNextGame", name="addPlayerToNextGame")
+     * @Route("/showList", name="showList")
      */
-    public function addPlayerToNextGameAction(Request $request)
+    public function showListAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
         
-            if ($player = $request->request->get('player')) {
+        if ($player = $request->request->get('player')) {
                 $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
                 $playerList = new PlayerList();
                 $playerList->setPlayer($player[0]);
                 $em->persist($playerList);
                 $em->flush();
-                
-                return $this->redirect('/showList');
-            }
-        $players = $em->getRepository('BasketballBundle:Player')->findAll();
+       }
         
-        return $this->render('BasketballBundle:Admin:add_player_to_game.html.twig', array(
-            'players' => $players
-        ));
-    }
-    
-    /**
-     * @Route("/showList", name="showList")
-     */
-    public function showListAction()
-    {
-        $em = $this->getDoctrine()->getManager();
         $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
         $playersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
         $players = $em->getRepository('BasketballBundle:Player')->findAll();
@@ -212,4 +196,24 @@ class AdminController extends Controller
 
         return $this->redirect('/showList');        
     }
-}
+    
+    /**
+     * @Route("/addGameResult", name="addGameResult")
+     */
+    public function addGameResult(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($player = $request->request->get('player')) {
+            
+        }
+        
+        $players = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        
+        return $this->render('BasketballBundle:Admin:add_game_result.html.twig', array(
+            'nextGame' => $nextGame[0],
+            'players' => $players
+        ));
+    }
+}   
