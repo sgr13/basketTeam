@@ -220,9 +220,33 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        $playersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
+        $actualPalyersList = [];
+        
+        $actualPalyersList[0] = $playersList[0]->getPlayer1();
+        $actualPalyersList[1] = $playersList[0]->getPlayer2();
+        $actualPalyersList[2] = $playersList[0]->getPlayer3();
+        $actualPalyersList[3] = $playersList[0]->getPlayer4();
+        $actualPalyersList[4] = $playersList[0]->getPlayer5();
+        $actualPalyersList[5] = $playersList[0]->getPlayer6();
+        $actualPalyersList[6] = $playersList[0]->getPlayer7();
+        $actualPalyersList[7] = $playersList[0]->getPlayer8();
+        $actualPalyersList[8] = $playersList[0]->getPlayer9();
+        $actualPalyersList[9] = $playersList[0]->getPlayer10();
+        $actualPalyersList[10] = $playersList[0]->getPlayer11();
+        $actualPalyersList[11] = $playersList[0]->getPlayer12();
+
+        for ($i = 0; $i !=11; $i++) {
+            
+            if ($actualPalyersList[$i] == null && $actualPalyersList[$i + 1] != null) {
+                $actualPalyersList[$i] = $actualPalyersList[$i + 1];
+                $actualPalyersList[$i + 1] = null;
+            }
+        }
         
         return $this->render('BasketballBundle:Admin:showList.html.twig', array(
-            'nextGame' => $nextGame[0]
+            'nextGame' => $nextGame[0],
+            'playersList' => $actualPalyersList
         ));
     }
     
@@ -231,6 +255,7 @@ class AdminController extends Controller
      */
     public function deletePlayerFromListAction($id)
     {
-        var_dump($id);die();
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
     }
 }

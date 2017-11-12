@@ -30,6 +30,7 @@
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/select_day.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Player.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/showList.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/NextGame.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_player_to_game.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/admin_panel.html.twig</file>
