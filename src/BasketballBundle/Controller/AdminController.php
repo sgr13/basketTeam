@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use BasketballBundle\Entity\NextGame;
 use BasketballBundle\Entity\PlayersList;
+use BasketballBundle\Entity\PlayerList;
 
 
 class AdminController extends Controller
@@ -163,49 +164,15 @@ class AdminController extends Controller
     {   
         $em = $this->getDoctrine()->getManager();
         
-        if ($player = $request->request->get('player')) {
-            $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
-            $player = $player[0];
-            $playersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
-            var_dump($playersList[0]);
-            if (empty($playersList)) {
-                die('Nie ma zaplanowanego meczu. Prosze dodać najbliższy mecz!');
+            if ($player = $request->request->get('player')) {
+                $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
+                $playerList = new PlayerList();
+                $playerList->setPlayer($player[0]);
+                $em->persist($playerList);
+                $em->flush();
+                
+                return $this->redirect('/showList');
             }
-            
-            if ($playersList[0]->getPlayer1() == null) {
-                $playersList[0]->setPlayer1($player);
-            } else if ($playersList[0]->getPlayer2() == null) {
-                $playersList[0]->setPlayer2($player);
-            } else if ($playersList[0]->getPlayer3() == null) {
-                $playersList[0]->setPlayer3($player);
-            } else if ($playersList[0]->getPlayer4() == null) {
-                $playersList[0]->setPlayer4($player);
-            } else if ($playersList[0]->getPlayer5() == null) {
-                $playersList[0]->setPlayer5($player);
-            } else if ($playersList[0]->getPlayer6() == null) {
-                $playersList[0]->setPlayer6($player);
-            } else if ($playersList[0]->getPlayer7() == null) {
-                $playersList[0]->setPlayer7($player);
-            } else if ($playersList[0]->getPlayer8() == null) {
-                $playersList[0]->setPlayer8($player);
-            } else if ($playersList[0]->getPlayer9() == null) {
-                $playersList[0]->setPlayer9($player);
-            } else if ($playersList[0]->getPlayer10() == null) {
-                $playersList[0]->setPlayer10($player);
-            } else if ($playersList[0]->getPlayer11() == null) {
-                $playersList[0]->setPlayer11($player);
-            } else if ($playersList[0]->getPlayer12() == null) {
-                $playersList[0]->setPlayer12($player);
-            } else {
-                die('Nie ma miejsca na liście. Spróbuj później. Zawsze moze ktoś wypaśc :)');
-            }
-            
-            $em->persist($playersList[0]);
-            $em->flush();
-            return $this->redirect('adminPanel');
-            
-        }
-        
         $players = $em->getRepository('BasketballBundle:Player')->findAll();
         
         return $this->render('BasketballBundle:Admin:add_player_to_game.html.twig', array(
@@ -220,33 +187,13 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-        $playersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
-        $actualPalyersList = [];
-        
-        $actualPalyersList[0] = $playersList[0]->getPlayer1();
-        $actualPalyersList[1] = $playersList[0]->getPlayer2();
-        $actualPalyersList[2] = $playersList[0]->getPlayer3();
-        $actualPalyersList[3] = $playersList[0]->getPlayer4();
-        $actualPalyersList[4] = $playersList[0]->getPlayer5();
-        $actualPalyersList[5] = $playersList[0]->getPlayer6();
-        $actualPalyersList[6] = $playersList[0]->getPlayer7();
-        $actualPalyersList[7] = $playersList[0]->getPlayer8();
-        $actualPalyersList[8] = $playersList[0]->getPlayer9();
-        $actualPalyersList[9] = $playersList[0]->getPlayer10();
-        $actualPalyersList[10] = $playersList[0]->getPlayer11();
-        $actualPalyersList[11] = $playersList[0]->getPlayer12();
+        $playersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+        $players = $em->getRepository('BasketballBundle:Player')->findAll();
 
-        for ($i = 0; $i !=11; $i++) {
-            
-            if ($actualPalyersList[$i] == null && $actualPalyersList[$i + 1] != null) {
-                $actualPalyersList[$i] = $actualPalyersList[$i + 1];
-                $actualPalyersList[$i + 1] = null;
-            }
-        }
-        
         return $this->render('BasketballBundle:Admin:showList.html.twig', array(
             'nextGame' => $nextGame[0],
-            'playersList' => $actualPalyersList
+            'playersList' => $playersList,
+            'players' => $players
         ));
     }
     
@@ -256,6 +203,13 @@ class AdminController extends Controller
     public function deletePlayerFromListAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder();
+        $player = $em->getRepository('BasketballBundle:PlayerList')->findOneById($id);
+        
+        if ($player != null) {
+            $em->remove($player);
+            $em->flush();
+        }
+
+        return $this->redirect('/showList');        
     }
 }
