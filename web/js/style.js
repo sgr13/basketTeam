@@ -207,16 +207,62 @@ $(document).ready(function () {
         if ($(this).attr('value') == 2) {
             $('.playerList').css('visibility', 'hidden');
             $('#2').css('visibility', 'visible');
+            $my_global_var = '.twoOnTwo';
+            
         } else if ($(this).attr('value') == 3) {
             $('.playerList').css('visibility', 'hidden');
             $('#3').css('visibility', 'visible');
+            $my_global_var = '.threeOnThree';
+            
         } else if ($(this).attr('value') == 4) {
             $('.playerList').css('visibility', 'hidden');
             $('#4').css('visibility', 'visible');
+            $my_global_var = '.fourOnFour';
+            
         } else {
             $('.playerList').css('visibility', 'hidden');
             $('#5').css('visibility', 'visible');
+            $my_global_var = '.fiveOnFive';
         }
     });
+
+        $('.addGameResult').click(function() {
+            alert($my_global_var);
+            var firstTeam = [];
+            $('.team1' + $my_global_var + ' option:selected').each(function() {
+                firstTeam.push($(this).val());
+            });
+            var firstTeamScore = $('.firstTeamScore' + $my_global_var).val();
+
+            var secondTeam = [];
+            $('.team2' + $my_global_var + ' option:selected').each(function() {
+                secondTeam.push($(this).val());
+            });
+            var secondTeamScore = $('.secondTeamScore' + $my_global_var).val();
+
+            alert(firstTeam);
+            alert(secondTeam);
+            alert(firstTeamScore);
+            alert(secondTeamScore);
+            
+            $.ajax({
+              type: 'POST',
+              url: '/addGameResult',
+              data: {
+                firstTeam: firstTeam,  
+                secondTeam: secondTeam,  
+                firstTeamScore: firstTeamScore,  
+                secondTeamScore: secondTeamScore
+              },
+              dataType: 'json',
+              success: function(player) {
+                  alert('Działam!!!');
+                  alert(player);
+                  console.log(player);
+              }
+          });
+            
+
+        });
     
 });

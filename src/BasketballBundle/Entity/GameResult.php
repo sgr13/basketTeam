@@ -13,12 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class GameResult
 {   
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="PlayersTeam")
      */
     private $team1;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="PlayersTeam")
      */
     private $team2;
     
