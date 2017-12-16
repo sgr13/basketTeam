@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+}
+
+.panel {
+    margin-bottom: 0px;
+}
+
+.panel-heading {
+    
+    h3{
+        color: black;
+    }
+    
+}
+
+.mainContainer {
+    background-color: lightgray;
+    height: 86vh;
+    margin: 0;
+    display:flex;
+    div:first-of-type {
+        height: 86vh;
+        border-right: 2vw solid #8cc152;
+        width: 52vw;
+        position: relative;
+                
+    }
+    
+}
+
+#calendarHeader {
+    border: none;
+    width: 100%;
+    height: 10vh;
+    position:relative;
+
+    h3 {
+        position: absolute;
+        top: 2vh;
+        margin: 0;
+        width: 50vw;
+        font-size: 2vw;
+        text-align: center;
+    }
+}
+
+#calendar {
+    position: relative;
+    clear:both;
+    
+    select {
+        position: absolute;
+        width: 12vw;
+        height: 5vh;
+        font-size: 1.75vw;
+    }
+    
+    option {
+        font-size: 1.25vw;
+    }
+    
+    select:first-of-type {
+        left: 6vw;
+    }
+    
+    select:last-of-type {
+        left:34vw;
+    }
+}
+
+table {
+    position: absolute;
+    left: 6vw;
+    top: 5vh;
+    border: solid 2px black;
+    width: 40vw;
+    
+    tbody {
+        width: 40vw;
+    }
+    
+    tr {
+        width: 40vw;
+    }
+    
+    th {
+        font-size: 1.5vw;
+        text-align: center;
+        height: 8vh;
+    }
+    
+    td {
+        border: solid 1px black;
+        height: 8vh;
+        
+        button {
+            height: 8vh;
+            width: 100%;
+            
+            span {
+                font-size: 1.75vw;
+            }
+            
+        }
+    }
+}
+
+.dateAndPlace {
+    background-color: lightpink;
+    height: 86vh;
+    width: 48vw;
+    margin: 0;
+    float: left;
+    
+}
+
+#placeHeader {
+    border: none;
+    width: 100%;
+    height: 10vh;
+    position:relative;
+
+    h3 {
+        position: absolute;
+        top: 2vh;
+        margin: 0;
+        width: 48vw;
+        font-size: 2vw;
+        text-align: center;
+    }
+}
+
+#pickPlace {
+    background-color: lightblue;
+    height: 40vh;
+    border-bottom: 2vw solid #8cc152;
+    border-right: none;
+    width:48vw; 
+    position: relative;
+    
+    select {
+        position: absolute;
+        width: 15vw;
+        height: 5vh;
+        left: 16vw;
+        font-size: 1.5vw;
+    }
+}
+
+.addNextGameButtonContainer {
+    background-color: yellow;
+    height: 46vh;
+    position:relative;
+    
+    span {
+        font-size: 2vw;
+        
+        &:nth-child(2) {
+            position: absolute;
+            left: 8vw;
+            top: 10vh;
+        }
+        
+        &:nth-child(3) {
+            position: absolute;
+            left: 26vw;
+            top: 10vh;
+        }
+        
+        
+        &:nth-child(4) {
+            position: absolute;
+            left: 8vw;
+            top: 16vh;
+        }
+        
+        
+        &:nth-child(5) {
+            position: absolute;
+            left: 26vw;
+            top: 16vh;
+        }
+    }
+    
+    button {
+        position: absolute;
+        width: 15vw;
+        height: 8vh;
+        left: 16vw;
+        top: 26vh;
+        font-size: 1.75vw;
+    }
+
+}
+

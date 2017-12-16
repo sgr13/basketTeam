@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+
+{% block body %}
+    
+    <h3>Panel Administratora</h3>
+    
+    <ul>
+        <li><a href="{{ asset('addNextGame') }}"><button class="btn btn-info">Dodaj najbliższy mecz</button></a></li>
+        <li><a href="{{ asset('addGameResult') }}"><button class="btn btn-success">Dodaj wyniki ostatniego meczu</button></a></li>
+        <li><a href="{{ asset("showList") }}"><button class="btn btn-info">Pokaż listę najbliżeszgo meczu</button></a></li>
+        <li><a><button class="btn btn-success">Usuń profil użytkownika</button></a></li>
+    </ul>
+     
+{% endblock %}
