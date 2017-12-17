@@ -9,7 +9,8 @@ use BasketballBundle\Entity\Calendar;
  * repository methods below.
  */
 class CalendarRepository extends \Doctrine\ORM\EntityRepository
-{
+{   
+    //Ustawia kalendarz zgodnie z obecną datą.
     public function getPresentDayCalendar()
     {
         $month = date('m');
@@ -22,6 +23,7 @@ class CalendarRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
     
+    //Ustawia kalendarz zgodnie z wyborem użytkownika
     public function getChosenDayCalendar($month, $year)
     {
         $result = $this->showCalendar($month, $year);
@@ -35,6 +37,7 @@ class CalendarRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
     
+    //Przypisuje zmienne: pierwszy dzień, pierwszy dzień w miesiącu oraz liczbę dni w miesiacu
     public function showCalendar($month, $year)
     {   
         $firstDay = mktime(0, 0, 0, $month, 1, $year);
@@ -49,9 +52,9 @@ class CalendarRepository extends \Doctrine\ORM\EntityRepository
         
         return $array;
         
-//        self::getNumberOfWeeks();
     }
     
+    //Metoda zwracajaca liczbę tygodni w miesiącu
     public function getNumberOfWeeks($daysInMonth, $firstDayInMonth)
     {
         if ($daysInMonth == 28 && $firstDayInMonth == 1) {

@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #f2f2f2;
 }
 
 .panel {
@@ -8,8 +9,26 @@ body {
 
 .panel-heading {
     
+    position:relative;
+    
     h3{
         color: black;
+        text-align: center;
+    }
+    
+    button {
+        position:absolute;
+        left: 1vw; 
+        top: 1vh;
+        width: 5.2vw;
+        height: 4vh; 
+        
+        span {
+            font-size: 1.2vw;
+            position: absolute;
+            left: 1vw;
+            top: 0.3vh;
+        }
     }
     
 }
@@ -75,6 +94,7 @@ table {
     top: 5vh;
     border: solid 2px black;
     width: 40vw;
+    background-color: #f2f2f2;
     
     tbody {
         width: 40vw;
@@ -88,6 +108,8 @@ table {
         font-size: 1.5vw;
         text-align: center;
         height: 8vh;
+        background-color:darkslategrey;
+        color: white;
     }
     
     td {

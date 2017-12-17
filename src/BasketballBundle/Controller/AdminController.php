@@ -17,6 +17,14 @@ use BasketballBundle\Entity\PlayersTeam;
 
 class AdminController extends Controller
 {    
+    /**
+     * @Route("/adminPanel", name="adminPanel")
+     */
+    public function adminPanelAction()
+    {
+        return $this->render('BasketballBundle:Admin:admin_panel.html.twig', array(
+        ));
+    }
     
     /**
      * @Route("/addNextGame", name="addNextGame")
@@ -90,16 +98,7 @@ class AdminController extends Controller
         
         return $this->redirect('/adminPanel');
     }
-    
-    /**
-     * @Route("/adminPanel", name="adminPanel")
-     */
-    public function adminPanelAction()
-    {
-        return $this->render('BasketballBundle:Admin:admin_panel.html.twig', array(
-        ));
-    }
-    
+        
     /**
      * @Route("/showList", name="showList")
      */

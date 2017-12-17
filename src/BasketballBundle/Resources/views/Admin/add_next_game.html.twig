@@ -4,8 +4,9 @@
 
 {% block body %}
     <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3 style="text-align:center">Dodaj najbliższy mecz</h3>
+        <div class="panel-heading" style="position:relative">
+            <h3 >Dodaj najbliższy mecz</h3>
+            <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
         </div>
     </div>
 <div class="mainContainer" id="{{ app.request.attributes.get('_route') }}">

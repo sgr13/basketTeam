@@ -1,11 +1,26 @@
 body {
-  margin: 0; }
+  margin: 0;
+  background-color: #f2f2f2; }
 
 .panel {
   margin-bottom: 0px; }
 
-.panel-heading h3 {
-  color: black; }
+.panel-heading {
+  position: relative; }
+  .panel-heading h3 {
+    color: black;
+    text-align: center; }
+  .panel-heading button {
+    position: absolute;
+    left: 1vw;
+    top: 1vh;
+    width: 5.2vw;
+    height: 4vh; }
+    .panel-heading button span {
+      font-size: 1.2vw;
+      position: absolute;
+      left: 1vw;
+      top: 0.3vh; }
 
 .mainContainer {
   background-color: lightgray;
@@ -51,7 +66,8 @@ table {
   left: 6vw;
   top: 5vh;
   border: solid 2px black;
-  width: 40vw; }
+  width: 40vw;
+  background-color: #f2f2f2; }
   table tbody {
     width: 40vw; }
   table tr {
@@ -59,7 +75,9 @@ table {
   table th {
     font-size: 1.5vw;
     text-align: center;
-    height: 8vh; }
+    height: 8vh;
+    background-color: darkslategrey;
+    color: white; }
   table td {
     border: solid 1px black;
     height: 8vh; }

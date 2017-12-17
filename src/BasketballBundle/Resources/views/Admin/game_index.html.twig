@@ -1,4 +1,4 @@
-{% extends "::base.html.twig" %}
+{% extends "::baseAdmin.html.twig" %}
 
 {% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
 
@@ -7,6 +7,7 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 style="text-align: center; color: black">Panel Administratora - Historia spotkań</h3>
+            <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
         </div>
         <div class="row">
             <div class="col-md-3"></div>
