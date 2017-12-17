@@ -36,20 +36,17 @@ $(document).ready(function () {
           
           $.ajax({
               type: 'POST',
-              url: '/selectDay',
+              url: '/addNextGame',
               data: {
                 selectedYear: selectedYear,  
                 selectedMonth: selectedMonth
               },
               dataType: 'json',
               success: function(calendar) {
-                  console.log(calendar);
-                  console.log(calendar.year);
                   var day = 1;
-                  $('.calendarShow').html('');
+                  $('table').html('');
                   
                   var table = '\
-                <table border="solid" cellpadding="10" class="calendarShow">\n\
                     <tr>\n\
                         <th class="days">Pn</th>\n\
                         <th class="days">Wt</th>\n\
@@ -63,20 +60,20 @@ $(document).ready(function () {
                   for (i = 1; i <= calendar.numberOfWeeksInMonth; i++) {
                       table += '<tr>';
                       for (var j = 1; j <= 7; j++) {
-                          if ((j < calendar.firstDayInMonth && i == 1) || j > calendar.daysInMonth && i == 1) {
+                          if ((j < calendar.firstDayInMonth && i === 1) || j > calendar.daysInMonth && i === 1) {
                               table += '<td></td>';
                           } else if (day < calendar.daysInMonth + 1) {
-                              if (i % 2 == 0) {
+                              if (i % 2 === 0) {
                                   table += '<td style="background-color: lightgray">';
                                   if (day < 10) {
                                       if ($('.mainContainer').attr('id') === 'addNextGame') {
-                                          table += '<button class="btn btn-info calendarButton">0' + day + '</button>';
+                                          table += '<button class="btn btn-info calendarButton"><span>0' + day + '</span></button>';
                                       } else {
                                           table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + 0 + day + '</button></a></td>';
                                       }
                                   } else {
                                       if ($('.mainContainer').attr('id') === 'addNextGame') {
-                                         table += '<button class="btn btn-info calendarButton">' + day + '</button>'; 
+                                         table += '<button class="btn btn-info calendarButton"><span>' + day + '</span></button>'; 
                                       } else {
                                          table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-info">' + day + '</button></a></td>'; 
                                       }
@@ -86,14 +83,14 @@ $(document).ready(function () {
                                   table += '<td style="background-color: lightblue">';
                                   if (day < 10) {
                                       if ($('.mainContainer').attr('id') === 'addNextGame') {
-                                          table += '<button class="btn btn-success calendarButton">0' + day + '</button>';
+                                          table += '<button class="btn btn-success calendarButton"><span>0' + day + '</span></button>';
                                       } else {
                                           table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + 0 + day + '</button></a></td>';
                                       }
                                       
                                   } else {
                                       if ($('.mainContainer').attr('id') === 'addNextGame') {
-                                          table += '<button class="btn btn-success calendarButton">' + day + '</button>';
+                                          table += '<button class="btn btn-success calendarButton"><span>' + day + '</span></button>';
                                       } else {
                                           table += '<a href="/selectGameType/' + calendar.year + '/' + calendar.month + '/' + day + '/' + j + '"><button class="btn btn-success">' + day + '</button></a></td>';
                                       }
@@ -106,7 +103,6 @@ $(document).ready(function () {
                       }
                     table += '</tr>';    
                   }
-                  table += '</table>';
                   console.log(table);
                   
                   $('.calendarShow').append(table);
@@ -164,23 +160,22 @@ $(document).ready(function () {
 
     function buttons() {
         
-        $('.calendarButton').click(function() {
-        var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
-        $('#chosenDate').html(date);
-        $('#selectedDate').val(date + '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year'));
-    });
-
     $('.calendarButton').click(function() {
-        var date = $(this).html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
-         $('.addNextGameButtonContainer').empty();
-        $('.dateAndPlace').empty();
-        $('.dateAndPlace').append('<br><h3>Data spotkania:</h3><h2>' + date +'</h2><br><h3>Miejsce spotkania:</h3><form><input type="text" id="gamePlace"></form>');
+        var date = $(this).find('span').html()+ '.' + $('#selectMonth').attr('month') + '.' + $('#selectYear').attr('year');
+        var place = $('#placeSelection option:selected').val();
+        $('.addNextGameButtonContainer span:nth-child(3)').html(date);
+        $('.addNextGameButtonContainer span:nth-child(5)').html(place);
+        $('#buttonSpot').html('');
+        $('#buttonSpot').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning">Dodaj</button></a>');
         
-        $('#gamePlace').focusout(function() {
-            var place = $('#gamePlace').val();
-            $('.addNextGameButtonContainer').empty();
-            $('.addNextGameButtonContainer').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning" style="font-size: 200%;">Dodaj</button></a>');
+        $('#placeSelection').change(function () {
+            var place = $('#placeSelection option:selected').val();
+            var date = $('.addNextGameButtonContainer span:nth-child(3)').html();
+            $('.addNextGameButtonContainer span:nth-child(5)').html(place);
+            $('#buttonSpot').html('');
+            $('#buttonSpot').append('<a href="/saveNewGame/' + date + '/' + place + '"><button class="btn btn-warning">Dodaj</button></a>');
         });
+
     });
     }
     
@@ -227,7 +222,6 @@ $(document).ready(function () {
     });
 
         $('.addGameResult').click(function() {
-            alert($my_global_var);
             var firstTeam = [];
             $('.team1' + $my_global_var + ' option:selected').each(function() {
                 firstTeam.push($(this).val());
@@ -239,11 +233,6 @@ $(document).ready(function () {
                 secondTeam.push($(this).val());
             });
             var secondTeamScore = $('.secondTeamScore' + $my_global_var).val();
-
-            alert(firstTeam);
-            alert(secondTeam);
-            alert(firstTeamScore);
-            alert(secondTeamScore);
             
             $.ajax({
               type: 'POST',
@@ -256,13 +245,12 @@ $(document).ready(function () {
               },
               dataType: 'json',
               success: function(player) {
-                  alert('Działam!!!');
-                  alert(player);
-                  console.log(player);
+                  
+                  $('#containerMain').html('');
+                  $('#containerMain').html('<h1>Dodano nowe spotkanie</h1><a href="/adminPanel"><button class="btn btn-success">OK!</button></a>');
+  
               }
           });
-            
-
         });
-    
+
 });

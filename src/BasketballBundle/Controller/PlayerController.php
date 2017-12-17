@@ -24,8 +24,8 @@ class PlayerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $player = $form->getData();
             $player->setGames(12);
-            $user = $this->getUser();
-            $player->setUser($user->getId());
+            $user = $this->getUser();               
+            $player->setUser($user);
             
             $photoFront = $player->getPhotoFront();
             $photoBack = $player->getPhotoBack();

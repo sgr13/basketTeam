@@ -16,102 +16,43 @@ use BasketballBundle\Entity\PlayersTeam;
 
 
 class AdminController extends Controller
-{
-    /**
-     * @Route("/selectDay", name="selectDay")
-     */
-    public function SelectDayAction(Request $request)
-    {   
-        $calendar = new Calendar();
-        
-        $month = date('m');
-        $year = date('Y');
-        
-        $calendar->setMonth($month);
-        $calendar->setYear($year);
-        $calendar->showCalendar();
-
-        if($request->request->get('selectedMonth') && $request->request->get('selectedYear')){
-        
-        $selectedMonth = $request->request->get('selectedMonth');
-        $selectedYear = $request->request->get('selectedYear');
-        $calendar->setMonth($selectedMonth);
-        $calendar->setYear($selectedYear);
-        $calendar->showCalendar();
-        
-        $calendar = [
-            'day' => $calendar->getDay(),
-            'month' => $calendar->getMonth(),
-            'year' => $calendar->getYear(),
-            'firstDayInMonth' => $calendar->getFirstDayInMonth(),
-            'daysInMonth' => $calendar->getDaysInMonth(),
-            'numberOfWeeksInMonth' => $calendar->getNumberOfWeeksInMonth()
-        ];
-            
-        return new JsonResponse($calendar);
-    }
-        
-        return $this->render('BasketballBundle:Admin:select_day.html.twig', array(
-            'calendar' => $calendar,
-            'year' => $year,
-            'month' => $month
-        ));
-    }
-    
-    /**
-     * @Route("/selectGameType/{year}/{month}/{day}/{noDay}", name="selectGameType")
-     */
-    public function selectGameTypeAction(Request $request, $year, $month, $day, $noDay)
-    {
-        var_dump('Działa'); die;
-    }
+{    
     
     /**
      * @Route("/addNextGame", name="addNextGame")
      */
     public function addNextGameAction(Request $request)
     {   
-        $calendar = new Calendar();
+        $calendarRepository = $this->getDoctrine()->getRepository('BasketballBundle:Calendar');
+        $calendar = $calendarRepository->getPresentDayCalendar();
         
-        $month = date('m');
-        $year = date('Y');
-        $today = date('d');
-        
-        $calendar->setMonth($month);
-        $calendar->setYear($year);
-        $calendar->showCalendar();
-
         if($request->request->get('selectedMonth') && $request->request->get('selectedYear')){
         
-        $selectedMonth = $request->request->get('selectedMonth');
-        $selectedYear = $request->request->get('selectedYear');
-        $calendar->setMonth($selectedMonth);
-        $calendar->setYear($selectedYear);
-        $calendar->showCalendar();
-        
-        $calendar = [
-            'day' => $calendar->getDay(),
-            'month' => $calendar->getMonth(),
-            'year' => $calendar->getYear(),
-            'firstDayInMonth' => $calendar->getFirstDayInMonth(),
-            'daysInMonth' => $calendar->getDaysInMonth(),
-            'numberOfWeeksInMonth' => $calendar->getNumberOfWeeksInMonth()
-        ];
-            
-        return new JsonResponse($calendar);
-    }
-    
-        if ($request->request->get('place') && $request->request->get('selectedDate')) {
-            var_dump('yeaaah');die();
+            $selectedMonth = $request->request->get('selectedMonth');
+            $selectedYear = $request->request->get('selectedYear');
+            $calendar = $calendarRepository->getChosenDayCalendar($selectedMonth, $selectedYear);
+
+            return new JsonResponse($calendar);
         }
 
-        return $this->render('BasketballBundle:Admin:add_next_game.html.twig', array(
-            'calendar' => $calendar,
-            'year' => $year,
-            'month' => $month,
-            'today' => $today
-        ));
+        return $this->render('BasketballBundle:Admin:add_next_game.html.twig', $calendar
+        );
     }
+    
+    /**
+     * @Route("/gameIndex", name="gameIndex")
+     */
+    public function gameIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $gamesHistory = $em->getRepository('BasketballBundle:GameResult')->findAll();
+        
+        return $this->render('BasketballBundle:Admin:game_index.html.twig', array(
+            'games' => $gamesHistory
+        ));
+        
+    }
+    
     
     /**
      * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
@@ -119,7 +60,6 @@ class AdminController extends Controller
     public function saveNewGameAction(Request $request, $date, $place)
     {   
         $em = $this->getDoctrine()->getManager();
-        
         $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
         
         if (!empty($lastGame)) {
@@ -127,11 +67,13 @@ class AdminController extends Controller
             $em->flush();
         }
         
-        $oldPlayersList = $em->getRepository('BasketballBundle:PlayersList')->findAll();
-        
+        $oldPlayersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+//        var_dump($oldPlayersList);
         if (!empty($oldPlayersList)) {
-            $em->remove($oldPlayersList[0]);
-            $em->flush();
+//            $em->remove($oldPlayersList[0]);
+//            $em->flush();
+            $query = $em->createQuery('DELETE BasketballBundle:PlayerList');
+            $query->execute();
         }
         
         $newPlayersList = new PlayersList();
@@ -146,7 +88,7 @@ class AdminController extends Controller
         $em->persist($nextGame);
         $em->flush();
         
-        return $this->redirect('adminPanel');
+        return $this->redirect('/adminPanel');
     }
     
     /**
@@ -265,7 +207,7 @@ class AdminController extends Controller
                     $secondTeamNames[] = $player[0]->getName();
                 } else if ($i == 2) {
                     $secondTeam->setThirdPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
+                    $secondTeamNames[] = $player[0]->getName();
                 } else if ($i == 3) {
                     $secondTeam->setFourthPlayer($player[0]);
                     $secondTeamNames[] = $player[0]->getName();
@@ -291,7 +233,8 @@ class AdminController extends Controller
             $em->flush();
             
             $gameData = [
-                'gameResult' => $gameResult,
+                'date' => $gameResult->getDate(),
+                'score' => $score,
                 'firstTeam' => $firstTeamNames,
                 'secondTeam' => $secondTeamNames
             ];
@@ -376,5 +319,37 @@ class AdminController extends Controller
             $em->flush();
         
         var_dump($gameResult);die();
+    }
+        
+    /**
+     * @Route("/gameDetails/{id}", name="gameDetails")
+     */
+    public function gameDetailsAction($id, Request $request)
+    {   
+//        $path = $request->server->get('DOCUMENT_ROOT').$request->getBasePath();
+        $em = $this->getDoctrine()->getManager();
+        $game = $em->getRepository('BasketballBundle:GameResult')->findOneById($id);
+        
+        return $this->render('BasketballBundle:Admin:game_details.html.twig', array(
+            'game' => $game,
+        ));
+        
+    }
+    
+    /**
+     * @Route("/card", name="card")
+     */
+    public function cardAction()
+    {
+        return $this->render('BasketballBundle:Admin:card.html.twig', array(
+        ));
+    }
+    
+    /**
+     * @Route("/selectGameType/{year}/{month}/{day}/{noDay}", name="selectGameType")
+     */
+    public function selectGameTypeAction(Request $request, $year, $month, $day, $noDay)
+    {
+        var_dump('Działa'); die;
     }
 }   

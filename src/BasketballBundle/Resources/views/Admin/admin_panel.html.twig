@@ -4,13 +4,28 @@
 
 {% block body %}
     
-    <h3>Panel Administratora</h3>
-    
-    <ul>
-        <li><a href="{{ asset('addNextGame') }}"><button class="btn btn-info">Dodaj najbliższy mecz</button></a></li>
-        <li><a href="{{ asset('addGameResult') }}"><button class="btn btn-success">Dodaj wyniki ostatniego meczu</button></a></li>
-        <li><a href="{{ asset("showList") }}"><button class="btn btn-info">Pokaż listę najbliżeszgo meczu</button></a></li>
-        <li><a><button class="btn btn-success">Usuń profil użytkownika</button></a></li>
-    </ul>
-     
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 style="text-align: center; color: black">Panel Administratora</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-1"></div>
+                <ul style="list-style-type:none;">
+                    <li style="padding:10px"><a href="{{ asset('addNextGame') }}"><button class="btn btn-info btn-lg btn-block">Dodaj najbliższy mecz</button></a></li>
+                    <li style="padding:10px"><a href="{{ asset('gameIndex') }}"><button class="btn btn-info btn-lg btn-block">Pokaż historię spotkań</button></a></li>
+                    <li style="padding:10px"><a href="{{ asset('addGameResult') }}"><button class="btn btn-success btn-lg btn-block">Dodaj wyniki ostatniego meczu</button></a></li>
+                    <li style="padding:10px"><a href="{{ asset("showList") }}"><button class="btn btn-info btn-lg btn-block">Pokaż listę najbliżeszgo meczu</button></a></li>
+                    <li style="padding:10px"><a><button class="btn btn-success btn-lg btn-block">Dodaj gracza do profilu użytkownika</button></a></li>
+                    <li style="padding:10px"><a><button class="btn btn-success btn-lg btn-block">Edytuj gracza</button></a></li>
+                    <li style="padding:10px"><a><button class="btn btn-success btn-lg btn-block">Usuń profil użytkownika</button></a></li>
+                </ul>
+            </div>
+            <div class="col-md-3"></div>
+        </div> 
+    </div>
 {% endblock %}

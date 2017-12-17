@@ -8,6 +8,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    path_directory: 'photos'
+    suborderPath_directory: 'photos'
 
 framework:
     #esi: ~
@@ -38,6 +40,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        root_path: %kernel.root_dir%
     form_themes:
         - 'bootstrap_3_layout.html.twig'
 

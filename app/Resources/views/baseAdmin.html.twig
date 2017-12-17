@@ -2,17 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>OHI - dodawanie produktów</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}" media="screen" /> 
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="{{ asset('js/style.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('css/adminPanel.css') }}" media="screen" /> 
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+            <script src="{{ asset('js/style.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

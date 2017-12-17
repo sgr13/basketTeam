@@ -33,11 +33,11 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                default_target_path: /
+                default_target_path: /load
                 
             logout:
                 path: /logout
-                target: /
+                target: /login
                 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}

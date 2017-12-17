@@ -4,13 +4,39 @@
 
 {% block body %}
     
-    <h3>Panel Administratora</h3>
-    
-    <ul>
-        <li><a href="{{ asset('addNextGame') }}"><button class="btn btn-info">Dodaj najbliższy mecz</button></a></li>
-        <li><a href="{{ asset('addGameResult') }}"><button class="btn btn-success">Dodaj wyniki ostatniego meczu</button></a></li>
-        <li><a href="{{ asset("showList") }}"><button class="btn btn-info">Pokaż listę najbliżeszgo meczu</button></a></li>
-        <li><a><button class="btn btn-success">Usuń profil użytkownika</button></a></li>
-    </ul>
-     
+    <div style="margin: 150px">
+        <div class="card">
+            <div class="frontCard">
+                <div class="photoMain">
+                    <img src="/photos/ebe2da45359ece975e764f906119ba9f.jpeg">
+                </div>
+                <div class="nameSpot">
+                    <span>Michael</span>
+                </div>
+                <div class="stats" >
+                    <table class="statsTable">
+                        <tr>
+                            <td>Nick:</td>
+                            <td style="text-align: center">The Air</td>
+                        </tr>
+                        <tr>
+                            <td>Wzrost:</td>
+                            <td style="text-align: center">198</td>
+                        </tr>
+                        <tr>
+                            <td>Mecze:</td>
+                            <td style="text-align: center">12</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center">Wymiatam w:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center">Penetracja</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -13,32 +13,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Calendar.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/GameListController.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/PlayersList.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/user_panel.html.twig</file>
             <file>file:/home/www/html/Basketball/web/js/style.js</file>
-            <file>file:/home/www/html/Basketball/app/Resources/views/base.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/PlayerList.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Specialisation.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_game_result.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/UserType.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Team.php</file>
+            <file>file:/home/www/html/Basketball/web/scss/adminPanel.scss</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Repository/GameListRepository.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_next_game.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/RegisterController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/PlayerController.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Register/register.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/LoginController.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/PlayerType.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Main/main_page.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/add_player.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/GameResult.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Player.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/select_day.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/NextGame.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/showList.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/MainController.php</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/admin_panel.html.twig</file>
+            <file>file:/home/www/html/Basketball/web/css/adminPanel.css</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
+            <file>file:/home/www/html/Basketball/app/Resources/views/baseAdmin.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Repository/CalendarRepository.php</file>
+            <file>file:/home/www/html/Basketball/web/css/style.css</file>
         </group>
     </open-files>
 </project-private>

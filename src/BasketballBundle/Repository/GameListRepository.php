@@ -10,4 +10,4 @@ namespace BasketballBundle\Repository;
  */
 class GameListRepository extends \Doctrine\ORM\EntityRepository
 {
-}
+    }

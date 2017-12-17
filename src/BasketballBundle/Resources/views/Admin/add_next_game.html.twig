@@ -1,97 +1,112 @@
-{% extends "::base.html.twig" %}
+{% extends "::baseAdmin.html.twig" %}
 
-{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+{% block title %}Panel Administratora{% endblock %}
 
 {% block body %}
-    <h1>{{ app.request.attributes.get('_route') }}</h1>
-{#{{ calendar.showCalendar }}
-#}
-<div class="mainContainer" id="{{ app.request.attributes.get('_route') }}">
-    <div style="float:left; margin-left: 120px; margin-right: 150px">
-        <h3>Wybierz dzień spotkania:</h3>
-        <form id="form">
-            <select id="selectMonth" month="{{ calendar.month }}">
-                <option value="01" id="jan" class="month">Styczeń</option>
-                <option value="02" id="feb" class="month">Luty</option>
-                <option value="03" id="mar" class="month">Marzec</option>
-                <option value="04" id="apr" class="month">Kwiecień</option>
-                <option value="05" id="may" class="month">Maj</option>
-                <option value="06" id="jun" class="month">Czerwiec</option>
-                <option value="07" id="jul" class="month">Lipiec</option>
-                <option value="08" id="aug" class="month">Sierpień</option>
-                <option value="09" id="sep" class="month">Wrzesień</option>
-                <option value="10" id="oct" class="month">Październik</option>
-                <option value="11" id="nov" class="month">Listopad</option>
-                <option value="12" id="dec" class="month">Grudzień</option>
-            </select>
-            <select id="selectYear" year="{{ calendar.year }}">
-                <option value="2017" id="2017" class="year">2017 </option>
-                <option value="2018" id="2018" class="year">2018</option>
-                <option value="2019" id="2019" class="year">2019</option>
-                <option value="2020" id="2020" class="year">2020</option>
-            </select>
-        </form>
-
-
-        <table border="solid" cellpadding="10" class="calendarShow">
-            <tr>
-                <th class="days">Pn</th>
-                <th class="days">Wt</th>
-                <th class="days">Śr</th>
-                <th class="days">Cz</th>
-                <th class="days">Pt</th>
-                <th class="days">Sb</th>
-                <th class="days">Nd</th>
-            </tr>
-            {% set day = 1 %}
-            {% for i in 1..calendar.numberOfWeeksInMonth %}
-                <tr>
-                    {% for j in 1..7 %}
-                        {% if (j < calendar.firstDayInMonth and i == 1)  or (j > calendar.daysInMonth and i == 1) %}
-                            <td></td>
-                        {% elseif day < calendar.daysInMonth + 1 %}
-                            {% if i % 2 == 0 %}
-                                <td style="background-color: lightgray">
-                                    {% if day < 10 %}
-                                        <button class="btn btn-info calendarButton">0{{ day }}</button>
-                                    {% else %}
-                                        <button class="btn btn-info calendarButton">{{ day }}</button>
-                                    {% endif %}
-                                </td>
-                                {% set day = day + 1 %}
-                            {% else %}
-                                <td style="background-color: lightblue">
-                                    {% if day < 10 %}
-                                        <button class="btn btn-success calendarButton">0{{ day }}</button>
-                                    {% else %}
-                                        <button class="btn btn-success calendarButton">{{ day }}</button>
-                                    {% endif %}
-                                </td>    
-                                {% set day = day + 1 %}
-                            {% endif %}
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 style="text-align:center">Dodaj najbliższy mecz</h3>
+        </div>
     </div>
-    {#{% if  app.request.attributes.get('_route') == 'addNextGame' %}#}
-        <div style="float:left; margin-left: 100px" class="dateAndPlace">
+<div class="mainContainer" id="{{ app.request.attributes.get('_route') }}">
+    <div>
+        <div id="calendarHeader">
+            <h3>Wybierz dzień spotkania:</h3>
+        </div>
+        <div id="calendar">
+            <form id="form">
+                <select id="selectMonth" month="{{ month }}">
+                    <option value="01" id="jan" class="month">Styczeń</option>
+                    <option value="02" id="feb" class="month">Luty</option>
+                    <option value="03" id="mar" class="month">Marzec</option>
+                    <option value="04" id="apr" class="month">Kwiecień</option>
+                    <option value="05" id="may" class="month">Maj</option>
+                    <option value="06" id="jun" class="month">Czerwiec</option>
+                    <option value="07" id="jul" class="month">Lipiec</option>
+                    <option value="08" id="aug" class="month">Sierpień</option>
+                    <option value="09" id="sep" class="month">Wrzesień</option>
+                    <option value="10" id="oct" class="month">Październik</option>
+                    <option value="11" id="nov" class="month">Listopad</option>
+                    <option value="12" id="dec" class="month">Grudzień</option>
+                </select>
+                <select id="selectYear" year="{{ year }}">
+                    <option value="2017" id="2017" class="year">2017 </option>
+                    <option value="2018" id="2018" class="year">2018</option>
+                    <option value="2019" id="2019" class="year">2019</option>
+                    <option value="2020" id="2020" class="year">2020</option>
+                </select>
+            </form>
 
-    {#        <br>
-            <h3>Data Spotkania:</h3>
-                {% set date = today ~ '.' ~ month ~ '.' ~ year %}
-                <h2 id="chosenDate">{{date}}</h2>
-            <br>
-            <h3>Miejsce spotkania:</h3>
-            <form>
-                <input type="text" name="place" id="gamePlace">
-            </form>#}
+
+            <table class="calendarShow">
+                <tr>
+                    <th class="days">Pn</th>
+                    <th class="days">Wt</th>
+                    <th class="days">Śr</th>
+                    <th class="days">Cz</th>
+                    <th class="days">Pt</th>
+                    <th class="days">Sb</th>
+                    <th class="days">Nd</th>
+                </tr>
+                {% set day = 1 %}
+                {% for i in 1..numberOfWeeksInMonth %}
+                    <tr>
+                        {% for j in 1..7 %}
+                            {% if (j < firstDayInMonth and i == 1)  or (j > daysInMonth and i == 1) %}
+                                <td></td>
+                            {% elseif day < daysInMonth + 1 %}
+                                {% if i % 2 == 0 %}
+                                    <td style="background-color: lightgray">
+                                        {% if day < 10 %}
+                                            <button class="btn btn-info calendarButton"><span>0{{ day }}</span></button>
+                                        {% else %}
+                                            <button class="btn btn-info calendarButton"><span>{{ day }}</span></button>
+                                        {% endif %}
+                                    </td>
+                                    {% set day = day + 1 %}
+                                {% else %}
+                                    <td style="background-color: lightblue">
+                                        {% if day < 10 %}
+                                            <button class="btn btn-success calendarButton"><span>0{{ day }}</span></button>
+                                        {% else %}
+                                            <button class="btn btn-success calendarButton"><span>{{ day }}</span></button>
+                                        {% endif %}
+                                    </td>    
+                                    {% set day = day + 1 %}
+                                {% endif %}
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <div style="margin-left: 500px; clear:both; margin-top: 80px" class="addNextGameButtonContainer">
+    </div>
+    <div class="dateAndPlace">
+        <div id="pickPlace">
+            <div id="placeHeader">
+                <h3>Miejsce spotkania:</h3>
+            </div>
+            <form id="placeSelection">
+                <select>
+                    <option id="gamePlace">Sztygarka</option>
+                    <option>Mydlice</option>
+                </select>
+            </form>
         </div>
-    {#{% endif %}#}
+        <div class="addNextGameButtonContainer">
+            <div id="placeHeader">
+                <h3>Szczegóły spotkania:</h3>
+            </div>
+            <span>Data spotkania:</span>
+            <span></span>
+            <span>Miejsce Spotkania:</span>
+            <span></span>
+            <div id="buttonSpot"></div>
+        </div>
+        
+    </div>
+    
 </div>
 {% endblock %}
