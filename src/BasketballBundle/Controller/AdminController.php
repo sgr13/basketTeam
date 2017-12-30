@@ -61,86 +61,6 @@ class AdminController extends Controller
         
     }
     
-    
-    /**
-     * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
-     */
-    public function saveNewGameAction(Request $request, $date, $place)
-    {   
-        $em = $this->getDoctrine()->getManager();
-        $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-        
-        if (!empty($lastGame)) {
-            $em->remove($lastGame[0]);
-            $em->flush();
-        }
-        
-        $oldPlayersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
-//        var_dump($oldPlayersList);
-        if (!empty($oldPlayersList)) {
-//            $em->remove($oldPlayersList[0]);
-//            $em->flush();
-            $query = $em->createQuery('DELETE BasketballBundle:PlayerList');
-            $query->execute();
-        }
-        
-        $newPlayersList = new PlayersList();
-        $em->persist($newPlayersList);
-        $em->flush();
-
-        $nextGame = new NextGame();
-        $nextGame->setDate($date);
-        $nextGame->setPlace($place);
-        $nextGame->setPlayersList($newPlayersList);
-        
-        $em->persist($nextGame);
-        $em->flush();
-        
-        return $this->redirect('/adminPanel');
-    }
-        
-    /**
-     * @Route("/showList", name="showList")
-     */
-    public function showListAction(Request $request)
-    {   
-        $em = $this->getDoctrine()->getManager();
-        
-        if ($player = $request->request->get('player')) {
-                $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
-                $playerList = new PlayerList();
-                $playerList->setPlayer($player[0]);
-                $em->persist($playerList);
-                $em->flush();
-       }
-        
-        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-        $playersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
-        $players = $em->getRepository('BasketballBundle:Player')->findAll();
-
-        return $this->render('BasketballBundle:Admin:showList.html.twig', array(
-            'nextGame' => $nextGame[0],
-            'playersList' => $playersList,
-            'players' => $players
-        ));
-    }
-    
-    /**
-     * @Route("/deletePlayerFromList/{id}", name="deletePlayerFromList")
-     */
-    public function deletePlayerFromListAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $player = $em->getRepository('BasketballBundle:PlayerList')->findOneById($id);
-        
-        if ($player != null) {
-            $em->remove($player);
-            $em->flush();
-        }
-
-        return $this->redirect('/showList');        
-    }
-    
     /**
      * @Route("/addGameResult", name="addGameResult")
      */
@@ -247,6 +167,85 @@ class AdminController extends Controller
             'nextGame' => $nextGame[0],
             'players' => $players
         ));
+    }
+    
+    /**
+     * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
+     */
+    public function saveNewGameAction(Request $request, $date, $place)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        
+        if (!empty($lastGame)) {
+            $em->remove($lastGame[0]);
+            $em->flush();
+        }
+        
+        $oldPlayersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+//        var_dump($oldPlayersList);
+        if (!empty($oldPlayersList)) {
+//            $em->remove($oldPlayersList[0]);
+//            $em->flush();
+            $query = $em->createQuery('DELETE BasketballBundle:PlayerList');
+            $query->execute();
+        }
+        
+        $newPlayersList = new PlayersList();
+        $em->persist($newPlayersList);
+        $em->flush();
+
+        $nextGame = new NextGame();
+        $nextGame->setDate($date);
+        $nextGame->setPlace($place);
+        $nextGame->setPlayersList($newPlayersList);
+        
+        $em->persist($nextGame);
+        $em->flush();
+        
+        return $this->redirect('/adminPanel');
+    }
+        
+    /**
+     * @Route("/showList", name="showList")
+     */
+    public function showListAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($player = $request->request->get('player')) {
+                $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
+                $playerList = new PlayerList();
+                $playerList->setPlayer($player[0]);
+                $em->persist($playerList);
+                $em->flush();
+       }
+        
+        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        $playersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+        $players = $em->getRepository('BasketballBundle:Player')->findAll();
+
+        return $this->render('BasketballBundle:Admin:showList.html.twig', array(
+            'nextGame' => $nextGame[0],
+            'playersList' => $playersList,
+            'players' => $players
+        ));
+    }
+    
+    /**
+     * @Route("/deletePlayerFromList/{id}", name="deletePlayerFromList")
+     */
+    public function deletePlayerFromListAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $player = $em->getRepository('BasketballBundle:PlayerList')->findOneById($id);
+        
+        if ($player != null) {
+            $em->remove($player);
+            $em->flush();
+        }
+
+        return $this->redirect('/showList');        
     }
     
     /**

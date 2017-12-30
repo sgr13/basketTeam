@@ -216,3 +216,67 @@ table {
 
 }
 
+.mainContainerResult {
+    background-color: lightgray;
+    height: 86vh;
+    margin: 0;
+}
+
+.myRow {
+    width: 100%;
+    height: 12vh;
+}
+
+#firstRow {
+    background-color: lightblue;
+    display:flex;
+    position:absolute;
+    
+    div:nth-child(1) {
+        width:50%;
+        background-color:red;
+        height: 12vh;
+        
+        span {
+            left:10vw;
+        }
+        
+    }
+    
+    div:nth-child(2) {
+        width:50vw;
+        background-color:yellow;
+        height: 12vh;
+        
+        span {
+            left: 30vw;
+        }
+    }
+    
+    span {
+            position:relative;
+            font-size: 2vw;
+            top: 3vh;
+        }
+}
+
+#secondRow {
+    background-color: lightcoral;
+}
+
+#thirdRow {
+    background-color: lightgoldenrodyellow;
+}
+#fourthRow {
+    background-color: lightgray;
+}
+#fifthRow {
+    background-color: lightpink;
+}
+#sixthRow {
+    background-color: lightsalmon;
+}
+#seventhRow {
+    background-color: lightsteelblue;
+}
+
