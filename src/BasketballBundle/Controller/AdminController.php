@@ -94,10 +94,15 @@ class AdminController extends Controller
             
             $score = $result[0] . ':' . $result[1];            
             $readyTeams = $playersListRepository->getReadyTeams($teamPlayersId);
+            
+            $oldPlayersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+            if (!empty($oldPlayersList)) {
+                $query = $em->createQuery('DELETE BasketballBundle:PlayerList');
+                $query->execute();
+            }
 
             $em->persist($readyTeams[0]);
             $em->persist($readyTeams[1]);
-            $em->flush();
             $readyResult = $em->getRepository('BasketballBundle:GameResult')->getReadyGameResult($score, $readyTeams[0], $readyTeams[1], $gameDate);
             $em->persist($readyResult);
             $em->flush();
@@ -105,44 +110,6 @@ class AdminController extends Controller
             return new JsonResponse($readyTeams[1]->getFirstPlayer()->getName());
             
         }
-    }
-    
-    /**
-     * @Route("/checkSelectedPlayers", name="checkSelectedPlayers")
-     */
-    public function checkSelectedPlayersAction(Request $request)
-    {
-        $selectedPlayers = $request->request->get('selectedPlayers');
-//        dump($selectedPlayers);
-        $em = $this->getDoctrine()->getManager();
-        $players = $em->getRepository('BasketballBundle:PlayerList')->findAll();
-//        dump($players);die;
-        $playersAll = $em->getRepository('BasketballBundle:Player');
-        $playersToSelect = [];
-        $i = 0;
-        
-        foreach ($players as $key => $value) {
-//            dump($value->getId());die;
-//            dump($value->getPlayer()->getId());die;
-//            $activePlayer = $playersAll->find($value->getId());
-//            dump($activePlayer->getId());die;
-            if (in_array($value->getPlayer()->getId(), $selectedPlayers)) {
-//                dump('dupa');die;
-                array_splice($players, $key, 1);
-            } else {
-                $playersToSelect[$i]['id'] = $value->getPlayer()->getId();
-//                $playera = $playersAll->find($+value->getId())->getName();
-                $playersToSelect[$i]['name'] = $value->getPlayer()->getName();
-//                $playersToSelect[$i]['photo'] = $value->getPlayer()->getPhotoBack();
-//                dump($playersToSelect);die();
-                $i++;
-            
-            }
-        }
-//                        dump($playersToSelect);die();
-
-//        dump($players);die;
-        return new JsonResponse($playersToSelect);
     }
     
     /**
