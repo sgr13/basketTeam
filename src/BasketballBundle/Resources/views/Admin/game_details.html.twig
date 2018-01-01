@@ -1,102 +1,70 @@
-{% extends "::base.html.twig" %}
+{% extends "::baseAdmin.html.twig" %}
 
-{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+{% block title %}Panel Administratora{% endblock %}
 
 {% block body %}
-    
     <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3 style="text-align: center; color: black">Szczegóły spotkania -{{ game.date }}</h3></h3>
+        <div class="panel-heading" style="position:relative">
+            <h3 >Spotkanie z dnia {{ game.date }}</h3>
+            <a href="{{ path('gameIndex') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-12">
-                    <div class="col-md-4"><h4 style="text-align: center">Drużyna Pierwsza</h4></div>
-                    <div class="col-md-4"><h3 style="text-align: center"> {{ game.score }}</h3></div>
-                    <div class="col-md-4"><h4 style="text-align: center">Drużyna Druga</h4></div>
+    </div>
+    <div id=" mainContainerGameDetails">
+        <div id="scoreGameDetails">
+            <span id="spanScore">{{ game.score}}<span>
+            <span id="firstTeamName" class="teamName">Drużyna Jasna</span>
+            <span id="secondTeamName" class="teamName">Drużyna Ciemna</span>
+        </div>
+{#        <div id="teamNameSpot">
+            ss
+        </div>#}
+        <div id="teamCompeting">
+            <div class="playersCompeting">
+                <div class="playerSpot firstPlayerSpot whiteSpot">
+                    <img src="/photos/{{ game.team1.firstPlayer.photoFront }}" class="center-block">
                 </div>
-                <div class="col-md-6" style="border-right: solid 2px black">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="photoMain">
-                                
-                            </div>
-                            <div class="attributes">
-                                
-                            </div>
-                            <div class="attributesValues">
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-center"><b>{{game.team1.firstPlayer.name}}</b></div>
-                    </div>
-                    
-                    
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="frontCard">
-                                <div class="photoMain">
-                                    <img src="/photos/{{game.team1.firstPlayer.photoFront}}" width="100" height="100" class="center-block">
-                                </div>
-                                <div class="col-md-12" style="padding: 0px;">
-                                    <div class="attributes col-md-6">
-                                        <span>Imię:</span><br>
-                                        <span>Ksywka:</span><br>
-                                        <span>Spotkania:</span><br>
+{#                    <div class="firstPlayerName"><span>{{ game.team1.firstPlayer.name }}</span></div>#}
 
-                                    </div>
-                                    <div class="attributesValues attributes col-md-6">
-                                        <span>{{ game.team1.firstPlayer.name}}</span>
-                                        <span>{{ game.team1.firstPlayer.nickname}}</span>
-                                        <span>12</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <span style="text-align: center; display: block; margin: 0; padding: 0;">Wymiatam w:</span><br>
-                                    <span>{{ game.team1.firstPlayer.specialisation.name }}</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="ribbon-wrapper myribbon">
+                    <div class="ribbon-front">
+                            {{ game.team1.firstPlayer.name }}
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="photoMain">
-                                
-                            </div>
-                            <div class="attributes">
-                                
-                            </div>
-                            <div class="attributesValues">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-12 text-center"><b >{{game.team1.secondPlayer.name}}</b></div>
-                        <img src="/photos/{{game.team1.secondPlayer.photoFront}}" width="140" height="120" class="center-block">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-12 text-center"><b>{{game.team1.thirdPlayer.name}}</b></div>
-                        <img src="/photos/{{game.team1.thirdPlayer.photoFront}}" width="140" height="120" class="center-block">
-                    </div>
+                    <div class="ribbon-edge-topleft"></div>
+                    <div class="ribbon-edge-topright"></div>
+                    <div class="ribbon-edge-bottomleft"></div>
+                    <div class="ribbon-edge-bottomright"></div>
+                    <div class="ribbon-back-left"></div>
+                    <div class="ribbon-back-right"></div>
                 </div>
-                    
-                <div class="col-md-6">
-                    <div class="col-md-4">
-                        <div class="col-md-12 text-center"><b>{{game.team2.firstPlayer.name}}</b></div>
-                        <img src="/photos/{{game.team2.firstPlayer.photoFront}}" width="140" height="120" class="center-block">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-12 text-center"><b >{{game.team2.secondPlayer.name}}</b></div>
-                        <img src="/photos/{{game.team2.secondPlayer.photoFront}}" width="140" height="120" class="center-block">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-12 text-center"><b>{{game.team2.thirdPlayer.name}}</b></div>
-                        <img src="/photos/{{game.team2.thirdPlayer.photoFront}}" width="140" height="120" class="center-block">
-                    </div>
+
+
+                <div class="playerSpot secondPlayerSpot whiteSpot">
+                    <img src="/photos/{{ game.team1.secondPlayer.photoFront }}" class="center-block">
                 </div>
+                <div class="playerSpot thirdPlayerSpot whiteSpot">
+{#                   {{ game.team1.thirdPlayer.photoFront }}#}
+                </div>
+                <div class="playerSpot fourthPlayerSpot whiteSpot">
+                </div>
+                <div class="playerSpot fifthPlayerSpot whiteSpot">
                 </div>
             </div>
-        </div> 
+            <div class="playersCompeting">
+                <div class="playerSpot firstPlayerSpot blackSpot">
+                    <img src="/photos/{{ game.team2.firstPlayer.photoFront }}" class="center-block">
+                </div>
+                <div class="playerSpot secondPlayerSpot blackSpot">
+                    <img src="/photos/{{ game.team2.secondPlayer.photoFront }}" class="center-block">
+                </div>
+                <div class="playerSpot thirdPlayerSpot blackSpot">
+{#                    {{ game.team2.thirdPlayer.photoFront }}#}
+                </div>
+                <div class="playerSpot fourthPlayerSpot blackSpot">
+                </div>
+                <div class="playerSpot fifthPlayerSpot blackSpot">
+                </div>
+            </div>
+        </div>
     </div>
+            
 {% endblock %}

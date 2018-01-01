@@ -113,40 +113,17 @@ class AdminController extends Controller
     }
     
     /**
-     * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
+     * @Route("/gameDetails/{id}", name="gameDetails")
      */
-    public function saveNewGameAction(Request $request, $date, $place)
+    public function gameDetailsAction($id, Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
-        $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+        $game = $em->getRepository('BasketballBundle:GameResult')->findOneById($id);
         
-        if (!empty($lastGame)) {
-            $em->remove($lastGame[0]);
-            $em->flush();
-        }
+        return $this->render('BasketballBundle:Admin:game_details.html.twig', array(
+            'game' => $game,
+        ));
         
-        $oldPlayersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
-//        var_dump($oldPlayersList);
-        if (!empty($oldPlayersList)) {
-//            $em->remove($oldPlayersList[0]);
-//            $em->flush();
-            $query = $em->createQuery('DELETE BasketballBundle:PlayerList');
-            $query->execute();
-        }
-        
-        $newPlayersList = new PlayersList();
-        $em->persist($newPlayersList);
-        $em->flush();
-
-        $nextGame = new NextGame();
-        $nextGame->setDate($date);
-        $nextGame->setPlace($place);
-        $nextGame->setPlayersList($newPlayersList);
-        
-        $em->persist($nextGame);
-        $em->flush();
-        
-        return $this->redirect('/adminPanel');
     }
         
     /**
@@ -262,20 +239,7 @@ class AdminController extends Controller
         var_dump($gameResult);die();
     }
         
-    /**
-     * @Route("/gameDetails/{id}", name="gameDetails")
-     */
-    public function gameDetailsAction($id, Request $request)
-    {   
-//        $path = $request->server->get('DOCUMENT_ROOT').$request->getBasePath();
-        $em = $this->getDoctrine()->getManager();
-        $game = $em->getRepository('BasketballBundle:GameResult')->findOneById($id);
-        
-        return $this->render('BasketballBundle:Admin:game_details.html.twig', array(
-            'game' => $game,
-        ));
-        
-    }
+    
     
     /**
      * @Route("/card", name="card")

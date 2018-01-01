@@ -308,4 +308,216 @@ table {
     top: 2.4vh;
     font-size: 1.4vw; }
 
+#mainContainerGameDetails {
+  background-color: lightgray;
+  height: 100wh;
+  margin: 0; }
+
+#scoreGameDetails {
+  background: -moz-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(16%, white), color-stop(34%, white), color-stop(70%, black), color-stop(100%, black));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* ie10+ */
+  background: linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=1 );
+  /* ie6-9 */
+  /*background-color: lightgray;*/
+  width: 100%;
+  height: 16vh;
+  position: relative;
+  /*display:flex;*/ }
+
+#spanScore {
+  position: absolute;
+  font-size: 5.5vw;
+  font-weight: 600;
+  left: 40vw;
+  top: 0.1vh;
+  letter-spacing: 1vw;
+  text-shadow: -0.2vw 0 lightgray, 0 0.1vw lightgray, 0.1vw 0 lightgray, 0 -0.1vw lightgray; }
+
+#firstTeamName {
+  position: absolute;
+  font-size: 1.8vw;
+  text-shadow: none;
+  letter-spacing: 0.3vw;
+  left: -24vw;
+  top: 10vh; }
+
+#secondTeamName {
+  position: absolute;
+  font-size: 1.8vw;
+  text-shadow: none;
+  letter-spacing: 0.3vw;
+  top: 10vh;
+  left: 24vw;
+  color: white;
+  width: 20vw; }
+
+#teamCompeting {
+  width: 100%;
+  background-color: lightgreen;
+  height: 70vh;
+  display: flex;
+  position: absolute; }
+
+#teamNameSpot {
+  height: 5vh;
+  width: 100%;
+  background: -moz-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(16%, white), color-stop(34%, white), color-stop(70%, black), color-stop(100%, black));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* ie10+ */
+  background: linear-gradient(45deg, white 16%, white 34%, black 70%, black 100%);
+  /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=1 );
+  /* ie6-9 */ }
+
+.playersCompeting {
+  width: 50%;
+  height: 70vh;
+  display: flex;
+  position: relative; }
+
+.playersCompeting:nth-child(1) {
+  background-color: white; }
+
+.playersCompeting:nth-child(2) {
+  background-color: black; }
+
+.playerSpot {
+  position: absolute;
+  width: 12vw;
+  height: 24vh;
+  border: solid 0.2vw black; }
+
+.firstPlayerSpot {
+  top: 3vh;
+  left: 2vw; }
+
+.secondPlayerSpot {
+  top: 3vh;
+  left: 35vw; }
+
+.thirdPlayerSpot {
+  top: 20vh;
+  left: 19vw; }
+
+.fourthPlayerSpot {
+  top: 35vh;
+  left: 2vw; }
+
+.fifthPlayerSpot {
+  top: 35vh;
+  left: 35vw; }
+
+.blackSpot {
+  border: solid 0.2vw white; }
+
+.center-block {
+  width: 11.6vw;
+  height: 23.4vh; }
+
+.firstPlayerName {
+  width: 16vw;
+  height: 4vh;
+  position: absolute;
+  background-color: #12487C;
+  color: whitesmoke;
+  left: 0.2vw;
+  top: 21vh;
+  text-align: center; }
+
+/* ribbon style */
+.myribbon {
+  position: absolute;
+  left: 2vw;
+  top: 23vh; }
+
+.myribbon.ribbon-wrapper {
+  position: relative; }
+
+.myribbon .ribbon-front {
+  background-color: #ccf;
+  height: 1.04161 0.0416vw;
+  width: 14.7vw;
+  position: relative;
+  left: -1.388vw;
+  z-index: 2; }
+
+.myribbon .ribbon-front,
+.myribbon .ribbon-back-left,
+.myribbon .ribbon-back-right {
+  -moz-box-shadow: 0px 0px 0.27vw rgba(0, 0, 0, 0.55);
+  -khtml-box-shadow: 0px 0px 0.27vw rgba(0, 0, 0, 0.55);
+  -webkit-box-shadow: 0px 0px 0.27vw rgba(0, 0, 0, 0.55);
+  -o-box-shadow: 0px 0px 0.27vw rgba(0, 0, 0, 0.55); }
+
+.myribbon .ribbon-edge-topleft,
+.myribbon .ribbon-edge-topright,
+.myribbon .ribbon-edge-bottomleft,
+.myribbon .ribbon-edge-bottomright {
+  position: absolute;
+  z-index: 1;
+  border-style: solid;
+  height: 0px;
+  width: 0px; }
+
+.myribbon .ribbon-edge-bottomleft,
+.myribbon .ribbon-edge-bottomright {
+  top: 1.0416vw; }
+
+.myribbon .ribbon-edge-topleft,
+.myribbon .ribbon-edge-bottomleft {
+  left: -1.5vw;
+  border-color: transparent #99c transparent transparent; }
+
+.myribbon .ribbon-edge-topleft {
+  top: -0.694vw;
+  border-width: 0.694vw 1.5vw 0 0; }
+
+.myribbon .ribbon-edge-bottomleft {
+  border-width: 0 1.5vw 0px 0; }
+
+.myribbon .ribbon-edge-topright,
+.myribbon .ribbon-edge-bottomright {
+  left: 12vw;
+  border-color: transparent transparent transparent #99c; }
+
+.myribbon .ribbon-edge-topright {
+  top: -0.694vw;
+  border-width: 0.694vw 0 0 1.5vw; }
+
+.myribbon .ribbon-edge-bottomright {
+  border-width: 0 0 0px 1.5vw; }
+
+.myribbon .ribbon-back-left {
+  position: absolute;
+  top: -0.694vw;
+  left: 0px;
+  width: 0px;
+  height: 1.0416vw;
+  z-index: 0; }
+
+.myribbon .ribbon-back-right {
+  position: absolute;
+  top: -0.694vw;
+  right: 0px;
+  width: 0px;
+  height: 1.0416vw;
+  z-index: 0; }
+
 /*# sourceMappingURL=adminPanel.css.map */
