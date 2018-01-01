@@ -64,109 +64,85 @@ class AdminController extends Controller
     /**
      * @Route("/addGameResult", name="addGameResult")
      */
-    public function addGameResult(Request $request)
+    public function addGameResultAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-        if ($playerActive = $request->request->get('player')) {
-            $playerRepository = $em->getRepository('BasketballBundle:Player');
-            
-            $playersArray=[];
-            
-            foreach ($playerActive as $value) {
-                $playersArray[] = $playerRepository->findById($value);
-            }
-            var_dump($playersArray);
-            die('ok');
-        }
-        
+                
         $players = $em->getRepository('BasketballBundle:PlayerList')->findAll();
-        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-        
-        if($request->request->get('firstTeam') && $request->request->get('secondTeam') && $request->request->get('firstTeamScore') && $request->request->get('secondTeamScore')) {
-            
-            $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-            $firstTeamAjax = $request->request->get('firstTeam');
-            $secondTeamAjax = $request->request->get('secondTeam');
-            $playerRepository = $em->getRepository('BasketballBundle:Player');
-            $score = $request->request->get('firstTeamScore') . " : " . $request->request->get('secondTeamScore');
-            $firstTeam = new PlayersTeam();
-            $secondTeam = new PlayersTeam();
-            $firstTeamNames = [];
-            
-            for($i = 0; $i != count($firstTeamAjax); $i++) {
-                $player = $playerRepository->findById($firstTeamAjax[$i]);
-                if ($i == 0 ) {
-                    $firstTeam->setFirstPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
-                } else if ($i == 1) {
-                    $firstTeam->setSecondPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
-                } else if ($i == 2) {
-                    $firstTeam->setThirdPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
-                } else if ($i == 3) {
-                    $firstTeam->setFourthPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
-                } else if ($i == 4) {
-                    $firstTeam->setFifthPlayer($player[0]);
-                    $firstTeamNames[] = $player[0]->getName();
-                }
-            }
-            
-            $secondTeamNames = [];
-            
-            for($i = 0; $i != count($secondTeamAjax); $i++) {
-                $player = $playerRepository->findById($secondTeamAjax[$i]);
-                if ($i == 0 ) {
-                    $secondTeam->setFirstPlayer($player[0]);
-                    $secondTeamNames[] = $player[0]->getName();
-                } else if ($i == 1) {
-                    $secondTeam->setSecondPlayer($player[0]);
-                    $secondTeamNames[] = $player[0]->getName();
-                } else if ($i == 2) {
-                    $secondTeam->setThirdPlayer($player[0]);
-                    $secondTeamNames[] = $player[0]->getName();
-                } else if ($i == 3) {
-                    $secondTeam->setFourthPlayer($player[0]);
-                    $secondTeamNames[] = $player[0]->getName();
-                } else {
-                    $secondTeam->setFifthPlayer($player[0]);
-                    $secondTeamNames[] = $player[0]->getName();
-                }
-            }
-
-//            
-            $em->persist($firstTeam);
-            $em->flush();
-            $em->persist($secondTeam);
-            $em->flush();
-            
-            $gameResult = new GameResult();
-            $gameResult->setScore($score);
-            $gameResult->setTeam1($firstTeam);
-            $gameResult->setTeam2($secondTeam);
-            $gameResult->setDate($nextGame[0]->getDate());
-            
-            $em->persist($gameResult);
-            $em->flush();
-            
-            $gameData = [
-                'date' => $gameResult->getDate(),
-                'score' => $score,
-                'firstTeam' => $firstTeamNames,
-                'secondTeam' => $secondTeamNames
-            ];
-            
-            return new JsonResponse($gameData);
-            
+        if (empty($players)) {
+            return $this->render('BasketballBundle:Admin:add_game_result.html.twig', array());
         }
-        
-        
+        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+               
         return $this->render('BasketballBundle:Admin:add_game_result.html.twig', array(
             'nextGame' => $nextGame[0],
             'players' => $players
         ));
+    }
+    
+    /**
+     * @Route("/addGameResultAjax", name="addGameResultAjax")
+     */
+    public function addGameResultAjaxAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        if ($request->request->get('selectedPlayers') && $result = $request->request->get('result')) {
+            $selectedPlayers = $request->request->get('selectedPlayers');
+            $gameDate = $request->request->get('date');
+            $playersListRepository = $em->getRepository('BasketballBundle:PlayerList');
+            $teamPlayersId = $playersListRepository->getTeamPlayersId($selectedPlayers);
+            
+            $score = $result[0] . ':' . $result[1];            
+            $readyTeams = $playersListRepository->getReadyTeams($teamPlayersId);
+
+            $em->persist($readyTeams[0]);
+            $em->persist($readyTeams[1]);
+            $em->flush();
+            $readyResult = $em->getRepository('BasketballBundle:GameResult')->getReadyGameResult($score, $readyTeams[0], $readyTeams[1], $gameDate);
+            $em->persist($readyResult);
+            $em->flush();
+            
+            return new JsonResponse($readyTeams[1]->getFirstPlayer()->getName());
+            
+        }
+    }
+    
+    /**
+     * @Route("/checkSelectedPlayers", name="checkSelectedPlayers")
+     */
+    public function checkSelectedPlayersAction(Request $request)
+    {
+        $selectedPlayers = $request->request->get('selectedPlayers');
+//        dump($selectedPlayers);
+        $em = $this->getDoctrine()->getManager();
+        $players = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+//        dump($players);die;
+        $playersAll = $em->getRepository('BasketballBundle:Player');
+        $playersToSelect = [];
+        $i = 0;
+        
+        foreach ($players as $key => $value) {
+//            dump($value->getId());die;
+//            dump($value->getPlayer()->getId());die;
+//            $activePlayer = $playersAll->find($value->getId());
+//            dump($activePlayer->getId());die;
+            if (in_array($value->getPlayer()->getId(), $selectedPlayers)) {
+//                dump('dupa');die;
+                array_splice($players, $key, 1);
+            } else {
+                $playersToSelect[$i]['id'] = $value->getPlayer()->getId();
+//                $playera = $playersAll->find($+value->getId())->getName();
+                $playersToSelect[$i]['name'] = $value->getPlayer()->getName();
+//                $playersToSelect[$i]['photo'] = $value->getPlayer()->getPhotoBack();
+//                dump($playersToSelect);die();
+                $i++;
+            
+            }
+        }
+//                        dump($playersToSelect);die();
+
+//        dump($players);die;
+        return new JsonResponse($playersToSelect);
     }
     
     /**

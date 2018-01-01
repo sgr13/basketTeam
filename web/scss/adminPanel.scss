@@ -35,7 +35,7 @@ body {
 
 .mainContainer {
     background-color: lightgray;
-    height: 86vh;
+    height: 100%;
     margin: 0;
     display:flex;
     div:first-of-type {
@@ -224,32 +224,32 @@ table {
 
 .myRow {
     width: 100%;
-    height: 12vh;
+    height: 10vh;
 }
 
 #firstRow {
-    background-color: lightblue;
     display:flex;
     position:absolute;
     
     div:nth-child(1) {
         width:50%;
-        background-color:red;
-        height: 12vh;
+        background-color:white;
+        height: 10vh;
         
         span {
-            left:10vw;
+            left:20vw;
         }
         
     }
     
     div:nth-child(2) {
         width:50vw;
-        background-color:yellow;
-        height: 12vh;
+        background-color:black;
+        color: white;
+        height: 10vh;
         
         span {
-            left: 30vw;
+            left: 20vw;
         }
     }
     
@@ -261,22 +261,174 @@ table {
 }
 
 #secondRow {
-    background-color: lightcoral;
+
+    display: flex;
 }
 
 #thirdRow {
-    background-color: lightgoldenrodyellow;
+
+    display: flex;
 }
 #fourthRow {
-    background-color: lightgray;
+
+    display: flex;
 }
 #fifthRow {
-    background-color: lightpink;
+    display: flex;
+
 }
 #sixthRow {
-    background-color: lightsalmon;
+    display: flex;
+
 }
-#seventhRow {
-    background-color: lightsteelblue;
+#eightRow {
+    display: flex;
+    
+    div{
+       width:33%;
+       height:100%;
+       position:relative;
+    }
+    
+    div:last-child {
+        width: 34%;
+    }
+    
+    input {
+        position: absolute;
+        
+        top: 5vh;
+        height:14vh;
+        width:7vw;
+    }
+    
+    div:nth-child(1) input {
+        left:16.5vw;
+    }
+    
+    div:nth-child(3) input {
+        left:10.5vw;
+    }
+    
+    span {
+        position: relative;
+        top: 20vh;
+        font-size: 0.9vw;
+        color: red;
+        left: 8.5vw;
+        display: none;
+    }
 }
 
+/*.playerSelection {
+    position: absolute;
+    width: 12vw;
+    height: 30.5vh;
+    border: solid 1px;
+    border-color: rgba(220,220,220,0.75);
+    left: 2vw;
+    top: 28vh;
+    background-color: #fbfbfb;
+    text-decoration: none;
+}*/
+
+.firstTeamPlayer {
+    width: 33vw;
+    height: 10vh;
+}
+
+.playerSelect {
+    position: relative;
+    top: 13vh;
+    left:12vw;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.6vw;
+    padding-left: 1vw;
+    
+    option {
+        font-size: 1.6vw;
+    }
+    
+}
+
+.playerLabel {
+    width: 34vw;
+    height: 10vh;
+}
+
+.secondTeamPlayer {
+    width: 33vw;
+    height: 10vh;
+    
+    .playerSelect{
+        left:5vw;
+    }
+}
+
+.playerLabel span {
+    position: relative;
+    font-size: 1.5vw;
+    left:12vw;
+    top: 13vh;
+}
+
+.myRow input {
+    font-size: 3vw;
+    padding: 0.5vw;
+    padding-left: 1.5vw;
+}
+
+#acceptResultButton {
+    width:13vw !important;
+    height:10vh !important;
+    font-size: 2vw;
+    position: absolute;
+    left:9vw;
+    top: 8vh;
+}
+
+#successMsg {
+    position: absolute;
+    left:34vw;
+    top:38vh;
+    z-index:100;
+    width: 30vw;
+    height: 20vh;
+    border: solid 0.2vw black;
+    background-color: lightyellow;
+    display: none;
+    
+    div:nth-child(1) {
+        height: 5vh;
+        width: 29.6vw;
+        background-color: lightblue;
+        
+        span {
+            font-size: 1.4vw;
+            position: relative;
+            left: 12vw;
+            top:1vh;
+        }
+                
+    }
+    
+    div:nth-child(2) {
+        
+        span {
+            font-size: 1.2vw;
+            position: relative;
+            left: 4.5vw;
+            top:1vh;
+        }
+        
+        button {
+            position: relative;
+            width: 7vw;
+            height: 6vh;
+            left: 12vw;
+            top: 2.4vh;
+            font-size: 1.4vw;
+        }
+    }
+}

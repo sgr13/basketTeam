@@ -252,5 +252,81 @@ $(document).ready(function () {
               }
           });
         });
-
+        
+//        var selectedPlayers = [];
+        
+//        
+//        $('.playerSelect').change(function() {
+//            var selectedPlayers = []
+//            $('.myRow option:selected').each(function() {
+//                alert($(this).html());
+//                selectedPlayers.push($(this).attr('value'));
+//                alert(selectedPlayers);
+                
+//           });
+           
+//           $.ajax({
+//              type: 'POST',
+//              url: '/checkSelectedPlayers',
+//              data: {
+//                selectedPlayers: selectedPlayers,  
+//              },
+//              success: function(response) {
+//                  console.log(response);
+//                  $('.playerSelect').each(function() {
+//                     $(this).html(''); 
+//                  });
+//              }
+//                
+//            });
+//           
+//        });
+        
+        
+        $('#acceptResultButton').click(function (e) {
+            var selectedPlayers = [];
+            var result = [];
+            $('#eightRow span').css('display', 'none');
+            $('.myRow option:selected').each(function() {
+                selectedPlayers.push($(this).attr('value'));
+           });
+           
+           $('#eightRow input').each(function(e) {
+                if ($(this).val() === '' || !$.isNumeric($(this).val())) {
+                    $('#eightRow span').css('display', 'inline');
+                    e.stopPropagation();
+                }
+                result.push($(this).val());
+                
+           });
+           
+           var date = $('.mainContainerResult').attr('value');;
+           
+           $.ajax({
+              type: 'POST',
+              url: '/addGameResultAjax',
+              data: {
+                selectedPlayers: selectedPlayers,
+                result: result,
+                date: date
+              },
+              dataType: 'json',
+              success: function(response) {
+                  alert(response);
+                  console.log(response);
+                  
+                  $('#successMsg').css('display', 'inline');
+                  $('#successMsg').draggable();
+                  $('#acceptResultButton').addClass('disabled');
+                  ('input').prop('disabled', true);
+                  
+              }
+           
+        });
+        
+        });
+        
+        $('#successMsg').draggable();
+        
+        
 });

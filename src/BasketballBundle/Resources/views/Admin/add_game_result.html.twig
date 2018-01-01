@@ -4,47 +4,160 @@
 
 {% block body %}
     
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3>Wyniki spotkania:  {{ nextGame.date }} - {{ nextGame.place }}</h3>
-            <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
-        </div>
-    </div> 
-    <div class="mainContainerResult">
-        <div id="firstRow" class="myRow">
-            <div>
-                <span>Drużyna 1</span>
+    {% if players is not defined %}
+            <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3>Nie dodano meczu lub brak zawodników na liście graczy!!!</h3>
+                <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
             </div>
-            <div>
-                <span>Drużyna 2</span>
-            </div>
-        </div>
-        <div id="secondRow" class="myRow">
-            <div class="firstTeamPlayer">
                 
+        </div>
+    {%else%}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3>Wyniki spotkania:  {{ nextGame.date }} - {{ nextGame.place }}</h3>
+                <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
             </div>
-            <div class="playerLabel">
-                
+        </div>
+    
+        
+        <div class="mainContainerResult" value="{{nextGame.date}}">
+            <div id="firstRow" class="myRow">
+                <div>
+                    <span>Drużyna Jasna</span>
+                </div>
+                <div>
+                    <span>Drużyna Ciemna</span>
+                </div>
             </div>
-            <div class="secondTeamPlayer">
-                
+            <div id="secondRow" class="myRow">
+                <div class="firstTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="playerLabel">
+                    <span>Zawodnik 1</span>
+                </div>
+                <div class="secondTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div id="thirdRow" class="myRow">
+                <div class="firstTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="playerLabel">
+                    <span>Zawodnik 2</span>
+                </div>
+                <div class="secondTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div id="fourthRow" class="myRow">
+                <div class="firstTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="playerLabel">
+                    <span>Zawodnik 3</span>
+                </div>
+                <div class="secondTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div id="fifthRow" class="myRow">
+                <div class="firstTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="playerLabel">
+                    <span>Zawodnik 4</span>
+                </div>
+                <div class="secondTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div id="sixthRow" class="myRow">
+                <div class="firstTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="playerLabel">
+                    <span>Zawodnik 5</span>
+                </div>
+                <div class="secondTeamPlayer">
+                    <select class="playerSelect">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{player.player.id}}">{{player.player.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div id="seventhRow" class="myRow">
+
+            </div>
+            <div id="eightRow" class="myRow">
+                <div>
+                    <input>
+                </div>
+                <div>
+                    <button class="btn btn-success" id="acceptResultButton">Dodaj</button>
+                    <span>Brak wyniku lub niewłaściwe dane!</span>
+                </div>
+                <div>
+                    <input>
+                </div>
+            </div>
+            <div id="successMsg">
+                <div><span>Sukces!</span></div>
+                <div>
+                    <span>Udało Ci się dodać wynik spotkania.</span><br>
+                    <a href="{{asset('adminPanel')}}"><button class="btn btn-success">Ok</button></a>
+                </div>
             </div>
         </div>
-        <div id="thirdRow" class="myRow">
-            
-        </div>
-        <div id="fourthRow" class="myRow">
-            
-        </div>
-        <div id="fifthRow" class="myRow">
-            
-        </div>
-        <div id="sixthRow" class="myRow">
-            
-        </div>
-        <div id="seventhRow" class="myRow">
-            
-        </div>
-    </div>
+    {%endif%}
             
 {% endblock %}

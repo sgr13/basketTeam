@@ -2,6 +2,10 @@
 
 namespace BasketballBundle\Repository;
 
+use BasketballBundle\Entity\PlayerList;
+use BasketballBundle\Entity\PlayersTeam;
+use BasketballBundle\Repository\Player;
+
 /**
  * PlayerListRepository
  *
@@ -10,4 +14,62 @@ namespace BasketballBundle\Repository;
  */
 class PlayerListRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getTeamPlayersId($selectedPlayers)
+    {   
+        $firstTeam =[];
+        $secondTeam =[];
+        
+        foreach ($selectedPlayers as $key => $value) {
+                if (($key + 1) % 2 != 0) {
+                    $firstTeam[] = $value;
+                } else {
+                    $secondTeam[] = $value;
+                }
+            }
+            
+        return array($firstTeam, $secondTeam);
+    }
+    
+    public function getReadyTeams($teamPlayersId)
+    {   
+        $oFirstTeam = new PlayersTeam();
+        $oSecondTeam = new PlayersTeam();
+        
+        $oReadyFirstTeam = $this->getPlayersForReadyTem($teamPlayersId[0], $oFirstTeam);
+        $oReadySecondTeam = $this->getPlayersForReadyTem($teamPlayersId[1], $oSecondTeam);
+        
+        return array($oReadyFirstTeam, $oReadySecondTeam);
+    }
+    
+    public function getPlayersForReadyTem($team, $oTeam)
+    {
+        foreach ($team as $key => $value) {
+            $this->checkIfPlayerIsInTeam($oTeam, $key, $value);
+        }
+        
+        return $oTeam;
+    }
+    
+    public function checkIfPlayerIsInTeam($oTeam, $key, $value)
+    {   
+        $playerRepository = $repository = $this->getEntityManager()->getRepository('BasketballBundle:Player');
+        if ($key == 0 && $value != '') {
+            $oPlayer = $playerRepository->findById($value);
+            $oTeam->setFirstPlayer($oPlayer[0]);
+        } else if ($key == 1 ) {
+            if ($value != '' && $value != '') {
+                $oPlayer = $playerRepository->findById($value);
+                $oTeam->setSecondPlayer($oPlayer[0]);
+            }
+        } else if ($key == 2 && $value != '') {
+                $oPlayer = $playerRepository->findById($value);
+                $oTeam->setThirdPlayer($oPlayer[0]);
+        } else if ($key == 3 && $value != '') {
+                $oPlayer = $playerRepository->findById($value);
+                $oTeam->setFourthPlayer($oPlayer[0]);
+        } else if ($key == 4 && $value != '') {
+                $oPlayer = $playerRepository->findById($value);
+                $oTeam->setFifthPlayer($oPlayer[0]);
+        }
+    }
 }

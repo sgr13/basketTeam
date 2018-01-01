@@ -2,6 +2,8 @@
 
 namespace BasketballBundle\Repository;
 
+use BasketballBundle\Entity\GameResult;
+
 /**
  * GameResultRepository
  *
@@ -10,4 +12,14 @@ namespace BasketballBundle\Repository;
  */
 class GameResultRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getReadyGameResult($score, $firstTeam, $secondTeam, $gameDate)
+    {
+        $result = new GameResult();
+        $result->setScore($score);
+        $result->setTeam1($firstTeam);
+        $result->setTeam2($secondTeam);
+        $result->setDate($gameDate);
+        
+        return $result;
+    }
 }
