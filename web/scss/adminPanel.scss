@@ -582,10 +582,38 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 /* ribbon style */
-.myribbon {
+/*.myribbon {
+    
+}*/
+
+.firstRibbon {
     position: absolute;
     left: 2vw;
     top:23vh;
+}
+
+.secondtRibbon {
+    position: absolute;
+    left: 35vw;
+    top:23vh;
+}
+
+.thirdRibbon {
+    position: absolute;
+    left: 19vw;
+    top:40vh;
+}
+
+.fourthRibbon {
+    position: absolute;
+    left: 2vw;
+    top:55vh;
+}
+
+.fifthRibbon {
+    position: absolute;
+    left: 35vw;
+    top:55vh;
 }
 
 
@@ -594,7 +622,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 .myribbon .ribbon-front {
 	background-color: #ccf;	
-        height: 1.04161.0416vw;
+        height: 1.5vw;
 	width: 14.7vw;
 	position: relative;
 	left:-1.388vw;
@@ -674,5 +702,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	width: 0px;
 	height: 1.0416vw;
 	z-index: 0;
+}
+
+.ribbon-front {
+    text-align: center;
+}
+
+.ribbon-front span {
+    font-size: 1.1vw;
+    letter-spacing: 0.3vw;
+    font-weight: 600;
 }
 

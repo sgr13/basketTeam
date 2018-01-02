@@ -14,10 +14,11 @@
         <group>
             <file>file:/home/www/html/Basketball/web/js/style.js</file>
             <file>file:/home/www/html/Basketball/web/scss/adminPanel.scss</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_game_result_old.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_next_game.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/game_details.html_old.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/game_details.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/GameResult.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_game_result.html.twig</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/PlayerList.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
         </group>
     </open-files>

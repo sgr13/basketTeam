@@ -24,45 +24,85 @@
                     <img src="/photos/{{ game.team1.firstPlayer.photoFront }}" class="center-block">
                 </div>
 {#                    <div class="firstPlayerName"><span>{{ game.team1.firstPlayer.name }}</span></div>#}
-
-                <div class="ribbon-wrapper myribbon">
-                    <div class="ribbon-front">
-                            {{ game.team1.firstPlayer.name }}
-                    </div>
-                    <div class="ribbon-edge-topleft"></div>
-                    <div class="ribbon-edge-topright"></div>
-                    <div class="ribbon-edge-bottomleft"></div>
-                    <div class="ribbon-edge-bottomright"></div>
-                    <div class="ribbon-back-left"></div>
-                    <div class="ribbon-back-right"></div>
+                <div class="firstRibbon">
+                    {% set playerName = game.team1.firstPlayer.name %}
+                    {{ include('ribbon.html.twig') }}
                 </div>
-
 
                 <div class="playerSpot secondPlayerSpot whiteSpot">
                     <img src="/photos/{{ game.team1.secondPlayer.photoFront }}" class="center-block">
                 </div>
+                <div class="secondtRibbon">
+                    {% set playerName = game.team1.secondPlayer.name %}
+                    {{ include('ribbon.html.twig') }}
+                </div>
+                
                 <div class="playerSpot thirdPlayerSpot whiteSpot">
-{#                   {{ game.team1.thirdPlayer.photoFront }}#}
+                    <img src="/photos/{{ game.team1.thirdPlayer.photoFront }}" class="center-block">
                 </div>
-                <div class="playerSpot fourthPlayerSpot whiteSpot">
+                <div class="thirdRibbon">
+                        {% set playerName = game.team1.thirdPlayer.name %}
+                        {{ include('ribbon.html.twig') }}
                 </div>
-                <div class="playerSpot fifthPlayerSpot whiteSpot">
-                </div>
+                {% if game.team1.fourthPlayer.name is defined %}
+                    <div class="playerSpot fourthPlayerSpot whiteSpot">
+                        <img src="/photos/{{ game.team1.fourthPlayer.photoFront }}" class="center-block">
+                    </div>
+                    <div class="fourthRibbon">
+                        {% set playerName = game.team1.fourthPlayer.name %}
+                        {{ include('ribbon.html.twig') }}
+                    </div>
+                    {% if game.team1.fifthPlayer.name is defined %}
+                        <div class="playerSpot fifthPlayerSpot whiteSpot">
+                            <img src="/photos/{{ game.team1.fifthPlayer.photoFront }}" class="center-block">
+                        </div>
+                        <div class="fifthRibbon">
+                        {% set playerName = game.team1.fifthPlayer.name %}
+                        {{ include('ribbon.html.twig') }}
+                        </div>
+                    {% endif %}
+                {% endif %}
             </div>
             <div class="playersCompeting">
                 <div class="playerSpot firstPlayerSpot blackSpot">
                     <img src="/photos/{{ game.team2.firstPlayer.photoFront }}" class="center-block">
                 </div>
+                <div class="firstRibbon">
+                    {% set playerName = game.team2.firstPlayer.name %}
+                    {{ include('ribbon.html.twig') }}
+                </div>
                 <div class="playerSpot secondPlayerSpot blackSpot">
                     <img src="/photos/{{ game.team2.secondPlayer.photoFront }}" class="center-block">
                 </div>
+                <div class="secondtRibbon">
+                    {% set playerName = game.team2.secondPlayer.name %}
+                    {{ include('ribbon.html.twig') }}
+                </div>
                 <div class="playerSpot thirdPlayerSpot blackSpot">
-{#                    {{ game.team2.thirdPlayer.photoFront }}#}
+                    <img src="/photos/{{ game.team2.thirdPlayer.photoFront }}" class="center-block">
                 </div>
-                <div class="playerSpot fourthPlayerSpot blackSpot">
-                </div>
-                <div class="playerSpot fifthPlayerSpot blackSpot">
-                </div>
+                <div class="thirdRibbon">
+                   {% set playerName = game.team2.thirdPlayer.name %}
+                   {{ include('ribbon.html.twig') }}
+               </div>
+               {% if game.team2.fourthPlayer.name is defined %}
+                    <div class="playerSpot fourthPlayerSpot blackSpot">
+                        <img src="/photos/{{ game.team2.fourthPlayer.photoFront }}" class="center-block">
+                    </div>
+                    <div class="fourthRibbon">
+                        {% set playerName = game.team2.fourthPlayer.name %}
+                        {{ include('ribbon.html.twig') }}
+                    </div>
+                    {% if game.team2.fifthPlayer.name is defined %}
+                        <div class="playerSpot fifthPlayerSpot blackSpot">
+                            <img src="/photos/{{ game.team2.fifthPlayer.photoFront }}" class="center-block">
+                        </div>
+                        <div class="fifthRibbon">
+                        {% set playerName = game.team2.fifthPlayer.name %}
+                        {{ include('ribbon.html.twig') }}
+                        </div>
+                    {%endif%}
+                {% endif %}
             </div>
         </div>
     </div>

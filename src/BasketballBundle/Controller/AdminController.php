@@ -48,6 +48,32 @@ class AdminController extends Controller
     }
     
     /**
+      * @Route("/saveNewGame/{date}/{place}", name="saveNewGame")
+      */
+     public function saveNewGameAction($date, $place)
+     {
+//         dump($place);die;
+         $em = $this->getDoctrine()->getManager();
+         $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
+         if (!empty($lastGame)) {
+             $em->remove($lastGame[0]);
+             $em->flush();
+         }
+         $newPlayersList = new PlayersList();
+         $em->persist($newPlayersList);
+         $em->flush();
+         
+         $nextGame = new NextGame();
+         $nextGame->setDate($date);
+         $nextGame->setPlace($place);
+         $nextGame->setPlayersList($newPlayersList);
+         
+         $em->persist($nextGame);
+         $em->flush();
+         return $this->redirect('/adminPanel');
+     }
+    
+    /**
      * @Route("/gameIndex", name="gameIndex")
      */
     public function gameIndexAction()
