@@ -20,6 +20,7 @@
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/GameResult.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/add_game_result.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
+            <file>file:/home/www/html/Basketball/app/Resources/views/ribbon.html.twig</file>
         </group>
     </open-files>
 </project-private>

@@ -1,47 +1,42 @@
-{% extends "::base.html.twig" %}
+{% extends "::baseAdmin.html.twig" %}
 
-{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+{% block title %}Panel Administratora{% endblock %}
 
 {% block body %}
-    
     <div class="panel panel-success">
-        <div class="panel-heading">
-            <h2>Najbliższy mecz</h2>
+           <div class="panel-heading" style="position:relative">
+               <h3 >Najbliższy mecz: {{ nextGame.date }} - {{ nextGame.place }}</h3>
+               <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
+           </div>
+    </div>
+    <div id="containerShowList">
+        <div id="listOfPlayersPlaying">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Zawodnik</th>
+                    <th>Akcja</th>
+                </tr>
+                <tr>
+                    {% for player in playersList %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ player.player.name }}</td>
+                        <td><a href="{{ path('deletePlayerFromList', {'id': player.id}) }}"><button class="btn btn-danger"><span>Usuń</span></button></a></td>
+                    <tr>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>    
+        <div id="selectPlayerSpot">
+            <form method="post" action="{{ asset('showList') }}">
+                <select name="player">
+                    {% for player in players %}
+                        <option>{{ player.name }}</option>
+                    {% endfor %}
+                </select><br>
+                <input type="submit" value="Dodaj zawodnika" class="btn btn-info">
+            </form>
         </div>
-        <div class="panel-body">
-            <h5>{{ nextGame.date }} - {{ nextGame.place }}</h5>
-            <div class="row">
-                <div class="col-xs-4">
-                    <table class="table table-striped table-hover table-condensed">
-                        <tr>
-                            <th></th>
-                            <th>Zawodnik</th>
-                            <th>Akcja</th>
-                        </tr>
-                        <tr>
-                            {% for player in playersList %}
-                            <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ player.player.name }}</td>
-                                <td><a href="{{ path('deletePlayerFromList', {'id': player.id}) }}"><button class="btn btn-danger btn-xs">Usuń</button></a></td>
-                            <tr>
-                            {% endfor %}
-                        </tr>
-                    </table>
-{#                        <a href="{{ asset('addPlayerToNextGame') }}"><button class="btn btn-info">Dodaj zawodnika</button></a>
-#}                </div>
-                <div class="col-xs-1"></div>
-                <div class="col-xs-2">
-                    <form method="post" action="{{ asset('showList') }}">
-                        <select class="form-control input-md" name="player">
-                        {% for player in players %}
-                            <option>{{ player.name }}</option>
-                        {% endfor %}
-                        </select><br>
-                        <input type="submit" value="Dodaj zawodnika" class="btn btn-info">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> 
+    </div>
 {% endblock %}

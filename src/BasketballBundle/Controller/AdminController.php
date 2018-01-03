@@ -4,16 +4,11 @@ namespace BasketballBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use BasketballBundle\Entity\Calendar;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use BasketballBundle\Entity\NextGame;
 use BasketballBundle\Entity\PlayersList;
 use BasketballBundle\Entity\PlayerList;
-use BasketballBundle\Entity\Team;
-use BasketballBundle\Entity\GameResult;
-use BasketballBundle\Entity\PlayersTeam;
-
 
 class AdminController extends Controller
 {    
@@ -52,7 +47,6 @@ class AdminController extends Controller
       */
      public function saveNewGameAction($date, $place)
      {
-//         dump($place);die;
          $em = $this->getDoctrine()->getManager();
          $lastGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
          if (!empty($lastGame)) {
@@ -141,7 +135,7 @@ class AdminController extends Controller
     /**
      * @Route("/gameDetails/{id}", name="gameDetails")
      */
-    public function gameDetailsAction($id, Request $request)
+    public function gameDetailsAction($id)
     {   
         $em = $this->getDoctrine()->getManager();
         $game = $em->getRepository('BasketballBundle:GameResult')->findOneById($id);
@@ -192,95 +186,5 @@ class AdminController extends Controller
         }
 
         return $this->redirect('/showList');        
-    }
-    
-    /**
-     * @Route("/test")
-     */
-    public function test(Request $request)
-    {
-//        $firstTeam = new PlayersTeam();
-//        $secondTeam = new Team();
-        $em = $this->getDoctrine()->getManager();
-//        
-//        $playerRepository = $em->getRepository('BasketballBundle:Player');
-//        $player1 = $playerRepository->findById(1);
-//        $player2 = $playerRepository->findById(2);
-//        $firstTeam->setFirstPlayer($player1[0]);
-//        $firstTeam->setSecondPlayer($player2[0]);
-//        $player2 = $playerRepository->findById(2);
-//        $firstTeam->setPlayer($player2[0]);
-//        $firstTeam->setPlayer($player[0]);
-//        var_dump($firstTeam);die();
-        
-        
-        $firstTeamAjax = [0=> '1', 1 => '1'];
-            $secondTeamAjax = [0=> '2', 1 => '2'];
-            $playerRepository = $em->getRepository('BasketballBundle:Player');
-            $firstTeam = new PlayersTeam();
-            $secondTeam = new PlayersTeam();
-            for($i = 0; $i != count($firstTeamAjax); $i++) {
-                $player = $playerRepository->findById($firstTeamAjax[$i]);
-                if ($i == 0 ) {
-                    $firstTeam->setFirstPlayer($player[0]);
-                } else if ($i == 1) {
-                    $firstTeam->setSecondPlayer($player[0]);
-                } else if ($i == 2) {
-                    $firstTeam->setThirdPlayer($player[0]);
-                } else if ($i == 3) {
-                    $firstTeam->setFourthPlayer($player[0]);
-                } else if ($i == 4) {
-                    $firstTeam->setFifthPlayer($player[0]);
-                }
-            }
-            
-            
-            for($i = 0; $i != count($secondTeamAjax); $i++) {
-                $player = $playerRepository->findById($secondTeamAjax[$i]);
-                if ($i == 0 ) {
-                    $secondTeam->setFirstPlayer($player[0]);
-                } else if ($i == 1) {
-                    $secondTeam->setSecondPlayer($player[0]);
-                } else if ($i == 2) {
-                    $secondTeam->setThirdPlayer($player[0]);
-                } else if ($i == 3) {
-                    $secondTeam->setFourthPlayer($player[0]);
-                } else {
-                    $secondTeam->setFifthPlayer($player[0]);
-                }
-            }
-            $score = '55 : 66';
-        
-        $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
-        
-        $gameResult = new GameResult();
-        $gameResult->setScore($score);
-        $gameResult->setTeam1($firstTeam);
-        $gameResult->setTeam2($secondTeam);
-        $gameResult->setDate($nextGame[0]->getDate());
-        
-                    $em->persist($gameResult);
-            $em->flush();
-        
-        var_dump($gameResult);die();
-    }
-        
-    
-    
-    /**
-     * @Route("/card", name="card")
-     */
-    public function cardAction()
-    {
-        return $this->render('BasketballBundle:Admin:card.html.twig', array(
-        ));
-    }
-    
-    /**
-     * @Route("/selectGameType/{year}/{month}/{day}/{noDay}", name="selectGameType")
-     */
-    public function selectGameTypeAction(Request $request, $year, $month, $day, $noDay)
-    {
-        var_dump('Działa'); die;
     }
 }   

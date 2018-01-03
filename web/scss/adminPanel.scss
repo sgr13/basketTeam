@@ -714,3 +714,74 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
     font-weight: 600;
 }
 
+#containerShowList {
+    background-color: lightgray;
+    height: 85vh;
+    margin: 0;
+    display:flex;
+}
+
+#listOfPlayersPlaying, #selectPlayerSpot {
+    width: 50%;
+    height: 85vh;
+    position: relative;
+}
+
+#selectPlayerSpot {
+    border-left: 2vw solid #8cc152;
+}
+
+#listOfPlayersPlaying table{
+    position:relative;
+    left:10vw;
+    top:5vh;
+    width: 30vw;
+    height: 10vh;
+    /*line-height: 1;*/
+    
+    td {
+        border: solid 1px black;
+        height: 6vh;
+        text-align: center;
+        
+        button {
+            height: 4vh;
+            width: 80%;
+            position: relative;
+            
+            span {
+                font-size: 1vw;
+                position: absolute;
+                left: 2.8vw;
+                top: 0.8vh;
+            }
+        }
+    }
+}
+
+#listOfPlayersPlaying table td {
+    /*height: 0.2vh;*/
+    font-size: 1.5vw;
+}
+
+#selectPlayerSpot select {
+    width:25vw;
+    height:8vh;
+    font-size: 2vw;
+    position: absolute;
+    left: 12vw;
+    top:18vh;
+}
+
+#selectPlayerSpot option {
+    font-size: 2vw;
+}
+
+#selectPlayerSpot input {
+    position: absolute;
+    left: 14.5vw;
+    top:30vh;
+    width: 20vw;
+    height: 10vh;
+    font-size: 2.2vw;
+} 
