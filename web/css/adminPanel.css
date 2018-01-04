@@ -599,8 +599,7 @@ table {
   top: 18vh; }
 
 #selectPlayerSpot option {
-  font-size: 2vw;
-  text-align: center; }
+  font-size: 2vw; }
 
 #selectPlayerSpot input {
   position: absolute;
@@ -609,5 +608,28 @@ table {
   width: 20vw;
   height: 10vh;
   font-size: 2.2vw; }
+
+#addPlayerSpot select {
+  width: 25vw;
+  height: 8vh;
+  font-size: 2vw;
+  position: absolute;
+  left: 36vw;
+  top: 28vh;
+  padding-left: 2vw; }
+
+#addPlayerSpot option {
+  font-size: 2vw; }
+
+#addPlayerSpot input {
+  position: absolute;
+  left: 38.5vw;
+  top: 40vh;
+  width: 20vw;
+  height: 10vh;
+  font-size: 2.2vw; }
+
+#addNewPlayerForm form {
+  margin-top: 10vh; }
 
 /*# sourceMappingURL=adminPanel.css.map */

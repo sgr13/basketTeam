@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use BasketballBundle\Entity\NextGame;
 use BasketballBundle\Entity\PlayersList;
 use BasketballBundle\Entity\PlayerList;
+use BasketballBundle\Entity\Player;
+use BasketballBundle\Form\PlayerType;
 
 class AdminController extends Controller
 {    
@@ -186,5 +188,66 @@ class AdminController extends Controller
         }
 
         return $this->redirect('/showList');        
+    }
+    
+    /**
+     * @Route("addPlayerToUser", name="addPlayerToUser")
+     */
+    public function addPlayerToUser(Request $request)
+    {
+        $users = $this->getDoctrine()->getRepository('BasketballBundle:User')->findAll();
+        
+        return $this->render('BasketballBundle:Admin:addPlayerToUser.html.twig', array(
+            'users' => $users,
+        ));
+    }
+    
+    /**
+     * @Route("addPlayerToUserStepTwo/{userId}", name="addPlayerToUserStepTwo")
+     */
+    public function addPlayerToUserStepTwoAction (Request $request, $userId)
+    {
+//        dump($userId);die;
+        $player = new Player();
+        $form = $this->createForm(PlayerType::class, $player);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $player = $form->getData();
+            $player->setGames(12);
+            $user = $this->getDoctrine()->getRepository('BasketballBundle:User')->find($userId);
+            $player->setUser($user);
+            
+            $photoFront = $player->getPhotoFront();
+            $photoBack = $player->getPhotoBack();
+            $pathToImg = $request->server->get('DOCUMENT_ROOT').$request->getBasePath() . '/photos';
+            
+             $photoFrontName = md5(uniqid()) . '.' . $photoFront->guessExtension();
+             $photoBackName = md5(uniqid()) . '.' . $photoBack->guessExtension();
+             
+            $photoFront->move(
+                $pathToImg,
+                $photoFrontName
+            );
+             
+            $photoBack->move(
+                $pathToImg,
+                $photoBackName
+            );
+            
+            $player->setPhotoFront($photoFrontName);
+            $player->setPhotoBack($photoBackName);
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($player);
+            $em->flush();
+            
+            return $this->redirect('/adminPanel');
+             
+        }
+        
+        return $this->render('BasketballBundle:Admin:addPlayerToUserAdmin.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }   

@@ -312,8 +312,6 @@ $(document).ready(function () {
               },
               dataType: 'json',
               success: function(response) {
-                  alert(response);
-                  console.log(response);
                   
                   $('#successMsg').css('display', 'inline');
                   $('#successMsg').draggable();
@@ -328,5 +326,9 @@ $(document).ready(function () {
         
         $('#successMsg').draggable();
         
-        
+        $('#addPlayerSpot select').change(function () {
+            var val = $('#addPlayerSpot select option:selected').val();
+            $('#addPlayerSpot a').attr('href', '/addPlayerToUserStepTwo/' + val);
+        });
+                
 });
