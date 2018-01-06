@@ -1,0 +1,21 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block title %}Panel Administratora{% endblock %}
+
+{% block body %}
+    <div class="panel panel-success">
+           <div class="panel-heading" style="position:relative">
+               <h3 >Dodaj gracza do profilu użytkownika</h3>
+               <a href="{{ path('editPlayerByAdmin') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
+           </div>
+    </div>
+    <div class="col-lg-4">
+        <img src="/photos/{{ player.photoFront }}" id="photoFrontEditAdmin">
+    </div>
+    <div class="col-lg-4" id="editNewPlayerForm">
+        {{form(form)}}
+    </div>
+    <div class="col-lg-4">
+        <img src="/photos/{{ player.photoBack }}" id="photoBackEditAdmin">
+    </div>
+{% endblock %}

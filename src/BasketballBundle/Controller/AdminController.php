@@ -11,6 +11,7 @@ use BasketballBundle\Entity\PlayersList;
 use BasketballBundle\Entity\PlayerList;
 use BasketballBundle\Entity\Player;
 use BasketballBundle\Form\PlayerType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class AdminController extends Controller
 {    
@@ -191,9 +192,9 @@ class AdminController extends Controller
     }
     
     /**
-     * @Route("addPlayerToUser", name="addPlayerToUser")
+     * @Route("/addPlayerToUser", name="addPlayerToUser")
      */
-    public function addPlayerToUser(Request $request)
+    public function addPlayerToUser()
     {
         $users = $this->getDoctrine()->getRepository('BasketballBundle:User')->findAll();
         
@@ -203,7 +204,7 @@ class AdminController extends Controller
     }
     
     /**
-     * @Route("addPlayerToUserStepTwo/{userId}", name="addPlayerToUserStepTwo")
+     * @Route("/addPlayerToUserStepTwo/{userId}", name="addPlayerToUserStepTwo")
      */
     public function addPlayerToUserStepTwoAction (Request $request, $userId)
     {
@@ -250,4 +251,94 @@ class AdminController extends Controller
             'form' => $form->createView()
         ));
     }
+    
+    /**
+     * @Route("/editPlayerByAdmin", name="editPlayerByAdmin")
+     */
+    public function editPlayerByAdmiAction()
+    {
+        $players = $this->getDoctrine()->getRepository('BasketballBundle:Player')->findAll();
+        
+        return $this->render('BasketballBundle:Admin:editPlayerByAdmin.html.twig', array(
+            'players' => $players
+        ));
+    }
+    
+    /**
+     * @Route("editPlayerByAdminStepTwo/{id}", name="editPlayerByAdminStepTwo")
+     */
+    public function editPlayerByAdminStepTwoAction(Request $request, $id)
+    {
+        $player = $this->getDoctrine()->getRepository('BasketballBundle:Player')->find($id);
+        $form = $this->createForm(PlayerType::class, $player, array (
+            'noPhoto' => true
+        ));
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+            $player = $form->getData();
+            $file1 = $player->getPhotoFront();
+            $file2 = $player->getPhotoBack();
+            $player->setPhotoFront($file1);
+            $player->setPhotoBack($file2);
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($player);
+            $em->flush();
+            
+            return $this->redirect('/adminPanel');
+        }
+        
+        return $this->render('BasketballBundle:Admin:editPlayerByAdminStepTwo.html.twig', array(
+            'form' => $form->createView(),
+            'player' => $player
+        ));
+    }
+    
+    /**
+     * @Route("/editPlayerByAdminPhoto/{id}", name="editPlayerByAdminPhoto")
+     */
+    public function editPlayerByAdminPhotoAction(Request $request, $id)
+    {
+        $player = $this->getDoctrine()->getRepository('BasketballBundle:Player')->find($id);
+        $form = $this->createForm(PlayerType::class, $player, array (
+            'onlyPhoto' => true
+        ));
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+            $player = $form->getData();
+            $photoFront = $player->getPhotoFront();
+            $photoBack= $player->getPhotoBack();
+            
+            $fileName = md5(uniqid()) . '.' . $photoFront->guessExtension();
+            $photoFront->move(
+                $this->getParameter('path_directory'),
+                $fileName
+            );
+
+            $fileName2 = md5(uniqid()) . '.' . $photoBack->guessExtension();
+            $photoBack->move(
+                $this->getParameter('path_directory'),
+                $fileName2
+            );
+            
+            $player->setPhotoFront($fileName);
+            $player->setPhotoBack($fileName2);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($player);
+            $em->flush();
+            
+            return $this->redirect('/adminPanel');
+        }
+        
+        
+        return $this->render('BasketballBundle:Admin:editPlayerByAdminStepTwo.html.twig', array(
+            'form' => $form->createView(),
+            'player' => $player
+        ));
+    }
+    
 }   

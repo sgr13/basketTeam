@@ -13,12 +13,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/www/html/Basketball/web/scss/adminPanel.scss</file>
-            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/addPlayerToUser.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Form/PlayerType.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/showList.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/PlayerController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/User.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/editPlayerByAdmin.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/admin_panel.html.twig</file>
+            <file>file:/home/www/html/Basketball/web/js/style.js</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/addPlayerToUser.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/addPlayerToUserAdmin.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/add_player.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/editPlayerByAdminStepTwo.html.twig</file>
         </group>
     </open-files>
 </project-private>

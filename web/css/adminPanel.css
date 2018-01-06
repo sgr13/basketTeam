@@ -609,7 +609,7 @@ table {
   height: 10vh;
   font-size: 2.2vw; }
 
-#addPlayerSpot select {
+#addPlayerSpot select, #editPlayerSpot select {
   width: 25vw;
   height: 8vh;
   font-size: 2vw;
@@ -618,7 +618,7 @@ table {
   top: 28vh;
   padding-left: 2vw; }
 
-#addPlayerSpot option {
+#addPlayerSpot option, #editPlayerSpot option {
   font-size: 2vw; }
 
 #addPlayerSpot input {
@@ -629,7 +629,34 @@ table {
   height: 10vh;
   font-size: 2.2vw; }
 
-#addNewPlayerForm form {
+#addNewPlayerForm form, #editPlayerForm form {
   margin-top: 10vh; }
+
+.confirmButtonEdit {
+  position: absolute;
+  top: 40vh;
+  width: 12vw;
+  height: 7vh;
+  font-size: 1.3vw; }
+
+#confirmButtonEditFirst {
+  left: 35vw; }
+
+#confirmButtonEditLast {
+  left: 51vw; }
+
+#photoFrontEditAdmin {
+  position: absolute;
+  left: 10vw;
+  top: 10vh;
+  width: 20vw;
+  height: 40vh; }
+
+#photoBackEditAdmin {
+  position: absolute;
+  left: 5vw;
+  top: 10vh;
+  width: 20vw;
+  height: 50vh; }
 
 /*# sourceMappingURL=adminPanel.css.map */

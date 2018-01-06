@@ -27,14 +27,29 @@ class PlayerType extends AbstractType
                 ->add('specialisation', EntityType::class, array(
                 'class' => 'BasketballBundle:Specialisation',
                 'choice_label' => 'name', 'label' => 'Mocna strona:'))
-                ->add('photoFront', FileType::class, array('label' => 'Zdjęcie 1'))
-                ->add('photoBack', FileType::class, array('label' => 'Zdjecie2:'))
-                ->add('submit', SubmitType::class, ["label" => 'Dodaj']);               
+                ->add('photoFront', FileType::class, array('label' => 'Zdjecie 1:', 'data_class' => null))
+                ->add('photoBack', FileType::class, array('label' => 'Zdjecie 2:', 'data_class' => null))
+                ->add('submit', SubmitType::class, ["label" => 'Ok']);
+        
+        if ($options['noPhoto']) {
+            $builder->remove('photoFront')
+                    ->remove('photoBack');
+        }
+        
+        if ($options['onlyPhoto']) {
+            $builder->remove('name')
+                    ->remove('nickname')
+                    ->remove('height')
+                    ->remove('specialisation')
+                    ->remove('nickname');
+        }
     }
     
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
-            'data_class' => Player::class
+            'data_class' => Player::class,
+            'noPhoto' => false,
+            'onlyPhoto' => false
         ]);
     }
 }

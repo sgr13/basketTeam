@@ -330,5 +330,11 @@ $(document).ready(function () {
             var val = $('#addPlayerSpot select option:selected').val();
             $('#addPlayerSpot a').attr('href', '/addPlayerToUserStepTwo/' + val);
         });
+        
+        $('#editPlayerSpot select').change(function () {
+            var val = $('#editPlayerSpot select option:selected').val();
+            $('#editPlayerSpot a:first-of-type').attr('href', '/editPlayerByAdminStepTwo/' + val);
+            $('#editPlayerSpot a:last-of-type').attr('href', '/editPlayerByAdminPhoto/' + val);
+        });
                 
 });

@@ -1,0 +1,21 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+
+{% block body %}
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3>Wybierz zawodnika, którego chesz edytować.</h3>
+            <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
+        </div>
+    </div>
+    <div id="editPlayerSpot">
+        <select name="player">
+            {% for player in players %}
+                <option value="{{ player.id }}">{{ player.name }}</option>
+            {% endfor %}
+        </select><br>
+        <a href="#"><input type="submit" value="Edytuj zawodnika" class="btn btn-info confirmButtonEdit" id="confirmButtonEditFirst"></a>
+        <a href="#"><input type="submit" value="Zmień zdjęcie" class="btn btn-warning confirmButtonEdit" id="confirmButtonEditLast"></a>
+    </div>        
+{% endblock %}
