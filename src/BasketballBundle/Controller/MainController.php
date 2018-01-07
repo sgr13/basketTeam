@@ -11,7 +11,11 @@ class MainController extends Controller
      * @Route("/")
      */
     public function mainPageAction()
-    {
+    {   
+        if (!$this->getUser()) {
+            return $this->redirect('/login');
+        }
+        
         return $this->render('BasketballBundle:Main:main_page.html.twig', array(
             // ...
         ));

@@ -47,6 +47,8 @@ class PlayerController extends Controller
             $player->setPhotoFront($photoFrontName);
             $player->setPhotoBack($photoBackName);
             
+//            dump($player);die;
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($player);
             $em->flush();

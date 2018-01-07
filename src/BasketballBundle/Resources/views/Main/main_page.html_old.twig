@@ -1,0 +1,92 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BasketballBundle:Main:mainPage{% endblock %}
+
+{% block body %}
+<div>
+    <div id="sideMenuContainer">
+        <nav class="navbar navbar-inverse sidebar" role="navigation" id="sideMenu">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#start">
+                        <span class="pull-right hidden-xs showopacity">
+                            <img class="iconImage" src="photos/menu.png" id="iconStart">
+                        </span><span class="sideMenuHeader">Witam:)</span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#start"><span class="sideMenuHeader">Start</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/house2.png" id="iconHome">
+                                </span>
+                            </a>
+                        </li>
+                        <li><a href="#diet"><span class="sideMenuHeader">Ostatni mecz</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/basketball.png" id="iconApple">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a> <span class="sideMenuHeader">Zawodnicy</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/klurwa.png" id="iconCalendar">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#start"><span class="sideMenuHeader">Historia</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/buk.png" id="iconPerson">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ asset('') }}"><span class="sideMenuHeader">Galeria</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/photo2.png" id="iconEnvelope">
+                                </span>
+                            </a>
+                        </li>
+                        {% if app.user %}
+                            <li>
+                                <a href="{{ asset('login') }}"><span class="sideMenuHeader">Zapisz się!</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/ba.png" id="iconEnvelope">
+                                </span>
+                            </a>
+                        </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ asset('login') }}"><span class="sideMenuHeader">Zaloguj</span>
+                                    <span class="pull-right hidden-xs showopacity">
+                                        <img class="iconImage" src="photos/login2.png" id="iconEnvelope">
+                                    </span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if app.user %}
+                            <li>
+                                <a href="{{ asset('userPanel') }}"><span class="sideMenuHeader">Panel</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/options.png" id="iconEnvelope">
+                                </span>
+                            </a>
+                            </li>
+                            <li>
+                                <a href="{{ asset('logout') }}"><span class="sideMenuHeader">Wyloguj</span>
+                                <span class="pull-right hidden-xs showopacity">
+                                    <img class="iconImage" src="photos/logout.png" id="iconEnvelope">
+                                </span>
+                            </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+{% endblock %}

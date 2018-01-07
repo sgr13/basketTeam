@@ -1,0 +1,22 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block title %}BasketballBundle:Admin:SelectDay{% endblock %}
+
+{% block body %}
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3>Wybierz użytkownika, którego chesz usunąć.</h3>
+            <a href="{{ path('adminPanel') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
+        </div>
+    </div>
+    <div id="deletePlayerSpot">
+        <form method="POST">
+            <select name="userDelete">
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username}}</option>
+                {% endfor %}
+            </select><br>
+            <a ><input type="submit" value="Usuń zawodnika" class="btn btn-info" id="confirmButtonDeleteUser"></a>
+        </form>
+    </div>        
+{% endblock %}

@@ -341,4 +341,27 @@ class AdminController extends Controller
         ));
     }
     
+    /**
+     * @Route("/deleteUser", name="deleteUser")
+     */
+    public function deleteUserAction(Request $request)
+    {
+        $users = $this->getDoctrine()->getRepository('BasketballBundle:User')->findAll();
+        
+        if ($request->request->get('userDelete')) {
+            $user = $this->getDoctrine()->getRepository('BasketballBundle:User')->find($request->request->get('userDelete'));
+            $user->setIsActive(0);
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirect('/adminPanel');
+        }
+        
+        return $this->render('BasketballBundle:Admin:deleteUser.html.twig', array(
+            'users' => $users
+        ));
+    }
+    
 }   
