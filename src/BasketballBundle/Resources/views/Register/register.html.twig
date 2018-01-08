@@ -1,9 +1,9 @@
-{% extends "::base.html.twig" %}
+{% extends "::baseMain.html.twig" %}
 
-{% block title %}BasketballBundle:Register:register{% endblock %}
+{% block title %}Rejestracja użytkownikar{% endblock %}
 
 {% block body %}
-    <div class="panel panel-success">
+   {# <div class="panel panel-success">
         <div class="panel-heading">
             <h2>Rejestracja</h2>
         </div>
@@ -11,5 +11,20 @@
             {{form(form)}}
         </div>
     </div>
-
+#}
+   
+   <div id="mainContainerBackground">
+    </div>
+    <div id="mainContainer">
+        <div id="successMsgRegister">
+            <div id ="messageBodyHeader"><span>Rejestracja</span></div>
+            <div id = "messageBody">
+                <div id="messagBodyInputs">
+                    {{form(form)}}
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
 {% endblock %}
