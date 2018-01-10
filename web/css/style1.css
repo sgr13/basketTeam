@@ -1,0 +1,102 @@
+@import url('reset.css');
+body{
+	background:#555 url('/photos/img/basket.jpg');
+	color:#000;
+	font-family: 'PT Sans Narrow', Arial, sans-serif;
+	font-size:12px;
+	overflow-y:scroll;
+}
+a{
+	color:black;
+	text-decoration:none;
+}
+.clr{
+	clear:both;
+}
+.container {
+	width:100%;
+	margin:0 auto;
+}
+.header{
+	padding-top:10px;
+}
+
+h1{
+	margin:0 0 16px 0;
+	float:left;
+	clear:both;
+	font-size:34px;
+	padding:12px;
+	text-shadow:0px 0px 1px #000;
+	color:black;
+	font-family:'News Cycle', Georgia, serif;
+}
+h1 span{
+	color:black;
+	text-align:right;
+	font-size:35px;
+	padding:0 10px;
+}
+h2{
+	float:right;
+	color:black;
+	padding:30px 20px 0 0;
+}
+.content{
+	width:100%;
+	position:relative;
+	margin:70px 0 0 0;
+	clear:both;
+}
+/* Footer Style */
+.topbar{
+	position:relative;
+	width:100%;
+	height:25px;
+	line-height:24px;
+	bottom:0;
+	font-size:13px;
+	background:#000;
+	opacity:0.7;
+	text-transform:uppercase;
+	font-family: 'PT Sans Narrow', Arial, sans-serif;
+	z-index:4;
+}
+.topbar a{
+	padding:5px 10px;
+	letter-spacing:1px;
+	text-shadow:1px 1px 1px #000;
+	color:black;
+	text-align:right;
+}
+.topbar a:hover{
+	color:white ;
+}
+.topbar a span{
+	font-weight:bold;
+}
+.topbar span.right_ab{
+	position:absolute;
+	right:4px;
+}
+
+/*ul:first-child {
+    background-color:  rgba(0,0,0,0.5);
+    
+}
+
+*/
+/*#firstMenu {
+    position: relative;
+    top: 6vh;
+}
+
+#secondMenu {
+    position:relative;
+    top: 3vh;
+}
+
+#thirdMenu {
+    position: relative;
+    top: 6vh;
+}*/

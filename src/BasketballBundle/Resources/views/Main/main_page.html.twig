@@ -1,15 +1,51 @@
-{% extends "::baseMain.html.twig" %}
+{% extends "::superMenu.html.twig" %}
 
-{% block title %}Koszykówka - Dąbrowa{% endblock %}
+{% block title %}Witam na stronie.{% endblock %}
 
 {% block body %}
-    <div id="mainContainer">
-        <div id="successMsg">
-            <div><span>Sukces!</span></div>
-            <div>
-                <span>Udało Ci się dodać wynik spotkania.</span><br>
-                <a href="{{asset('login')}}"><button class="btn btn-success">Ok</button></a>
-            </div>
+{#    <div id="mainContainerBackground">#}
+{#    </div>#}
+    {#<div id="mainContainer">
+
+    </div>#}
+    <div class="container">
+{#        <div class="header">
+                <h1>#Koszykówka<span>Dąbrowa Górnicza</span></h1>
+        </div>#}
+        <div class="content">
+                <div id="sbi_container" class="sbi_container">
+                        <div class="sbi_panel" data-bg="photos/img/basketBall.jpg">
+                                <a href="#" class="sbi_label">Dla gracza</a>
+                                <div class="sbi_content">
+                                        <ul id="firstMenu">
+                                                <li><a href="{{ asset('checkIn') }}" id="signUpHref">Zapisz&nbsp&nbspsię</a></li>
+                                                <li><a href="#">Najbliższy&nbsp&nbspmecz</a></li>
+                                                <li><a href="#">Historia</a></li>
+                                        </ul>
+                                </div>
+                        </div>
+                        <div class="sbi_panel" data-bg="photos/img/rainField.jpg">
+                                <a href="#" class="sbi_label">Menu</a>
+                                <div class="sbi_content">
+                                        <ul id="secondMenu">
+                                                <li><a href="#">Twój&nbsp&nbsppanel</a></li>
+                                                <li><a href="#">Płatności</a></li>
+                                                <li><a href="{{ asset('/logout') }}">Wyloguj</a></li>
+                                        </ul>
+                                </div>
+                        </div>
+                        <div class="sbi_panel" data-bg="photos/img/basketIn.jpg">
+                                <a href="#" class="sbi_label">Zespół</a>
+                                <div class="sbi_content">
+                                        <ul id="thirdMenu">
+                                                <li><a href="#">Wiadomości</a></li>
+                                                <li><a href="#">Gracze</a></li>
+                                                <li><a href="#">Galeria </a></li>
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
         </div>
     </div>
+
 {% endblock %}

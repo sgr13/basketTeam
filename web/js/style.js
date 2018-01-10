@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
 //Przypisanie pozycji sideMenu po załadowaniu strony do zmiennej a następnie przesunięcie menu poza ekran
 
     var p1 = $("#sideMenu");
@@ -336,5 +335,9 @@ $(document).ready(function () {
             $('#editPlayerSpot a:first-of-type').attr('href', '/editPlayerByAdminStepTwo/' + val);
             $('#editPlayerSpot a:last-of-type').attr('href', '/editPlayerByAdminPhoto/' + val);
         });
-                
+     
+    $('#signUpHref').click(function() {
+        alert('yes');
+    });
+    
 });

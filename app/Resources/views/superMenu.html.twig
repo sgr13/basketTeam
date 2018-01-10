@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Panel Administratora</title>
+        {% block stylesheets %}{% endblock %}
+{#        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css">#}
+        <link rel="stylesheet" href="{{ asset('css/style1.css') }}" media="screen" /> 
+        <link rel="stylesheet" href="{{ asset('css/sbimenu.css') }}" media="screen" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=News+Cycle&v1' rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.bgImageMenu.js') }}"></script>
+            <script src="{{ asset('js/stylesuper.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,130 @@
+@font-face {
+  font-family: Berkshire;
+  src: url(/fonts/BerkshireSwash-Regular.ttf); }
+@font-face {
+  font-family: CinzelBlack;
+  src: url(/fonts/Cinzel-Black.ttf); }
+@font-face {
+  font-family: CinzelBold;
+  src: url(/fonts/Cinzel-Bold.ttf); }
+@font-face {
+  font-family: Cinzel;
+  src: url(/fonts/Cinzel-Regular.ttf); }
+@font-face {
+  font-family: Breeserif;
+  src: url(/fonts/BreeSerif-Regular.ttf); }
+@font-face {
+  font-family: Dancing;
+  src: url(/fonts/DancingScript-Bold.ttf); }
+@font-face {
+  font-family: Gloria;
+  src: url(/fonts/GloriaHallelujah.ttf); }
+@font-face {
+  font-family: Lobster;
+  src: url(/fonts/Lobster-Regular.ttf); }
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 0;
+  margin: 0; }
+
+#mainContainerBackground {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url("/photos/img/basket.jpg");
+  background-size: 100% 100%;
+  -webkit-filter: blur(0.3vw);
+  -moz-filter: blur(0.3vw);
+  -o-filter: blur(0.3vw);
+  -ms-filter: blur(0.3vw);
+  filter: blur(0.3vw); }
+
+.sbi_container {
+  position: relative;
+  margin: 0 auto;
+  /*	overflow:hidden;*/
+  /*padding:10px;*/
+  background: rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 1px 1px 5px #000;
+  -webkit-box-shadow: 1px 1px 5px #000;
+  box-shadow: 1px 1px 5px #000;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px 4px 4px 4px;
+  width: 70vw;
+  height: 70vh;
+  z-index: 9999;
+  top: 10vh; }
+
+#nextGameInfo {
+  position: relative;
+  width: 100%;
+  height: 65%;
+  /*    background-color: red;*/ }
+
+#nextGameInfo span {
+  position: absolute; }
+
+#nextGameInfo span:first-of-type {
+  font-family: Breeserif;
+  font-size: 2vw;
+  left: 27vw;
+  top: 3vh; }
+
+#nextGameInfo span:nth-of-type(2) {
+  font-family: Gloria;
+  font-size: 6vw;
+  top: 10vh;
+  left: 19vw; }
+
+#nextGameInfo span:nth-of-type(3) {
+  font-family: Breeserif;
+  font-size: 2vw;
+  top: 32vh;
+  left: 25vw; }
+
+#nextGameInfo span:nth-of-type(4) {
+  font-family: Breeserif;
+  font-size: 2vw;
+  top: 32vh;
+  left: 33.5vw; }
+
+#nextGameInfo span:nth-of-type(5) {
+  font-family: Breeserif;
+  font-size: 2vw;
+  top: 32vh;
+  left: 36vw; }
+
+#checkButton {
+  position: absolute;
+  width: 18vw;
+  height: 12vh;
+  left: 26.5vw;
+  top: 48vh;
+  border: solid 0.1vw black;
+  text-align: center;
+  vertical-align: center;
+  display: table;
+  font-size: 2vw;
+  background-color: rgba(211, 211, 211, 0.8);
+  border-radius: 2vw; }
+
+#checkButton:hover {
+  color: white;
+  background-color: rgba(83, 86, 87, 0.8);
+  cursor: pointer; }
+
+#checkButton span {
+  display: table-cell;
+  vertical-align: middle; }
+
+/*# sourceMappingURL=player.css.map */

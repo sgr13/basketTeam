@@ -83,12 +83,31 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/checkIn")
+     * @Route("/checkIn", name="checkIn")
      */
     public function checkInAction()
-    {
+    {   
+        $nextGame = $this->getDoctrine()->getRepository('BasketballBundle:NextGame')->findAll();
+        $dayofweek = date('w', strtotime(str_replace('.', '-', $nextGame[0]->getDate())));
+        $week = array('Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela');
+        $result = $week[$dayofweek - 1];
+//        dump($nextGame[0]->getPlayersList());die;
+        $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
+//        dump($playersList);die;
+        $loggedUserId = $user = $this->getUser()->getId();
+        foreach ($playersList as $value) {
+            if ($value->getId() == $loggedUserId) {
+                $playerCheckedIn = 1;
+                break;
+            } else {
+                $playerCheckedIn = 0;
+            }
+        }
+//        dump($playerCheckedIn);die;
         return $this->render('BasketballBundle:Player:check_in.html.twig', array(
-            // ...
+            'nextGame' => $nextGame[0],
+            'result' => $result,
+            'playerCheckedIn' => $playerCheckedIn
         ));
     }
 

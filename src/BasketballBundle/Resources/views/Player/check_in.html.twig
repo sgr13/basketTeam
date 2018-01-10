@@ -1,7 +1,26 @@
-{% extends "::base.html.twig" %}
+{% extends "::basePlayer.html.twig" %}
 
-{% block title %}BasketballBundle:Player:checkIn{% endblock %}
+{% block title %}Koszykówka - Zapisz się!{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Player:checkIn page</h1>
+    <div id="mainContainerBackground">
+    </div>
+    <div class="sbi_container">
+        <div id="nextGameInfo">
+            <span>Najbliższy mecz: </span>
+            <span>{{ nextGame.Place }}</span>
+            <span>{{ result }}</span>
+            <span>-</span>
+            <span>{{ nextGame.Date }}</span>
+        </div>
+        {% if playerCheckedIn == 1 %}
+        <div id="checkButton">
+            <span>Rezygnuję</span>
+        </div>
+        {% else %}
+        <div id="checkButton">
+            <span>Wpisuję się</span>
+        </div>
+        {% endif %}
+    </div>
 {% endblock %}
