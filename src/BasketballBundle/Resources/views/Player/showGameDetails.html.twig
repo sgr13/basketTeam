@@ -1,23 +1,17 @@
-{% extends "::baseAdmin.html.twig" %}
+{% extends "::basePlayer.html.twig" %}
 
-{% block title %}Panel Administratora{% endblock %}
+{% block title %}Koszykówka - Zapisz się!{% endblock %}
 
 {% block body %}
-    <div class="panel panel-success">
-        <div class="panel-heading" style="position:relative">
-            <h3 >Spotkanie z dnia {{ game.date }}</h3>
-            <a href="{{ path('gameIndex') }}"><button class="btn btn-danger"><span>Wróć</span></button></a>
-        </div>
+    <div id="mainContainerBackground">
     </div>
-    <div id=" mainContainerGameDetails">
-        <div id="scoreGameDetails">
+    <div class="sbi_container" {#style="display:flex"#}>
+        <div id='scoreGameDetails'>
             <span id="spanScore">{{ game.score}}<span>
             <span id="firstTeamName" class="teamName">Drużyna Jasna</span>
-            <span id="secondTeamName" class="teamName">Drużyna Ciemna</span>
+            <span id="secondTeamName" class="teamName">Drużyna Ciemna</span>  
         </div>
-{#        <div id="teamNameSpot">
-            ss
-        </div>#}
+            
         <div id="teamCompeting">
             <div class="playersCompeting">
                 <div class="playerSpot firstPlayerSpot whiteSpot">
@@ -108,6 +102,11 @@
                 {% endif %}
             </div>
         </div>
+            <a href="{{asset('/')}}">
+                <div id="smallBackButton">
+                    <span>Powrót</span>
+                </div>
+            </a>
     </div>
-            
+        
 {% endblock %}

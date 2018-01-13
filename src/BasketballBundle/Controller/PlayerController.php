@@ -8,6 +8,7 @@ use BasketballBundle\Entity\Player;
 use BasketballBundle\Form\PlayerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use BasketballBundle\Entity\PlayerList;
 
 class PlayerController extends Controller
 {
@@ -88,21 +89,34 @@ class PlayerController extends Controller
     public function checkInAction()
     {   
         $nextGame = $this->getDoctrine()->getRepository('BasketballBundle:NextGame')->findAll();
+        if ($nextGame == []) {
+            return $this->render('BasketballBundle:Player:check_in.html.twig', array(
+            'nextGame' => 'notSet'
+            ));
+        }
         $dayofweek = date('w', strtotime(str_replace('.', '-', $nextGame[0]->getDate())));
         $week = array('Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela');
         $result = $week[$dayofweek - 1];
 //        dump($nextGame[0]->getPlayersList());die;
         $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
 //        dump($playersList);die;
-        $loggedUserId = $user = $this->getUser()->getId();
-        foreach ($playersList as $value) {
-            if ($value->getId() == $loggedUserId) {
-                $playerCheckedIn = 1;
-                break;
-            } else {
-                $playerCheckedIn = 0;
+        $loggedPlayerId = $this->getUser()->getPlayer()->getId();
+//        dump($loggedPlayerId);
+//        dump($playersList);die;
+        if (count($playersList) > 0) {
+            foreach ($playersList as $value) {
+                if ($value->getPlayer()->getId() == $loggedPlayerId) {
+                    $playerCheckedIn = 1;
+    //                dump($playerCheckedIn);die;
+                    break;
+                } else {
+                    $playerCheckedIn = 0;
+                }
             }
+        } else {
+            $playerCheckedIn = 0;
         }
+        
 //        dump($playerCheckedIn);die;
         return $this->render('BasketballBundle:Player:check_in.html.twig', array(
             'nextGame' => $nextGame[0],
@@ -112,22 +126,106 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/checkOut")
+     * @Route("/signInOut/{action}", name="signInOut")
      */
-    public function checkOutAction()
+    public function signInOutAction($action)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        if ($action == 'signIn') {
+            $loggedPlayer = $this->getUser()->getPlayer();
+            $playerList = new PlayerList();
+            $playerList->setPlayer($loggedPlayer);
+            $em->persist($playerList);
+        } else {
+            $loggedPlayer = $this->getUser()->getPlayer();
+            $playerList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findByPlayer($loggedPlayer);
+            $em->remove($playerList[0]);
+        }
+        $em->flush();
+        return $this->redirect('/');
+    }
+    
+    /**
+     * @Route("/showPlayerList", name="showPlayerList")
+     */
+    public function showPlayerListAction()
     {
-        return $this->render('BasketballBundle:Player:check_out.html.twig', array(
-            // ...
+        $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
+//        dump($playersList[0]->getPlayer()->getId());die;
+        $playersOnList = [];
+        $playerRepository = $this->getDoctrine()->getRepository('BasketballBundle:Player');
+        
+        if (!empty($playersList)) {
+            foreach ($playersList as $key => $value) {
+                $player = $playerRepository->findById($value->getPlayer()->getId());
+                $playersOnList[] = $player[0];
+            }
+        } else {
+            return $this->render('BasketballBundle:Player:show_players_list.html.twig', array());
+        }
+        return $this->render('BasketballBundle:Player:show_players_list.html.twig', array(
+            'players' => $playersOnList
+         ));
+    }
+    
+    /**
+     * @Route("/showGameHistoryList")
+     */
+    public function showGameHistoryList()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $gamesHistory = $em->getRepository('BasketballBundle:GameResult')->findAll();
+//        dump($gamesHistory);die;
+        
+        return $this->render('BasketballBundle:Player:showGameHistoryList.html.twig', array(
+            'games' => $gamesHistory
         ));
     }
+    
+    /**
+     * @Route("/showGameDetails/{gameId}", name="showGameDetails") 
+     */
+    public function showGameDetailsAction($gameId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $game = $em->getRepository('BasketballBundle:GameResult')->findOneById($gameId);
+        
+        return $this->render('BasketballBundle:Player:showGameDetails.html.twig', array(
+            'game' => $game,
+        ));
+    }
+    
     
     /**
      * @Route("/userPanel", name="userPanel")
      */
     public function userPanelAction() 
-    {
+    {   
+        if ($this->getUser()->getPlayer() != null) {
+            $player = 1;
+        } else {
+            $player = 0;
+        }
+        
+        $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
+        if ($this->getUser()->getPlayer() != null && count($playersList) > 0) {
+//            dump('ok');die;
+            $loggedPlayerId = $this->getUser()->getPlayer()->getId();
+//            dump($playersList);die;
+            foreach ($playersList as $value) {
+                if ($value->getPlayer()->getId() == $loggedPlayerId) {
+                    $playerCheckedIn = 1;
+                    break;
+                } 
+                $playerCheckedIn = 0;
+            }
+        } else {
+            $playerCheckedIn = 0;
+        }
+        
         return $this->render('BasketballBundle:Player:user_panel.html.twig', array(
-            // ...
+            'player' => $player,
+            'playerCheckedIn' => $playerCheckedIn
         ));
     }
 

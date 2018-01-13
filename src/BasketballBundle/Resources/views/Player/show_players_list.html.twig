@@ -1,0 +1,37 @@
+{% extends "::basePlayer.html.twig" %}
+
+{% block title %}Koszykówka - Zapisz się!{% endblock %}
+
+{% block body %}
+    <div id="mainContainerBackground">
+    </div>
+    <div class="sbi_container">
+        {% if players is defined %}
+            <div id="playersListShow">
+                <ol>
+                    {% for player in players %}
+                        <li><span class="thumbView" photo="{{ player.photoFront}}">{{ player.name }}</span><span class="thumbView"  photo="{{ player.photoFront}}"> "{{player.nickname}}"</span></li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <a href ='{{asset("/")}}'
+                <div class="goBackButton">
+                    <span>Powrót</span>
+                </div>
+            </a>
+            <div id="popUpThumbView">
+                <img src='' id='popUpImg'>
+            </div>
+        {% else %}
+            <div id="noPlayerInfo">
+                <span>Brak graczy na liście</span><span> najbliższego meczu.</span>
+            <div>
+            <a href ='{{asset("/")}}'
+                <div class="goBackButton">
+                    <span>Powrót</span>
+                </div>
+            </a>
+        {% endif %}
+    </div>
+        
+{% endblock %}

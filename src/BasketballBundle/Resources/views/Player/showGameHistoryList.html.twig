@@ -1,0 +1,21 @@
+{% extends "::basePlayer.html.twig" %}
+
+{% block title %}Koszykówka - Zapisz się!{% endblock %}
+
+{% block body %}
+    <div id="mainContainerBackground">
+    </div>
+    <div class="sbi_container">
+        <ul style="list-style-type:none;" id="gameHistoryList">
+            {% for game in games %}
+                <a style="padding:2px" href="{{ path('showGameDetails',{gameId: game.id}) }}"><button class='gameListButton'>{{ game.date }}</button></a>
+            {% endfor %}
+        </ul>
+        <a href ='{{asset("/")}}'
+            <div class="goBackButton">
+                <span>Powrót</span>
+            </div>
+        </a>
+    </div>
+        
+{% endblock %}

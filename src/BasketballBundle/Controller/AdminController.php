@@ -157,17 +157,26 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if ($player = $request->request->get('player')) {
+//                dump($player);
                 $player = $em->getRepository('BasketballBundle:Player')->findByName($player);
+//                dump($player);die;
                 $playerList = new PlayerList();
                 $playerList->setPlayer($player[0]);
+//                dump($playerList);die;
                 $em->persist($playerList);
                 $em->flush();
        }
         
         $nextGame = $em->getRepository('BasketballBundle:NextGame')->findAll();
         $playersList = $em->getRepository('BasketballBundle:PlayerList')->findAll();
+//        dump($playersList);die;
+        if (!isset($playersList) && $playersList[0]->getPlayer() == null) {
+            $playersList = 0;
+        }
         $players = $em->getRepository('BasketballBundle:Player')->findAll();
-
+//        dump($nextGame);
+//        dump($playersList);die;
+//        dump($players);die;
         return $this->render('BasketballBundle:Admin:showList.html.twig', array(
             'nextGame' => $nextGame[0],
             'playersList' => $playersList,

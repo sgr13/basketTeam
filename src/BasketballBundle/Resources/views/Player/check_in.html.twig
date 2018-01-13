@@ -6,21 +6,36 @@
     <div id="mainContainerBackground">
     </div>
     <div class="sbi_container">
+        {% if nextGame == 'notSet' %}
+            <div id="noGameAlert">
+                <span>Brak planów <br>na najbliższe spotkanie!</span>
+                </div>
+                <a href="{{ asset('/') }}">
+                <div id="checkButton">
+                    <span>Ok</span>
+                </div></a>
+            
+        {% else %}
         <div id="nextGameInfo">
-            <span>Najbliższy mecz: </span>
+{#            <span>Najbliższy mecz: </span>#}
+            <span class="thumbView">Najbliższy mecz:</span>
             <span>{{ nextGame.Place }}</span>
             <span>{{ result }}</span>
             <span>-</span>
             <span>{{ nextGame.Date }}</span>
         </div>
         {% if playerCheckedIn == 1 %}
-        <div id="checkButton">
+            <a href="{{ path('signInOut', {'action': 'signOut'}) }}"><div id="checkButton">
             <span>Rezygnuję</span>
-        </div>
+                </div></a>
         {% else %}
-        <div id="checkButton">
+        <a href="{{ path('signInOut', {'action': 'signIn'}) }}"><div id="checkButton">
             <span>Wpisuję się</span>
+            </div></a>
+        {% endif %}
+        <div id="popUpThumbView">
         </div>
         {% endif %}
     </div>
+        
 {% endblock %}

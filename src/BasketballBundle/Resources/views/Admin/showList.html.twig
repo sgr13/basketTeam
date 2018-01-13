@@ -18,13 +18,21 @@
                     <th>Akcja</th>
                 </tr>
                 <tr>
-                    {% for player in playersList %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ player.player.name }}</td>
-                        <td><a href="{{ path('deletePlayerFromList', {'id': player.id}) }}"><button class="btn btn-danger"><span>Usuń</span></button></a></td>
-                    <tr>
-                    {% endfor %}
+                    {% if playersList != 0 %}
+                        {% for player in playersList %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ player.player.name }}</td>
+                            <td><a href="{{ path('deletePlayerFromList', {'id': player.id}) }}"><button class="btn btn-danger"><span>Usuń</span></button></a></td>
+                        <tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {%endif%}
                 </tr>
             </table>
         </div>    
