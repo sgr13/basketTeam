@@ -1,0 +1,29 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+#mainContainerBackground {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-image: url('/photos/img/basket.jpg');
+    background-size: 100% 100%;
+    
+    -webkit-filter: blur(0.3vw);
+    -moz-filter: blur(0.3vw);
+    -o-filter: blur(0.3vw);
+    -ms-filter: blur(0.3vw);
+    filter: blur(0.3vw);
+}

@@ -17,23 +17,9 @@ class MainController extends Controller
         }
         
         $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
-        if ($this->getUser()->getPlayer() == null) {
-            $playerExists = 0;
-        } else {
-            $playerExists = 1;
-        }
-        if ($this->getUser()->getPlayer() != null && count($playersList) > 0) {
-            $loggedPlayerId = $this->getUser()->getPlayer()->getId();
-            foreach ($playersList as $value) {
-                if ($value->getPlayer()->getId() == $loggedPlayerId) {
-                    $playerCheckedIn = 1;
-                    break;
-                } 
-                $playerCheckedIn = 0;
-            }
-        } else {
-            $playerCheckedIn = 0;
-        }
+        $playerExists = ($this->getUser()->getPlayer() == null ? 0 : 1);
+        $playerCheckedIn = $this->getDoctrine()->getRepository('BasketballBundle:Player')->checkIfPlayerIsCheckedIn($this->getUser(), $playersList);
+        
         return $this->render('BasketballBundle:Main:main_page.html.twig', array(
             'playerCheckedIn' => $playerCheckedIn,
             'playerExists' => $playerExists

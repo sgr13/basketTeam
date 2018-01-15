@@ -1,0 +1,84 @@
+#loginContainer {
+    position: absolute;
+    left:34vw;
+    top:32vh;
+    z-index:100;
+    width: 35vw;
+    height: 30vh;
+    background-color: rgba(173, 216, 230, 0.9);
+    
+    #loginHeader {
+        height: 5vh;
+        width: 35vw;
+        
+        span {
+            font-size: 1.4vw;
+            position: relative;
+            left: 14vw;
+            top:1vh;
+        }
+                
+    }
+    
+    #loginBody {
+        
+        width: 35vw;
+        height: 25vh;
+        
+        #loginInputs {
+            width: 35vw;
+            height: 20vh;
+            background-color: rgba(173, 255, 47, 0.8);
+            position:relative;
+            
+            label:first-child {
+                position:absolute;
+                left:4.6vw;
+                top:3.2vh;
+                font-size: 1.3vw;
+            }
+            
+            label:last-of-type {
+                position:absolute;
+                left:4.6vw;
+                top:8.2vh;
+                font-size: 1.3vw;
+            }
+            
+            input {
+                position:absolute;
+                left: 9vw;
+                top: 3vh;
+                width:20vw;
+                height: 4vh;
+                font-size: 1.2vw;
+            }
+            
+            input:last-of-type {
+                position: absolute;
+                left:9vw;
+                top:8vh;
+            }
+            
+            button {
+                position:absolute;
+                left:15vw;
+                top:14vh;
+                width:7vw;
+                height:5vh;
+                font-size: 1.3vw;
+            }
+        }
+        
+        #loginButton {
+            position: relative;
+            
+            p {
+                position: absolute;
+                left: 1vw;
+                top: 1vh;
+                font-size: 1vw;
+            }
+        }
+    }
+}

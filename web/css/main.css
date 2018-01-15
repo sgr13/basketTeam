@@ -24,6 +24,146 @@ body {
   -ms-filter: blur(0.3vw);
   filter: blur(0.3vw); }
 
+#loginContainer {
+  position: absolute;
+  left: 34vw;
+  top: 32vh;
+  z-index: 100;
+  width: 35vw;
+  height: 30vh;
+  background-color: rgba(173, 216, 230, 0.9); }
+  #loginContainer #loginHeader {
+    height: 5vh;
+    width: 35vw; }
+    #loginContainer #loginHeader span {
+      font-size: 1.4vw;
+      position: relative;
+      left: 14vw;
+      top: 1vh; }
+  #loginContainer #loginBody {
+    width: 35vw;
+    height: 25vh; }
+    #loginContainer #loginBody #loginInputs {
+      width: 35vw;
+      height: 20vh;
+      background-color: rgba(173, 255, 47, 0.8);
+      position: relative; }
+      #loginContainer #loginBody #loginInputs label:first-child {
+        position: absolute;
+        left: 4.6vw;
+        top: 3.2vh;
+        font-size: 1.3vw; }
+      #loginContainer #loginBody #loginInputs label:last-of-type {
+        position: absolute;
+        left: 4.6vw;
+        top: 8.2vh;
+        font-size: 1.3vw; }
+      #loginContainer #loginBody #loginInputs input {
+        position: absolute;
+        left: 9vw;
+        top: 3vh;
+        width: 20vw;
+        height: 4vh;
+        font-size: 1.2vw; }
+      #loginContainer #loginBody #loginInputs input:last-of-type {
+        position: absolute;
+        left: 9vw;
+        top: 8vh; }
+      #loginContainer #loginBody #loginInputs button {
+        position: absolute;
+        left: 15vw;
+        top: 14vh;
+        width: 7vw;
+        height: 5vh;
+        font-size: 1.3vw; }
+    #loginContainer #loginBody #loginButton {
+      position: relative; }
+      #loginContainer #loginBody #loginButton p {
+        position: absolute;
+        left: 1vw;
+        top: 1vh;
+        font-size: 1vw; }
+
+#registerContainer {
+  position: absolute;
+  left: 34vw;
+  top: 22vh;
+  z-index: 100;
+  width: 35vw;
+  height: 45vh;
+  background-color: rgba(173, 216, 230, 0.9); }
+  #registerContainer #registerHeader {
+    height: 5vh;
+    width: 35vw; }
+    #registerContainer #registerHeader span {
+      font-size: 1.4vw;
+      position: relative;
+      left: 14vw;
+      top: 2vh; }
+  #registerContainer #registerBody {
+    width: 35vw;
+    height: 40vh; }
+    #registerContainer #registerBody #registerInputs {
+      width: 35vw;
+      height: 38vh;
+      background-color: rgba(173, 255, 47, 0.8);
+      position: relative; }
+      #registerContainer #registerBody #registerInputs .form-group:first-of-type label {
+        position: absolute;
+        left: 3.6vw;
+        top: 3.2vh;
+        font-size: 1.3vw; }
+      #registerContainer #registerBody #registerInputs .form-group:first-of-type input {
+        position: absolute;
+        left: 10vw;
+        top: 3vh;
+        width: 20vw;
+        height: 4vh;
+        font-size: 1.2vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(2) label {
+        position: absolute;
+        left: 3.6vw;
+        top: 9.2vh;
+        font-size: 1.3vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(2) input {
+        position: absolute;
+        left: 10vw;
+        top: 9vh;
+        width: 20vw;
+        height: 4vh;
+        font-size: 1.2vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(3) label {
+        position: absolute;
+        left: 3.6vw;
+        top: 15.2vh;
+        font-size: 1.3vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(3) input {
+        position: absolute;
+        left: 10vw;
+        top: 15vh;
+        width: 20vw;
+        height: 4vh;
+        font-size: 1.2vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(4) label {
+        position: absolute;
+        left: 3.6vw;
+        top: 21.2vh;
+        font-size: 1.3vw; }
+      #registerContainer #registerBody #registerInputs .form-group:nth-of-type(4) input {
+        position: absolute;
+        left: 10vw;
+        top: 21vh;
+        width: 20vw;
+        height: 4vh;
+        font-size: 1.2vw; }
+      #registerContainer #registerBody #registerInputs button {
+        position: absolute;
+        left: 13vw;
+        top: 28vh;
+        width: 10vw;
+        height: 6vh;
+        font-size: 1.3vw; }
+
 #mainContainer {
   width: 100%;
   height: 100%;
@@ -34,153 +174,5 @@ body {
   left: 0;
   right: 0;
   z-index: 9999; }
-
-#successMsg {
-  position: absolute;
-  left: 34vw;
-  top: 32vh;
-  z-index: 100;
-  width: 35vw;
-  height: 30vh;
-  background-color: rgba(173, 216, 230, 0.9);
-  /*    #button {
-              position: relative;
-              width: 7vw;
-              height: 6vh;
-              left: 12vw;
-              top: 2.4vh;
-              font-size: 1.4vw;
-          }*/ }
-  #successMsg #messageBodyHeader {
-    height: 5vh;
-    width: 35vw; }
-    #successMsg #messageBodyHeader span {
-      font-size: 1.4vw;
-      position: relative;
-      left: 14vw;
-      top: 1vh; }
-  #successMsg #messageBody {
-    width: 35vw;
-    height: 25vh; }
-    #successMsg #messageBody #messagBodyInputs {
-      width: 35vw;
-      height: 20vh;
-      background-color: rgba(173, 255, 47, 0.8);
-      position: relative; }
-      #successMsg #messageBody #messagBodyInputs label:first-child {
-        position: absolute;
-        left: 4.6vw;
-        top: 3.2vh;
-        font-size: 1.3vw; }
-      #successMsg #messageBody #messagBodyInputs label:last-of-type {
-        position: absolute;
-        left: 4.6vw;
-        top: 8.2vh;
-        font-size: 1.3vw; }
-      #successMsg #messageBody #messagBodyInputs input {
-        position: absolute;
-        left: 9vw;
-        top: 3vh;
-        width: 20vw;
-        height: 4vh;
-        font-size: 1.2vw; }
-      #successMsg #messageBody #messagBodyInputs input:last-of-type {
-        position: absolute;
-        left: 9vw;
-        top: 8vh; }
-      #successMsg #messageBody #messagBodyInputs button {
-        position: absolute;
-        left: 15vw;
-        top: 14vh;
-        width: 7vw;
-        height: 5vh;
-        font-size: 1.3vw; }
-    #successMsg #messageBody #messageBodyButton {
-      position: relative; }
-      #successMsg #messageBody #messageBodyButton p {
-        position: absolute;
-        left: 1vw;
-        top: 1vh;
-        font-size: 1vw; }
-
-#successMsgRegister {
-  position: absolute;
-  left: 34vw;
-  top: 22vh;
-  z-index: 100;
-  width: 35vw;
-  height: 45vh;
-  background-color: rgba(173, 216, 230, 0.9); }
-  #successMsgRegister #messageBodyHeader {
-    height: 5vh;
-    width: 35vw; }
-    #successMsgRegister #messageBodyHeader span {
-      font-size: 1.4vw;
-      position: relative;
-      left: 14vw;
-      top: 2vh; }
-  #successMsgRegister #messageBody {
-    width: 35vw;
-    height: 40vh; }
-    #successMsgRegister #messageBody #messagBodyInputs {
-      width: 35vw;
-      height: 38vh;
-      background-color: rgba(173, 255, 47, 0.8);
-      position: relative; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:first-of-type label {
-        position: absolute;
-        left: 3.6vw;
-        top: 3.2vh;
-        font-size: 1.3vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:first-of-type input {
-        position: absolute;
-        left: 10vw;
-        top: 3vh;
-        width: 20vw;
-        height: 4vh;
-        font-size: 1.2vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(2) label {
-        position: absolute;
-        left: 3.6vw;
-        top: 9.2vh;
-        font-size: 1.3vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(2) input {
-        position: absolute;
-        left: 10vw;
-        top: 9vh;
-        width: 20vw;
-        height: 4vh;
-        font-size: 1.2vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(3) label {
-        position: absolute;
-        left: 3.6vw;
-        top: 15.2vh;
-        font-size: 1.3vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(3) input {
-        position: absolute;
-        left: 10vw;
-        top: 15vh;
-        width: 20vw;
-        height: 4vh;
-        font-size: 1.2vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(4) label {
-        position: absolute;
-        left: 3.6vw;
-        top: 21.2vh;
-        font-size: 1.3vw; }
-      #successMsgRegister #messageBody #messagBodyInputs .form-group:nth-of-type(4) input {
-        position: absolute;
-        left: 10vw;
-        top: 21vh;
-        width: 20vw;
-        height: 4vh;
-        font-size: 1.2vw; }
-      #successMsgRegister #messageBody #messagBodyInputs button {
-        position: absolute;
-        left: 13vw;
-        top: 28vh;
-        width: 10vw;
-        height: 6vh;
-        font-size: 1.3vw; }
 
 /*# sourceMappingURL=main.css.map */

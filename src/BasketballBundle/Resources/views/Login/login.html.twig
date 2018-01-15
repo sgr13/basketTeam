@@ -6,15 +6,15 @@
     <div id="mainContainerBackground">
     </div>
     <div id="mainContainer">
-        <div id="successMsg">
-            <div id ="messageBodyHeader"><span>Logowanie</span></div>
+        <div id="loginContainer">
+            <div id ="loginHeader"><span>Logowanie</span></div>
             {% if errors %}
                 <div class="alert alert-danger">
                      Niewłaściwe Dane!
                 </div>
             {%endif%}
-            <div id = "messageBody">
-                <div id="messagBodyInputs">
+            <div id = "loginBody">
+                <div id="loginInputs">
                     <form action="{{path('login')}}" method="post">
                             <label for="username">Login:</label>
                             <input type="text" name="_username" id="username" value="{{ username }}">
@@ -23,7 +23,7 @@
                         <button class="btn btn-info pull-right">Zaloguj</button>
                     </form>
                 </div>
-            <div id="messageBodyButton">
+            <div id="loginButton">
                 <p>Nie masz konta? <a href ="{{ asset('register')}}">Zarejestruj się</a>
             </div>
             </div>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 //    alert('hej');
-    $('#successMsg').draggable();
-    $('#successMsgRegister').draggable();
+    $('#loginContainer').draggable();
+    $('#registerContainer').draggable();
     
 //    $('.thumbView').mouseover(function(event) {
 //        

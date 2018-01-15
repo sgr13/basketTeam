@@ -86,6 +86,45 @@ class PlayerController extends Controller
         
         $form->handleRequest($request);
         
+        if ($form->isSubmitted() && $typeOfChanges = 'noPhoto') {
+            $player = $form->getData();
+            $file1 = $player->getPhotoFront();
+            $file2 = $player->getPhotoBack();
+            $player->setPhotoFront($file1);
+            $player->setPhotoBack($file2);
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($player);
+            $em->flush();
+            
+            return $this->redirect('/userPanel');
+            
+        } else if ($form->isSubmitted() && $typeOfChanges == 'onlyPhoto') {
+            $player = $form->getData();
+            $photoFront = $player->getPhotoFront();
+            $photoBack= $player->getPhotoBack();
+            
+            $fileName = md5(uniqid()) . '.' . $photoFront->guessExtension();
+            $photoFront->move(
+                $this->getParameter('path_directory'),
+                $fileName
+            );
+
+            $fileName2 = md5(uniqid()) . '.' . $photoBack->guessExtension();
+            $photoBack->move(
+                $this->getParameter('path_directory'),
+                $fileName2
+            );
+            
+            $player->setPhotoFront($fileName);
+            $player->setPhotoBack($fileName2);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($player);
+            $em->flush();
+            
+            return $this->redirect('/userPanel');
+        }
+        
         return $this->render('BasketballBundle:Player:editPlayerStepTwo.html.twig', array(
             'form' => $form->createView(),
             'player' => $player
