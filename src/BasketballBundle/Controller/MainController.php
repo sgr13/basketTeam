@@ -17,11 +17,13 @@ class MainController extends Controller
         }
         
         $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
-//        dump(count($playersList));die;
+        if ($this->getUser()->getPlayer() == null) {
+            $playerExists = 0;
+        } else {
+            $playerExists = 1;
+        }
         if ($this->getUser()->getPlayer() != null && count($playersList) > 0) {
-//            dump('ok');die;
             $loggedPlayerId = $this->getUser()->getPlayer()->getId();
-//            dump($playersList);die;
             foreach ($playersList as $value) {
                 if ($value->getPlayer()->getId() == $loggedPlayerId) {
                     $playerCheckedIn = 1;
@@ -32,9 +34,9 @@ class MainController extends Controller
         } else {
             $playerCheckedIn = 0;
         }
-//        dump($playerCheckedIn);die;
         return $this->render('BasketballBundle:Main:main_page.html.twig', array(
-            'playerCheckedIn' => $playerCheckedIn
+            'playerCheckedIn' => $playerCheckedIn,
+            'playerExists' => $playerExists
         ));
     }
 

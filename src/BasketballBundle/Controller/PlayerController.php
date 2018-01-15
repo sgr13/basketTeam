@@ -64,12 +64,31 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/editPlayer")
+     * @Route("/editPlayer", name="editPlayer")
      */
     public function editPlayerAction()
     {
         return $this->render('BasketballBundle:Player:edit_player.html.twig', array(
             // ...
+        ));
+    }
+    
+    /**
+     * @Route("/changePlayerDataStepTwo/{typeOfChanges}", name="changePlayerDataStepTwo")
+     */
+    public function changePlayerDataStepTwoAction(request $request, $typeOfChanges)
+    {   
+//        dump($typeOfChanges);die;
+        $player = $this->getUser()->getPlayer();
+        $form = $this->createForm(PlayerType::class, $player, array (
+            $typeOfChanges => true
+        ));
+        
+        $form->handleRequest($request);
+        
+        return $this->render('BasketballBundle:Player:editPlayerStepTwo.html.twig', array(
+            'form' => $form->createView(),
+            'player' => $player
         ));
     }
 
@@ -209,9 +228,7 @@ class PlayerController extends Controller
         
         $playersList = $this->getDoctrine()->getRepository('BasketballBundle:PlayerList')->findAll();
         if ($this->getUser()->getPlayer() != null && count($playersList) > 0) {
-//            dump('ok');die;
             $loggedPlayerId = $this->getUser()->getPlayer()->getId();
-//            dump($playersList);die;
             foreach ($playersList as $value) {
                 if ($value->getPlayer()->getId() == $loggedPlayerId) {
                     $playerCheckedIn = 1;
@@ -228,5 +245,12 @@ class PlayerController extends Controller
             'playerCheckedIn' => $playerCheckedIn
         ));
     }
-
+    
+    /**
+     * @Route("/addPlayer", name="addPlayer")
+     */
+//    public function addPlayerAction()
+//    {
+//        
+//    }
 }

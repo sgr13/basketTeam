@@ -1,0 +1,19 @@
+{% extends "::basePlayer.html.twig" %}
+
+{% block title %}BasketballBundle:Player:addPlayer{% endblock %}
+
+{% block body %}
+    <div id="mainContainerBackground">
+    </div>
+    <div class="sbi_container">
+        <div id="successMsgRegister">
+            <div id ="messageBodyHeader"><span>Edycja zawodnika</span></div>
+            <div id = "messageBody">
+                <div id="messagBodyInputs">
+                    {{form(form)}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

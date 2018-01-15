@@ -15,20 +15,23 @@
             <file>file:/home/www/html/Basketball/app/Resources/views/superMenu.html.twig</file>
             <file>file:/home/www/html/Basketball/app/Resources/views/base.html.twig</file>
             <file>file:/home/www/html/Basketball/web/js/main.js</file>
-            <file>file:/home/www/html/Basketball/web/css/style1.css</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/AdminController.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/editPlayerByAdmin.html.twig</file>
             <file>file:/home/www/html/Basketball/web/scss/player.scss</file>
             <file>file:/home/www/html/Basketball/web/scss/_fonts.scss</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/MainController.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/showGameDetails.html.twig</file>
             <file>file:/home/www/html/Basketball/web/js/jquery-3.2.1.min.js</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/NextGame.php</file>
             <file>file:/home/www/html/Basketball/web/js/jquery-1.6.1.min.js</file>
             <file>file:/home/www/html/Basketball/app/config/security.yml</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/edit_player.html.twig</file>
+            <file>file:/home/www/html/Basketball/web/scss/adminPanel.scss</file>
             <file>file:/home/www/html/Basketball/web/scss/main.scss</file>
             <file>file:/home/www/html/Basketball/app/Resources/views/basePlayer.html.twig</file>
             <file>file:/home/www/html/Basketball/web/js/jquery-ui.min.js</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/PlayerController.php</file>
-            <file>file:/home/www/html/Basketball/web/css/sbimenu.css</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Admin/game_index.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Login/login.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/show_players_list.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Main/main_page.html.twig</file>
@@ -38,6 +41,8 @@
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/check_in.html.twig</file>
             <file>file:/home/www/html/Basketball/web/js/stylesuper.js</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/LoginController.php</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/user_panel.html.twig</file>
+            <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Player/showGameHistoryList.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Controller/RegisterController.php</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Resources/views/Register/register.html.twig</file>
             <file>file:/home/www/html/Basketball/src/BasketballBundle/Entity/Player.php</file>

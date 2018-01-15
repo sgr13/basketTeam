@@ -1,7 +1,26 @@
-{% extends "::base.html.twig" %}
+{% extends "::basePlayer.html.twig" %}
 
-{% block title %}BasketballBundle:Player:editPlayer{% endblock %}
+{% block title %}Twój panel{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Player:editPlayer page</h1>
+    <div id="mainContainerBackground">
+    </div>
+    <div class="sbi_container">
+        <section>Wybierz elementy do zmiany</section>
+        <a href="{{ path('changePlayerDataStepTwo',{'typeOfChanges': 'noPhoto'}) }}">
+            <div id="changePlayerDataButton1">
+                <span>Zmiana<br>danych</span>
+            </div>
+        </a>
+        <a href="{{ path('changePlayerDataStepTwo',{'typeOfChanges': 'onlyPhoto'}) }}">
+            <div id="changePlayerDataButton2">
+                <span>Zmiana<br>zdjęcia</span>
+            </div>
+        </a>
+        <a href ='{{asset("/")}}'
+            <div class="goBackButton">
+                <span>Powrót</span>
+            </div>
+        </a>
+    </div>
 {% endblock %}

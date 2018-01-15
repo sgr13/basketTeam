@@ -11,9 +11,9 @@
                 <a style="padding:2px" href="{{ path('showGameDetails',{gameId: game.id}) }}"><button class='gameListButton'>{{ game.date }}</button></a>
             {% endfor %}#}
             {% if player == 0 %}
-                <a style="padding:2px" href="{{ asset('/') }}"><button class='gameListButton'>Dodaj zawodnika</button></a>
+                <a style="padding:2px" href="{{ asset('/addPlayer') }}"><button class='gameListButton'>Dodaj zawodnika</button></a>
             {% else %}
-                <a style="padding:2px" href="{{ asset('/') }}"><button class='gameListButton'>Edytuj zawodnika</button></a>
+                <a style="padding:2px" href="{{ asset('/editPlayer') }}"><button class='gameListButton'>Edytuj zawodnika</button></a>
             {% endif %}
             {% if playerCheckedIn == 0 %}
                 <a style="padding:2px" href="{{ path('signInOut', {'action': 'signIn'}) }}"><button class='gameListButton'>Zapisz się</button></a>
@@ -25,48 +25,6 @@
             <a style="padding:2px" href="{{ asset('/showGameHistoryList') }}"><button class='gameListButton'>Pokaż historię spotkań</button></a>
             <a style="padding:2px" href="{{ asset('/logout') }}"><button class='gameListButton'>Wyloguj się</button></a>
         </ul>
-        {#<div id="playerPanelOptions">
-            <a href="/">
-                <div>
-                    <span>Dodaj zawodnika</span>
-                </div>
-            </a>
-            <a href="/">
-                <div>
-                    <span>Edytuj zawodnika</span>
-                </div>
-            </a>
-            <a href="/">
-                <div>
-                    <span>Zapisz się</span>
-                </div>
-            </a>
-            <a href="/">
-                <div>
-                    <span>Wycofaj się</span>
-                </div>
-            </a>
-            <a href="/">
-                <div>
-                    <span>Zmień dane użytkownika</span>
-                </div>
-            </a>
-            <a href={{asset('/showPlayerList')}}>
-                <div>
-                    <span>Pokaż listę najbliższego meczu</span>
-                </div>
-            </a>
-            <a href={{asset('/showGameHistoryList')}}>
-                <div>
-                    <span>Pokaż historię spotkań</span>
-                </div>
-            </a>
-            <a href={{asset('/logout')}}>
-                <div>
-                    <span>Wyloguj się</span>
-                </div>
-            </a>
-        </div>#}
         <a href ='{{asset("/")}}'
             <div class="goBackButton">
                 <span>Powrót</span>

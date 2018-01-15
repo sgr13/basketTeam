@@ -18,10 +18,14 @@
                                 <a href="#" class="sbi_label">Dla gracza</a>
                                 <div class="sbi_content">
                                         <ul id="firstMenu">
-                                            {% if playerCheckedIn == 0 %}
-                                                <li><a href="{{ asset('checkIn') }}" id="signUpHref">Zapisz&nbsp&nbspsię</a></li>
+                                            {%if playerExists == 0 %}
+                                                <li><a href="{{ asset('/addPlayer') }}" id="signUpHref">Dodaj&nbsp&nbspzawodnika</a></li>
                                             {% else %}
-                                                <li><a href="{{ asset('checkIn') }}" id="signUpHref">Wypisz&nbsp&nbspsię</a></li>
+                                                {% if playerCheckedIn == 0 %}
+                                                    <li><a href="{{ asset('checkIn') }}" id="signUpHref">Zapisz&nbsp&nbspsię</a></li>
+                                                {% else %}
+                                                    <li><a href="{{ asset('checkIn') }}" id="signUpHref">Wypisz&nbsp&nbspsię</a></li>
+                                                {% endif %}
                                             {% endif %}
                                             <li><a href="{{asset('/showPlayerList')}}">Najbliższy&nbsp&nbspmecz&nbsp&nbsp-&nbsp&nbspLista&nbsp&nbspzawodników</a></li>
                                             <li><a href="{{asset('/showGameHistoryList')}}">Historia&nbsp&nbspSpotkań</a></li>
